@@ -1,0 +1,68 @@
+<div id="introCellWrapper">
+<!--    <div id="loginColumn">-->
+        <div id="loginCanvas">
+            <div id="formColumn">
+                <div id="container">
+                    <form class="mainForm" action="/main_dev.php/registration.html<?php //echo url_for('@register') ?>" method="post" id="register_form">
+                        <fieldset>
+                            <input type="hidden" name="sf_method" value="put">
+                            <?php echo $form->renderGlobalErrors() ?>
+                            <?php echo $form->renderHiddenFields() ?>
+                            <div class="">
+                                <?php echo $form['first_name']->renderLabel('First name') ?>
+                                <?php echo $form['first_name']->renderError() ?>
+                                <div class=""><?php echo $form['first_name'] ?></div>
+                            </div>
+                            <div class="">
+                                <?php echo $form['last_name']->renderLabel('Last name') ?>
+                                <?php echo $form['last_name']->renderError() ?>
+                                <div class=""><?php echo $form['last_name'] ?></div>
+                            </div>
+                            <div class="">
+                                <?php echo $form['gender']->renderLabel('Gender') ?>
+                                <?php echo $form['gender']->renderError() ?>
+                                <div class=""><?php echo $form['gender'] ?></div>
+                            </div>
+                            <div class="">
+                                <?php echo $form['state']->renderLabel('State') ?>
+                                <?php echo $form['state']->renderError() ?>
+                                <div class=""><?php echo $form['state'] ?></div>
+                            </div>
+                            <div class="">
+                                <?php echo $form['city']->renderLabel('City') ?>
+                                <?php echo $form['city']->renderError() ?>
+                                <div class=""><?php echo $form['city'] ?></div>
+                            </div>
+                            <div class="">
+                                <?php echo $form['email']->renderLabel('Email') ?>
+                                <?php echo $form['email']->renderError() ?>
+                                <div class=""><?php echo $form['email'] ?></div>
+                            </div>
+                            <div class="">
+                                <?php echo $form['password']->renderLabel('Password') ?>
+                                <?php echo $form['password']->renderError() ?>
+                                <div class=""><?php echo $form['password'] ?></div>
+                            </div>
+                            <div class="">
+                                <?php echo $form['re_password']->renderLabel('Re - password') ?>
+                                <?php echo $form['re_password']->renderError() ?>
+                                <div class=""><?php echo $form['re_password'] ?></div>
+                            </div>
+                            <div class="">
+                                <input type="button" value="Register" id="registration_submit" class="login_button" /> <br />
+                                <input type="button" value="Already have an account" id="login_submit" class="login_button" /><br />
+                                <div class="fix"></div>
+                            </div>
+                        </fieldset>
+                    </form>
+                </div><!--End container-->
+            </div><!--End FormColumn-->
+        </div><!--End loginCanvas-->
+<!--    </div>End loginColumn-->
+</div>
+<script type="text/javascript" language="JavaScript">
+    $(document).ready(function(){
+        $(document).on( "click", "#registration_submit", function(e){ $("#register_form").submit(); })
+        $(document).on( "click", "#login_submit", function(e){ window.location = "/login.html"; })
+    })
+</script>

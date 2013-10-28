@@ -1,0 +1,145 @@
+options:
+  type: INNODB
+  collate: utf8_unicode_ci
+  charset: utf8
+
+
+course:
+  tableName: course
+  options:              { collate: utf8_unicode_ci, charset: utf8 }
+  columns:
+    course_id:                  { type: string(64), primary: true }
+    tees_id:                    { type: string(64), notnull: true }
+    CourseName:                 { type: string(128) }
+    StreetAddress:              { type: string(128) }
+    City:                       { type: string(128) }
+    StateorRegion:              { type: string(128) }
+    Zip:                        { type: string(16) }
+    County:                     { type: string(128) }
+    PhoneNumber:                { type: string(128) }
+    FaxNumber:                  { type: string(128) }
+    URL:                        { type: string(128) }
+    TotalHoles:                 { type: string(64) }
+    architects:                 { type: string(128) }
+    YearBuiltFounded:           { type: string(128) }
+    StatusPublicPrivateResort:  { type: string(128) }
+    GuestPolicy:                { type: string(128) }
+    EmailAddress:               { type: string(128) }
+    TeeNumber:                  { type: integer }
+    teename:                    { type: string(64) } 
+    Par:                        { type:  integer, notnull: true }
+    Holes:                      { type:  integer, notnull: true }
+    Rating:                     { type:  float, notnull: true }
+    Slope:                      { type:  integer, notnull: true }
+    Par_1:                      { type:  integer, notnull: true }
+    Yards_1:                    { type:  integer, notnull: true }
+    Hdcp_1:                     { type:  integer, notnull: true, default: 0 }
+    Par_2:                      { type:  integer, notnull: true }
+    Yards_2:                    { type:  integer, notnull: true }
+    Hdcp_2:                     { type:  integer, notnull: true, default: 0 }
+    Par_3:                      { type:  integer, notnull: true }
+    Yards_3:                    { type:  integer, notnull: true }
+    Hdcp_3:                     { type:  integer, notnull: true, default: 0 }
+    Par_4:                      { type:  integer, notnull: true }
+    Yards_4:                    { type:  integer, notnull: true }
+    Hdcp_4:                     { type:  integer, notnull: true, default: 0 }
+    Par_5:                      { type:  integer, notnull: true }
+    Yards_5:                    { type:  integer, notnull: true }
+    Hdcp_5:                     { type:  integer, notnull: true, default: 0 }
+    Par_6:                      { type:  integer, notnull: true }
+    Yards_6:                    { type:  integer, notnull: true }
+    Hdcp_6:                     { type:  integer, notnull: true, default: 0 }
+    Par_7:                      { type:  integer, notnull: true }
+    Yards_7:                    { type:  integer, notnull: true }
+    Hdcp_7:                     { type:  integer, notnull: true, default: 0 }
+    Par_8:                      { type:  integer, notnull: true }
+    Yards_8:                    { type:  integer, notnull: true }
+    Hdcp_8:                     { type:  integer, notnull: true, default: 0 }
+    Par_9:                      { type:  integer, notnull: true }
+    Yards_9:                    { type:  integer, notnull: true }
+    Hdcp_9:                     { type:  integer, notnull: true, default: 0 }
+    Par_10:                     { type:  integer, notnull: true }
+    Yards_10:                   { type:  integer, notnull: true }
+    Hdcp_10:                    { type:  integer, notnull: true, default: 0 }
+    Par_11:                     { type:  integer, notnull: true }
+    Yards_11:                   { type:  integer, notnull: true }
+    Hdcp_11:                    { type:  integer, notnull: true, default: 0 }
+    Par_12:                     { type:  integer, notnull: true }
+    Yards_12:                   { type:  integer, notnull: true }
+    Hdcp_12:                    { type:  integer, notnull: true, default: 0 }
+    Par_13:                     { type:  integer, notnull: true }
+    Yards_13:                   { type:  integer, notnull: true }
+    Hdcp_13:                    { type:  integer, notnull: true, default: 0 }
+    Par_14:                     { type:  integer, notnull: true }
+    Yards_14:                   { type:  integer, notnull: true }
+    Hdcp_14:                    { type:  integer, notnull: true, default: 0 }
+    Par_15:                     { type:  integer, notnull: true }
+    Yards_15:                   { type:  integer, notnull: true }
+    Hdcp_15:                    { type:  integer, notnull: true, default: 0 }
+    Par_16:                     { type:  integer, notnull: true }
+    Yards_16:                   { type:  integer, notnull: true }
+    Hdcp_16:                    { type:  integer, notnull: true, default: 0 }
+    Par_17:                     { type:  integer, notnull: true }
+    Yards_17:                   { type:  integer, notnull: true }
+    Hdcp_17:                    { type:  integer, notnull: true, default: 0 }
+    Par_18:                     { type:  integer, notnull: true }
+    Yards_18:                   { type:  integer, notnull: true }
+    Hdcp_18:                    { type:  integer, notnull: true, default: 0 }
+    Tot_in_par:                 { type:  integer }
+    Tot_in_yards:               { type:  integer }
+    Length:                     { type:  integer, notnull: true }
+    latitude:                   { type:  double, default: 0 }
+    longitude :                 { type:  double, default: 0 }
+    
+event:
+  tableName: event
+  options:                    { collate: utf8_unicode_ci, charset: utf8 }
+  columns:
+    event_id:     { type: integer, primary: true, autoincrement: true }
+    player_id:    { type: integer, notnull: true }
+    course_id:    { type: string(20), notnull: true }
+    event_name:   { type: string(100), notnull: true }
+    event_date:   { type: datetime, notnull: true }
+    start_hole:   { type: integer, notnull: true }
+    status:       { type: integer, notnull: true, default: 1 }
+
+player:
+  tableName: player
+  options:                    { collate: utf8_unicode_ci, charset: utf8 }
+  columns:
+    player_id:  { type: integer, primary: true, autoincrement: true }
+    first_name: { type: string(100) }
+    last_name:  { type: string(100) }
+    email:      { type: string(150) }
+    password:   { type: string(100) }
+    gender:     { type: char(1) }
+    handicap:   { type: float }
+    usga_index: { type: string(45) }
+    is_user:    { type: integer, notnull: true, default 0 }
+    state:      { type: string(2) }
+    city:       { type: string(32) }
+    home_course:{ type: string(64) }
+    created:    { type: timestamp }
+
+
+round:
+  tableName: round
+  options:        { collate: utf8_unicode_ci, charset: utf8 }
+  columns:
+    round_id:    	{ type: integer, primary: true, autoincrement: true }
+    player_id:   	{ type: integer, notnull: true }
+    tees_id:      { type: string(20), notnull: true }
+    event_id:     { type: integer, notnull: true }
+    rating:   		{ type: float }
+    slope:    		{ type: integer }
+    holes_score:	{ type: string(50), notnull: true, default: '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0' }
+    holes_hcp:    { type: string(50), notnull: true, default: '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0' }
+    rating:       { type: float }
+    slope:        { type: integer, notnull: true, default: 0 }
+    total_score:	{ type: integer, notnull: true, default: 0 }
+    round_hcp:    { type: float, notnull: true, default: 0 }
+    bet_hcp:      { type: integer, notnull: true, default: 0 }
+    saved:        { type: boolean }
+
+
+

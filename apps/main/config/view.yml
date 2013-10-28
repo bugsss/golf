@@ -1,0 +1,20 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/13-View
+
+default:
+  http_metas:
+    content-type: text/html
+
+  metas:
+    title:        Golf GamesKeeper
+    #description:  symfony project
+    #keywords:     symfony, project
+    #language:     en
+    #robots:       index, follow
+
+  stylesheets:    [main.css, FONTSQUIRREL/stylesheet.css, wowslider-style, trontastic/jquery-ui-1.9.2.custom.min.css, ddsmoothmenu.css]
+
+  javascripts:    [jquery-1.8.3.js, jquery-ui-1.9.2.custom.min.js, script.js, wowslider.js, ddsmoothmenu.js, ddsmoothmenu-start.js]
+
+  has_layout:     true
+  layout:         layout

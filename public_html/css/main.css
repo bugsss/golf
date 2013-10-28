@@ -1,0 +1,292 @@
+@charset "utf-8";
+/* GOLF GAME KEEPERS LLC. */
+
+.clearFix {
+	clear:both;
+}
+
+body {
+	font-family:"cantarellregular";
+	font-size:14px;
+	color:#666;
+	margin:0;
+	padding:0;
+	background-color:#000;
+}
+
+#thickBlackLine {
+	width:100%; background: #000; height: 113px;
+}
+
+#header {
+	height:113px; width:1085px; padding:0; margin:0 auto 0 auto;
+}
+
+#logo {
+	width:92px;
+	height:92px;
+	padding:0;
+	margin:11px 0 0 0px;
+	float:left;
+}
+
+#menuContainer {
+	height:40px;
+	margin:65px 0 0 35px;
+	padding:0;
+	float:left;
+}
+
+#menu {
+	margin:65px 0 0 35px;
+	padding:0;
+	height:40px;
+	float:left;
+}
+
+#menu a {
+        display:inline-block;
+	padding:0 10px 0 10px;
+	margin:0;
+	font: 24px 'bebasregular'; color:#fff; text-align:center; word-spacing:5px;
+	text-decoration:none;
+	outline:none;
+	
+}
+
+.selected_menu{
+    color:#5A8B0A !important;
+}
+.withBorder {
+	border-right:1px solid #FFF;
+}
+
+.withoutBorder {
+	border:none;
+}
+
+#menu a:hover {
+	color:#5A8B0A;
+}
+
+#social {
+	float:right;
+	height:72px;
+	width:170px;
+	margin:35px 20px 0 0;
+	padding:0;
+	background-image:url(../images/socialBack.png);
+	background-repeat:no-repeat;
+}
+
+#social ul {
+	margin:0; padding:25px 0 0 0; list-style:none;
+}
+
+#social li {
+	margin:0; padding:0; display:inline;
+}
+
+#greenBackground {
+	width:100%;
+	height:543px;
+	background: url(../images/greenRadialGradientFill.jpg) top center no-repeat;
+	margin:0;
+	padding:0;
+}
+
+#introCellWrapper {
+	width:1085px;
+	height:543px;
+	margin:0 auto 0 auto;
+	padding:0;
+}
+
+#introduction {
+	width:460px;
+	height:543px;
+	margin:0;
+	padding:0;
+	float:left;
+}
+
+#cellPhones {
+	width:625px;
+	height:543px;
+	margin:0;
+	padding:0;
+	float:left;
+	background: url(../images/image_3.jpg) no-repeat;
+}
+
+#wowSlider {
+	width:218px;
+	height:332px;
+	margin:0;
+	padding:113px 0 0 48px;
+}
+
+#thinkBlackLine {
+	width:100%;
+	height:36px;
+	background:#000;
+	padding:0;
+	margin:0;
+}
+
+#footerWrapper {
+	width:1085px;
+	height:28px;
+	margin: 0 auto 0 auto;
+	padding:11px 0 0 0;
+}
+
+#footer {
+	width:350px; height:28px; margin:0px; padding:0 0 0 51px;
+	font: 11px/12px 'Arial'; text-transform:uppercase; color:#FFF;
+}
+
+#footer a {
+	text-decoration:none;
+	color:#9F0;
+}
+
+/***********Support Page****************/
+#boxScroll {
+	height: 543px;
+	width: 1085px;
+	padding:0px;
+	margin:0 auto 0 auto;
+	overflow: auto;
+}
+
+
+
+/**********Sample HTML PAGE*************/
+#spacer1 {
+	width:1085px; height:20px; margin:0; padding:0;
+}
+
+#spacer2 {
+	width:20px; height:523px; margin:0; padding:0; float:left;
+}
+
+#profilePictureColumn {
+	width:260px; height:523px; margin:0; padding:0; float:left;
+}
+
+#formColumn {
+	width:805px; height:523px; margin:0; padding:0; float:left;
+}
+
+#profilePictureCanvas {
+	width:183px; height:212px; margin:0; padding:0; background-color:#7BA30F;
+	border:5px solid #5A790B;
+}
+
+#profilePicture{
+	width:173px; height:157px; margin:0 auto 0 auto; padding:5px 0 0 0;
+}
+
+#playerNameAndHandicapWrapper {
+	width:173px; height:50px; margin:-18px auto 0 auto; padding:0; background:url(IMAGES/playerNameHandicapBg.png) no-repeat; position:relative; z-index:2;
+}
+
+#playerName {
+	font:13px/20px 'Arial'; color:#FFF; margin:5px 0 0 8px; padding:0; float:left;
+}
+
+#handicap {
+	font:13px/20px 'Arial'; color:#FFF; margin:23px 10px 0 0; padding:0; float:right;
+}
+
+#cityState {
+	font:11px/11px 'Arial'; color:#FFF; margin:-15px 0 0 5px; padding:0;
+}
+
+#homeGolfCourse {
+	font:11px/11px 'Arial'; color:#FFF; margin:0 0 0 5px; padding:0;
+}
+
+#loginColumn {
+	width:260px; height:523px; margin:0; padding:0; float:left;
+}
+
+#loginCanvas {
+	width: 75%;
+        height:212px;
+        margin:0 auto; 
+        padding-top: 15px; 
+        padding-top: 15px; 
+        background-color:#7BA30F;
+	border:1px solid #5A790B;
+}
+
+
+
+/*********************CSS FOR TABS****************************/
+#container {
+	width:737px;
+	margin:0 auto 0 auto;
+	padding:0;
+}
+
+.whiteBackground {
+	background:#FFF;
+	width:737px;
+	height:410px;
+	padding:20px;
+	border-bottom-left-radius:10px;
+	border-bottom-right-radius:10px;
+	-webkit-border-bottom-right-radius:10px;
+	-webkit-border-bottom-left-radius:10px;
+	-moz-border-radius-bottomright:10px;
+	-moz-border-radius-bottomleft:10px;
+}
+
+.tabs {
+	height: 31px;
+	margin:0; padding:0;
+}
+.tabs li {
+	float:  left;
+	margin: 0;
+	overflow: hidden;
+	background-color: #444;
+}
+.tabs li a {
+	display: block;
+	color: #fff;
+	text-decoration: none;
+	font: bold 11px/11px 'Arial';
+	text-transform: uppercase;
+	padding: 10px 15px;
+	border-right: 1px solid #fff;
+}
+
+.tabs li a:hover {
+		background-color: #00b3ff;
+
+}
+
+.tabs li.active a {
+	color:  #000;
+	background-color: #fff;
+}
+
+
+/***********CSS FOR CUSTOM BUTTONS*******************/
+
+.customButton
+{
+	background:url(IMAGES/customButtonBackground.png) no-repeat;
+	background-color: transparent;
+	height: 46px;
+	width: 142px;
+	border: none;
+	text-transform:uppercase;
+	font:17px/10px 'Arial';
+	color:#FFF;
+/*	text-align:*/
+	/*text-indent: -999em;*/
+}

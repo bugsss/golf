@@ -1,0 +1,82 @@
+# You can find more information about this file on the symfony website:
+# http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+# default rules
+
+#-------------------------------------------------------------------------
+#Public
+#-------------------------------------------------------------------------
+
+homepage:
+  url:   /
+  param: { module: public, action: index }
+
+about:
+  url:   /about.html
+  param: { module: public, action: about }
+
+press:
+  url:   /press.html
+  param: { module: public, action: press }
+
+support:
+  url:   /support.html
+  param: { module: public, action: support }
+
+how_to:
+  url:   /support/how_to.html
+  param: { module: public, action: howTo }
+
+submit_a_course:
+  url:   /support/submit_a_course.html
+  param: { module: public, action: submitAcourse }
+
+contact_us:
+  url:   /support/contact_us.html
+  param: { module: public, action: contactUs }
+
+login:
+  url:   /login.html
+  param: { module: public, action: login }
+
+logout:
+  url:   /logout.html
+  param: { module: public, action: logout }
+
+register:
+  url:   /registration.html
+  param: { module: public, action: registration }
+
+forgot:
+  url:   /forgot.html
+  param: { module: public, action: forgot }
+
+
+
+#-------------------------------------------------------------------------
+#Members
+#-------------------------------------------------------------------------
+
+members:
+  url:   /members.html
+  param: { module: members, action: index }
+
+
+
+
+
+
+
+
+
+
+
+
+# generic rules
+# please, remove them by adding more specific rules
+default_index:
+  url:   /:module
+  param: { action: index }
+
+default:
+  url:   /:module/:action/*

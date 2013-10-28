@@ -1,0 +1,136 @@
+<?php
+/* 
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+*/
+class RegistrationForm extends BaseplayerForm
+{
+    public function configure()
+    {
+        unset(
+                $this['handicap'],
+                $this['is_user'],
+                $this['city'],
+                $this['created_at'],
+                $this['home_course']
+            );
+
+
+        $this->widgetSchema['first_name'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
+        $this->widgetSchema['last_name'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
+        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
+        $this->widgetSchema['password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "validate[required]" ));
+        $this->widgetSchema['re_password'] = new sfWidgetFormInputPassword( array (), array( 'autocomplete' => 'off', 'class' => "validate[required]" ) );
+
+        $states = array(    "" => "Select state",
+                            "AL" => "AL", "AK" => "AK", "AZ" => "AZ", "AR" => "AR", "CA" => "CA", "CO" => "CO", "CT" => "CT", "CA" => "CA", "DE" => "DE", 
+                            "FL" => "FL", "GA" => "GA", "HI" => "HI", "ID" => "ID", "IL" => "IL", "IN" => "IN", "IA" => "IA", "KS" => "KS", "KY" => "KY", 
+                            "LA" => "LA", "ME" => "ME", "MD" => "MD", "MA" => "MA", "MI" => "MI", "MH" => "MN", "NY" => "NY", "NC" => "NC", "ND" => "ND", 
+                            "OH" => "OH", "OK" => "OK", "OR" => "OR", "PA" => "PA", "RI" => "RI", "SC" => "SC", "SD" => "SD", "TN" => "TN", "TX" => "TX", 
+                            "UT" => "UT", "VT" => "VT", "VA" => "VA", "WA" => "WA", "WV" => "WV", "WI" => "WI", "WY" => "WY" );
+        
+        $this->widgetSchema['state'] = new sfWidgetFormChoice(
+                                            array(
+                                                    'choices'   => $states, 
+                                                    'multiple'  => false, 
+                                                    'expanded'  => false
+                                                ));
+        $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
+        $this->widgetSchema['gender'] = new sfWidgetFormChoice(
+                                            array(
+                                                    'choices'   => array( "" => "Select gender", "male" => "Male", "female" => "Female"), 
+                                                    'multiple'  => false, 
+                                                    'expanded'  => false
+                                                ));
+        $this->widgetSchema->setLabels(array(
+                're_password'		=>	'Retype password'
+        ));
+        $this -> validatorSchema['first_name'] = new sfValidatorString();
+        $this -> validatorSchema['last_name'] = new sfValidatorString();
+        $this -> validatorSchema['state'] = new sfValidatorString();
+        $this -> validatorSchema['city'] = new sfValidatorString();
+        $this -> validatorSchema['gender'] = new sfValidatorString();
+        $this -> validatorSchema['password'] = new sfValidatorString();
+        $this -> validatorSchema['re_password'] = new sfValidatorString();
+
+
+        $this -> validatorSchema['email'] = new sfValidatorAnd(array(
+                    new sfValidatorEmail(),
+                    new sfValidatorCallback(array("callback" => array($this, 'checkEmail')))
+        ));
+
+
+        $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+
+        $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
+                        new sfValidatorCallback( array ('callback' => array ($this, 'checkNewPass'))))));
+
+        $this->validatorSchema->setOption('allow_extra_fields', true);
+        $this->validatorSchema->setOption('filter_extra_fields', false);
+    }
+
+    public function checkNewPass($validator, $values)
+    {
+        if ($values['password'] == '' || $values['re_password'] == '')
+        {
+            $error = new sfValidatorError($validator, 'You must fill both the "Password" and "Re password" fields.');
+            throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
+        }
+        if ($values['password'] != $values['re_password'])
+        {
+            $error = new sfValidatorError($validator, 'The password which you entered doesn\'t match <br />with the password from the re-type field. <br />Please make sure you enter the same password <br />in both fields.');
+            throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
+        }
+        return $values;
+    }
+
+    public function checkEmail($validator, $values)
+    {
+        $nr_of_same_usernames = Doctrine::getTable("player")
+                            ->createQuery()
+                            ->where(" email =  ? ", trim($values['email']))
+                            ->count();
+        if( $nr_of_same_usernames > 0 )
+        {
+            $error = new sfValidatorError($validator, 'This is email address is already used.');
+            throw new sfValidatorErrorSchema($validator, array ('email'=>$error));
+        }
+
+        return $values;
+    }
+
+    public function check_email_address($email)
+    {
+        if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email))
+        {
+            return false;
+        }
+
+        $email_array = explode("@", $email);
+        $local_array = explode(".", $email_array[0]);
+        for ($i = 0; $i < sizeof($local_array); $i++)
+        {
+            if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i]))
+            {
+                return false;
+            }
+        }
+        if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1]))
+        {
+            $domain_array = explode(".", $email_array[1]);
+            if (sizeof($domain_array) < 2)
+            {
+                return false;
+            }
+            for ($i = 0; $i < sizeof($domain_array); $i++)
+            {
+                if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i]))
+                {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+?>
