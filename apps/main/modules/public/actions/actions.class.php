@@ -99,6 +99,7 @@ class publicActions extends sfActions
                     $user->setLast( $valori_form['last_name'] );
                     
                     $this->getUser()->setAuthenticated(true);
+                    $this->getUser()->setFlash("new_register", true);
                     $this->redirect("@members");
                 }
 	}
