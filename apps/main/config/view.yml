@@ -14,11 +14,7 @@ default:
 
   stylesheets:    [main.css, FONTSQUIRREL/stylesheet.css, wowslider-style, trontastic/jquery-ui-1.9.2.custom.min.css, ddsmoothmenu.css]
 
-<<<<<<< HEAD
-  javascripts:    [jquery-1.8.3.js, jquery-ui-1.9.2.custom.min.js, script.js, wowslider.js, ddsmoothmenu.js, ddsmoothmenu-start.js, jquery.nicescroll.js]
-=======
-  javascripts:    [jquery-1.8.3.js, jquery-ui-1.9.2.custom.min.js, wowslider.js, script.js, ddsmoothmenu.js, ddsmoothmenu-start.js]
->>>>>>> 46a32343006c6d2fe414a4c1d3d48a7748c71d07
+  javascripts:    [jquery-1.8.3.js, jquery-ui-1.9.2.custom.min.js, wowslider.js, script.js, ddsmoothmenu.js, ddsmoothmenu-start.js, jquery.nicescroll.js]
 
   has_layout:     true
   layout:         layout
