@@ -14,15 +14,15 @@
         <div id="boxScroll">
             <table align="center" cellspacing"7">
                 <tr>
-                    <td><img src="images/INSTRUCTIONS_PHOTOS/support_1.JPG" border="0" width="358" height="500" /></td>
-                    <td><img src="images/INSTRUCTIONS_PHOTOS/support_2.JPG" border="0" width="358" height="500" /></td>
+                    <td><img src="/images/instructions/support_1.JPG" border="0" width="358" height="500" /></td>
+                    <td><img src="/images/instructions/support_2.JPG" border="0" width="358" height="500" /></td>
                 </tr>
                 <tr>
-                    <td><img src="images/INSTRUCTIONS_PHOTOS/support_3.JPG" border="0" width="358" height="500" /></td>
-                    <td><img src="images/INSTRUCTIONS_PHOTOS/support_4.JPG" border="0" width="358" height="500" /></td>
+                    <td><img src="/images/instructions/support_3.JPG" border="0" width="358" height="500" /></td>
+                    <td><img src="/images/instructions/support_4.JPG" border="0" width="358" height="500" /></td>
                 </tr>
                 <tr>
-                    <td><img src="images/INSTRUCTIONS_PHOTOS/support_5.JPG" border="0" width="358" height="500" /></td>
+                    <td><img src="/images/instructions/support_5.JPG" border="0" width="358" height="500" /></td>
                     <td></td>
                 </tr>
             </table>

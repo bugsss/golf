@@ -50,8 +50,7 @@
                 <div id="social">
                     <ul>
                         <li><a href="https://www.facebook.com/golfgameskeeper" target="_blank"><img src="/images/facebook.png" border="0" /></a></li>
-                        <li><img src="/images/twitter.png" border="0" /></li>
-                        <li><a href="https://plus.google.com/u/0/b/112596874151204362134/112596874151204362134/posts"><img src="/images/google.png" border="0" /></a></li>
+                        <li><a href="https://twitter.com/golfgameskeeper" target="_blank"><img src="/images/twitter.png" border="0" /></a></li>
                     </ul>
                 </div>
             </div>
@@ -61,7 +60,7 @@
         </div>
         <div id="thinkBlackLine">
             <div id="footerWrapper">
-                <div id="footer">golf gameskeeper &copy; 2013 <a href="/PrivacyPolicy.htm" target="_blank">privacy policy</a></div>
+                <div id="footer">golf gameskeeper, llc &copy; 2013 <a href="/PrivacyPolicy.htm" target="_blank">privacy policy</a></div>
             </div>
         </div>
     </body>
