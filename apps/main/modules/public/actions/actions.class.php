@@ -89,17 +89,18 @@ class publicActions extends sfActions
                 if ( $form->isValid() )
                 {
                     $user = new player();
+                    $user->setFirstName( $valori_form['first_name'] );
+                    $user->setLastName( $valori_form['last_name'] );
                     $user->setCity( $valori_form['city'] );
                     $user->setState( $valori_form['state'] );
                     $user->setGender( $valori_form['gender'] );
                     $user->setPassword( $valori_form['password'] );
                     $user->setEmail( $valori_form['email'] );
                     $user->save();
-                    $user->setFirst( $valori_form['first_name'] );
-                    $user->setLast( $valori_form['last_name'] );
                     
                     $this->getUser()->setAuthenticated(true);
-                    $this->getUser()->setFlash("new_register", true);
+                    $this->getUser()->setAttribute("user", $user);
+                    $this->getUser()->setFlash("select_tab", "account");
                     $this->redirect("@members");
                 }
 	}
@@ -116,7 +117,9 @@ class publicActions extends sfActions
                     {
                         if( $user->getPassword() == $valori_form['password'] )
                         {
+                                $this->getUser()->setFlash("new_register", true);
                                 $this->getUser()->setAuthenticated(true);
+                                $this->getUser()->setAttribute("user", $user);
                                 $this->redirect("@members");
                         }
                         else

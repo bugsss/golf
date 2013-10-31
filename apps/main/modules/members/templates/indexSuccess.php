@@ -2,12 +2,51 @@
     <div id="spacer1"></div>
     <div id="spacer2"></div>
 
-
-
-
+    <div id="add_score_layer" style="display: none;">
+        <form id="Add Score" name="Add Score" method="post" action="addScore.php?action=email_us">
+            <table width="425" border="0" cellspacing="3" align="left">
+                <tr>
+                    <td align="left" width="50%">Date</td>
+                    <td align="left" width="50%"><input type="text" name="date" id="Date" value="" /></td>
+                </tr>
+                <tr>
+                    <td align="left" width="50%">State</td>
+                    <td align="left" width="50%">
+                        <select name="state_input_field">
+                            <option value="Select Stage">Select Stage</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" width="50%">Home Golf Course</td>
+                    <td align="left" width="50%">
+                        <select name="course_input_field">
+                            <option value="Select Course">Select Course</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" width="50%">Tees</td>
+                    <td align="left" width="50%">
+                        <select name="tees_input_field">
+                            <option value="Select Tees">Select Tees</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="left" width="50%">Score</td>
+                    <td align="left" width="50%"><input type="text" name="score" id="Score" value="" /></td>
+                </tr>
+                <tr>
+                    <td><input name="Submit" type="submit" value="Submit" class="customButton"/></td>
+                    <td></td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    
     <div id="profilePictureColumn">
         <div id="profilePictureCanvas">
-
 
             <div id="profilePicture">
                 <img src="images/JFProfilePicture.png" border="0" />
@@ -36,57 +75,15 @@
     </div><!--End ProfilePictureColumn-->
 
 
-
-
     <div id="formColumn">
         <div id="container">
             <ul class="tabs">
-                <li><a href="#Score">SCORE</a></li>
-                <li><a href="#Friends">FRIENDS</a></li>
-                <li><a href="#Account">ACCOUNT</a></li>
+                <li><a href="#Score" id="tab_score">SCORE</a></li>
+                <li><a href="#Friends" id="tab_friends">FRIENDS</a></li>
+                <li><a href="#Account" id="tab_account">ACCOUNT</a></li>
             </ul>
 
             <div id="Score" class="whiteBackground">
-                <form id="Add Score" name="Add Score" method="post" action="addScore.php?action=email_us">
-                    <table width="425" border="0" cellspacing="3" align="left">
-                        <tr>
-                            <td align="left" width="50%">Date</td>
-                            <td align="left" width="50%"><input type="text" name="date" id="Date" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">State</td>
-                            <td align="left" width="50%">
-                                <select name="state_input_field">
-                                    <option value="Select Stage">Select Stage</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Home Golf Course</td>
-                            <td align="left" width="50%">
-                                <select name="course_input_field">
-                                    <option value="Select Course">Select Course</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Tees</td>
-                            <td align="left" width="50%">
-                                <select name="tees_input_field">
-                                    <option value="Select Tees">Select Tees</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Score</td>
-                            <td align="left" width="50%"><input type="text" name="score" id="Score" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td><input name="Submit" type="submit" value="Submit" class="customButton"/></td>
-                            <td></td>
-                        </tr>
-                    </table>
-                </form>
             </div>
 
             <div id="Friends" class="whiteBackground">
@@ -94,65 +91,59 @@
             </div>
 
             <div id="Account" class="whiteBackground">
-                <form id="Account" name="Account" method="post" action="addScore.php?action=email_us">
-                    <table width="425" border="0" cellspacing="3" align="left">
-                        <tr>
-                            <td align="left" width="50%">First Name</td>
-                            <td align="left" width="50%"><input type="text" name="first_name" id="Frist Name" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Last Name</td>
-                            <td align="left" width="50%"><input type="text" name="last_name" id="Last Name" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">E-Mail</td>
-                            <td align="left" width="50%"><input type="text" name="email" id="Email" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Handicap</td>
-                            <td align="left" width="50%"><input type="text" name="handicap" id="Handicap" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Gender</td>
-                            <td align="left" width="50%"><input type="radio" name="m" value="male" /> Male&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name="f" value="female" /> Female</td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">State</td>
-                            <td align="left" width="50%">
-                                <select name="state_input_field">
-                                    <option value="Select Stage">Select Stage</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">City</td>
-                            <td align="left" width="50%">
-                                <select name="city_input_field">
-                                    <option value="Select City">Select City</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Home Golf Course</td>
-                            <td align="left" width="50%">
-                                <select name="course_input_field">
-                                    <option value="Select Course">Select Course</option>
-                                </select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">New Password</td>
-                            <td align="left" width="50%"><input type="text" name="new_password" id="New Password" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td align="left" width="50%">Confirm New Password</td>
-                            <td align="left" width="50%"><input type="text" name="confirm_new_password" id="Confirm New Password" value="" /></td>
-                        </tr>
-                        <tr>
-                            <td><input name="Submit" type="submit" value="Submit" class="customButton"/></td>
-                            <td></td>
-                        </tr>
-                    </table>
+                <form class="mainForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="profile_form">
+                    <fieldset>
+                        <input type="hidden" name="sf_method" value="put">
+                        <input type="hidden" name="tab" value="profile">
+                        <?php echo $pform->renderGlobalErrors() ?>
+                        <?php echo $pform->renderHiddenFields() ?>
+                        <table width="425" border="0" cellspacing="3" align="left">
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['first_name']->renderLabel('First name') ?><?php echo $pform['first_name']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['first_name'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['last_name']->renderLabel('Last Name') ?><?php echo $pform['last_name']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['last_name'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['email']->renderLabel('Email') ?><?php echo $pform['email']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['email'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['handicap']->renderLabel('Handicap') ?><?php echo $pform['handicap']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['handicap'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['gender']->renderLabel('Gender') ?><?php echo $pform['gender']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['gender'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['state']->renderLabel('State') ?><?php echo $pform['state']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['state'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['city']->renderLabel('City') ?><?php echo $pform['city']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['city'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['home_course_name']->renderLabel('Home Golf Course') ?><?php echo $pform['home_course_name']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['home_course_name'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['new_password']->renderLabel('New Password') ?><?php echo $pform['new_password']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['new_password'] ?></td>
+                            </tr>
+                            <tr>
+                                <td align="left" width="50%"><?php echo $pform['confirm_password']->renderLabel('Confirm New Password') ?><?php echo $pform['confirm_password']->renderError() ?></td>
+                                <td align="left" width="50%"><?php echo $pform['confirm_password'] ?></td>
+                            </tr>
+                            <tr>
+                                <td><input name="Submit" type="submit" value="Submit" class="customButton"/></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                
                 </form>
             </div><!--End Account-->
         </div><!--End container-->
@@ -162,9 +153,14 @@
 <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){
         $("#container").tabs();
-        <?php if( $sf_user->hasFlash('new_register') ): ?>
-                $("#container").tabs( "option", "active", 3 );
-                <?php $sf_user->setFlash('new_register', null) ?>
+        <?php if( $sf_user->hasFlash('select_tab') ): ?>
+                $("#tab_" + "<?php echo $sf_user->getFlash('select_tab') ?>").trigger( "click" );
+                <?php $sf_user->setFlash('select_tab', null) ?>
         <?php endif; ?>
+	$( "#player_home_course_name" ).autocomplete({
+              minLength: 3,
+              source: "get_courses.html"
+	    });
+            
     })
 </script>

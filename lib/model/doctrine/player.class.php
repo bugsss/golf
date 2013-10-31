@@ -12,28 +12,4 @@
  */
 class player extends Baseplayer
 {
-    public function setFirst( $first )
-    {
-        $q = Doctrine_Manager::getInstance()->getCurrentConnection();
-        $result = $q->execute(" UPDATE player SET first = ? WHERE player_id = ? ", array( $first, $this->player_id ) );
-    }
-    
-    public function getFirst()
-    {
-        $q = Doctrine_Manager::getInstance()->getCurrentConnection();
-        $result = $q->execute(" SELECT first FROM player WHERE player_id = ? ", array( $this->player_id ) );
-    }
-    
-    public function setLast( $last )
-    {
-        $q = Doctrine_Manager::getInstance()->getCurrentConnection();
-        $result = $q->execute(" UPDATE player SET last = ? WHERE player_id = ? ", array( $last, $this->player_id ) );
-    }
-    
-    public function getLast()
-    {
-        $q = Doctrine_Manager::getInstance()->getCurrentConnection();
-        $result = $q->execute(" SELECT last FROM player WHERE player_id = ? ", array( $this->player_id ) );
-    }
-    
 }

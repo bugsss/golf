@@ -16,4 +16,19 @@ class courseTable extends Doctrine_Table
     {
         return Doctrine_Core::getTable('course');
     }
+    
+    public static function getCourseList( $term )
+    {
+        $res = Doctrine_Core::getTable( "course" )
+                                        ->createQuery()
+                                        ->select( "course_id, CourseName")
+                                        ->where( "LOWER(CourseName) LIKE '" . trim( strtolower( $term) ) . "%'" )
+                                        ->orderBy( "CourseName" )
+                                        ->execute();//getSqlQuery();
+        $return = Array();
+        foreach( $res as $c)
+            $return[] = array( "label" => $c->getCourseName()."(".$c->getCourseId().")" );
+
+        return $return;
+    }
 }

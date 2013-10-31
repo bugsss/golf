@@ -105,21 +105,23 @@ event:
 
 player:
   tableName: player
-  options:                    { collate: utf8_unicode_ci, charset: utf8 }
+  options:        { collate: utf8_unicode_ci, charset: utf8 }
   columns:
-    player_id:  { type: integer, primary: true, autoincrement: true }
-    first_name: { type: string(100) }
-    last_name:  { type: string(100) }
-    email:      { type: string(150) }
-    password:   { type: string(100) }
-    gender:     { type: char(1) }
-    handicap:   { type: float }
-    usga_index: { type: string(45) }
-    is_user:    { type: integer, notnull: true, default 0 }
-    state:      { type: string(2) }
-    city:       { type: string(32) }
-    home_course:{ type: string(64) }
-    created:    { type: timestamp }
+    player_id:    { type: integer, primary: true, autoincrement: true }
+    first_name:   { type: string(100), name: first as first_name }
+    last_name:    { type: string(100), name: last as last_name }
+    email:        { type: string(150) }
+    password:     { type: string(100) }
+    gender:       { type: char(1) }
+    handicap:     { type: float }
+    usga_index:   { type: string(45) }
+    is_user:      { type: integer, notnull: true, default 0 }
+    state:        { type: string(2) }
+    city:         { type: string(32) }
+    home_course:  { type: string(64) }
+    home_course_name:  { type: string(164) }
+    image:        { type: string(100) }
+    created:      { type: timestamp }
 
 
 round:

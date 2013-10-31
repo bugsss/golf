@@ -61,6 +61,10 @@ members:
   url:   /members.html
   param: { module: members, action: index }
 
+get_courses:
+  url:   /get_courses.html
+  param: { module: members, action: getCourses }
+
 
 
 
