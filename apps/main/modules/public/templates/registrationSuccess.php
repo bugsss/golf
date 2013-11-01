@@ -1,57 +1,60 @@
 <div id="introCellWrapper">
-	<div style="width:100%; height:50px;"></div>
-	<form class="customForm" action="/main_dev.php/registration.html<?php //echo url_for('@register') ?>" method="post" id="register_form">
-   		<fieldset>
-  			<input class="customInput" type="hidden" name="sf_method" value="put">
-      		<?php echo $form->renderGlobalErrors() ?>
-           	<?php echo $form->renderHiddenFields() ?>
-         	<div class="">
-           		<?php echo $form['first_name']->renderLabel('First name') ?>
-              	<?php echo $form['first_name']->renderError() ?>
-             	<div class=""><?php echo $form['first_name'] ?></div>
-         	</div>
-          	<div class="">
-           		<?php echo $form['last_name']->renderLabel('Last name') ?>
-               	<?php echo $form['last_name']->renderError() ?>
-           		<div class=""><?php echo $form['last_name'] ?></div>
-          	</div>
-         	<div class="">
-         		<?php echo $form['gender']->renderLabel('Gender') ?>
-              	<?php echo $form['gender']->renderError() ?>
-         		<div class=""><?php echo $form['gender'] ?></div>
-         	</div>
-        	<div class="">
-				<?php echo $form['state']->renderLabel('State') ?>
+    <div style="width:100%; height:50px;"></div>
+    <form class="customForm" action="/main_dev.php/registration.html<?php //echo url_for('@register')  ?>" method="post" id="register_form">
+        <fieldset>
+            <input class="" type="hidden" name="sf_method" value="put">
+            <?php echo $form->renderGlobalErrors() ?>
+            <?php echo $form->renderHiddenFields() ?>
+            <div class="regform_cell">
+                <?php echo $form['first_name']->renderLabel('First name') ?>
+                <?php echo $form['first_name']->renderError() ?>
+                <div class=""><?php echo $form['first_name'] ?></div>
+            </div>
+            <div class="regform_cell">
+                <?php echo $form['last_name']->renderLabel('Last name') ?>
+                <?php echo $form['last_name']->renderError() ?>
+                <div class=""><?php echo $form['last_name'] ?></div>
+            </div>
+            <div class="regform_cell">
+                <?php echo $form['email']->renderLabel('Email') ?>
+                <?php echo $form['email']->renderError() ?>
+                <div class=""><?php echo $form['email'] ?></div>
+            </div>
+            <div class="regform_cell">
+                <?php echo $form['gender']->renderLabel('Gender') ?>
+                <?php echo $form['gender']->renderError() ?>
+                <div class=""><?php echo $form['gender'] ?></div>
+            </div>
+            <div class="regform_cell">
+                <?php echo $form['state']->renderLabel('State') ?>
                 <?php echo $form['state']->renderError() ?>
                 <div class=""><?php echo $form['state'] ?></div>
-         	</div>
-          	<div class="">
-         		<?php echo $form['city']->renderLabel('City') ?>
+            </div>
+            <div class="regform_cell">
+                <?php echo $form['city']->renderLabel('City') ?>
                 <?php echo $form['city']->renderError() ?>
                 <div class=""><?php echo $form['city'] ?></div>
-       		</div>
-            <div class="">
-              	<?php echo $form['email']->renderLabel('Email') ?>
-               	<?php echo $form['email']->renderError() ?>
-              	<div class=""><?php echo $form['email'] ?></div>
-         	</div>
-         	<div class="">
-           		<?php echo $form['password']->renderLabel('Password') ?>
-          		<?php echo $form['password']->renderError() ?>
-         		<div class=""><?php echo $form['password'] ?></div>
-          	</div>
-         	<div class="">
-              	<?php echo $form['re_password']->renderLabel('Re - password') ?>
-              	<?php echo $form['re_password']->renderError() ?>
-          		<div class=""><?php echo $form['re_password'] ?></div>
-        	</div>
-         	<div class="">
-  				<input type="button" value="Register" id="registration_submit" class="customButton" /> <br />
-               	<input type="button" value="Already have an account" id="login_submit" class="customButton" /><br />
-             	<div class="fix"></div>
-          	</div>
-   		</fieldset>
-	</form>        
+            </div>
+            <div class="regform_cell">
+                <?php echo $form['password']->renderLabel('Password') ?>
+                <?php echo $form['password']->renderError() ?>
+                <div class=""><?php echo $form['password'] ?></div>
+            </div>
+            <div class="regform_cell">
+                <?php echo $form['re_password']->renderLabel('Re - password') ?>
+                <?php echo $form['re_password']->renderError() ?>
+                <div class=""><?php echo $form['re_password'] ?></div>
+            </div>
+            <div class="regform_cell">
+                <input type="button" value="Register" id="registration_submit" class="customButton" /> <br />
+                <div class="fix"></div>
+            </div>
+            <div class="regform_cell">
+               	<input type="button" value="Have account" id="login_submit" class="customButton" /><br />
+                <div class="fix"></div>
+            </div>
+        </fieldset>
+    </form>        
 </div><!--END introCellWrapper-->
 <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){

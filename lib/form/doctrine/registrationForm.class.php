@@ -16,11 +16,11 @@ class RegistrationForm extends BaseplayerForm
             );
 
 
-        $this->widgetSchema['first_name'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['last_name'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "validate[required]" ));
-        $this->widgetSchema['re_password'] = new sfWidgetFormInputPassword( array (), array( 'autocomplete' => 'off', 'class' => "validate[required]" ) );
+        $this->widgetSchema['first_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['last_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['re_password'] = new sfWidgetFormInputPassword( array (), array( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ) );
 
         $states = array(    "" => "Select state",
                             "AL" => "AL", "AK" => "AK", "AZ" => "AZ", "AR" => "AR", "CA" => "CA", "CO" => "CO", "CT" => "CT", "CA" => "CA", "DE" => "DE", 
@@ -34,14 +34,14 @@ class RegistrationForm extends BaseplayerForm
                                                     'choices'   => $states, 
                                                     'multiple'  => false, 
                                                     'expanded'  => false
-                                                ));
-        $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
+                                                ), array ( 'class' => "customSelect validate[required]" ));
+        $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['gender'] = new sfWidgetFormChoice(
                                             array(
                                                     'choices'   => array( "" => "Select gender", "male" => "Male", "female" => "Female"), 
                                                     'multiple'  => false, 
                                                     'expanded'  => false
-                                                ));
+                                                ), array ( 'class' => "customSelect validate[required]" ));
         $this->widgetSchema->setLabels(array(
                 're_password'		=>	'Retype password'
         ));

@@ -42,15 +42,19 @@ class membersActions extends sfActions
 		$valori_form = $request->getParameter( $form->getName() );
 //var_dump($valori_form);
                 $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
-                $hc = explode( "(", $valori_form['home_course_name'] );
-                $hc = trim( substr( $hc[1], 0, -1 ) );
+                $hc = "";
+                if( isset($valori_form['home_course_name']) )
+                {
+                    $hc = explode( "(", $valori_form['home_course_name'] );
+                    $hc = trim( substr( $hc[1], 0, -1 ) );
+                }
                 $user = $this->getUser()->getAttribute("user");
                 if( $user->getFirstName()       != $valori_form['first_name']   && trim( $valori_form['first_name'] ) != "" )   $user->setFirstName( $valori_form['first_name'] );
                 if( $user->getLastName()        != $valori_form['last_name']    && trim( $valori_form['last_name'] ) != "" )    $user->setLastName( $valori_form['last_name'] );
                 if( $user->getCity()            != $valori_form['city']         && trim( $valori_form['city'] ) != "" )         $user->setCity( $valori_form['city'] );
                 if( $user->getState()           != $valori_form['state']        && trim( $valori_form['state'] ) != "" )        $user->setState( $valori_form['state'] );
                 if( $user->getGender()          != $valori_form['gender']       && trim( $valori_form['gender'] ) != "" )       $user->setGender( $valori_form['gender'] );
-                if( $user->getPassword()        != $valori_form['new_password'] && trim( $valori_form['new_password'] ) != ""  && $valori_form['new_password'] == $valori_form['confirm_password'] )   $user->setPassword( $valori_form['new_password'] );
+//                if( $user->getPassword()        != $valori_form['new_password'] && trim( $valori_form['new_password'] ) != ""  && $valori_form['new_password'] == $valori_form['confirm_password'] )   $user->setPassword( $valori_form['new_password'] );
                 if( $user->getEmail()           != $valori_form['email']        && trim( $valori_form['email'] ) != "" )        $user->setEmail( $valori_form['email'] );
                 if( $user->getHomeCourse()      != $hc                          && trim( $hc ) != "" )                          $user->setHomeCourse( $hc );
                 if( $user->getHomeCourseName()  != $valori_form['home_course_name']  && trim( $valori_form['home_course_name'] ) != "" )  $user->setHomeCourseName( trim( $valori_form['home_course_name'] ) );

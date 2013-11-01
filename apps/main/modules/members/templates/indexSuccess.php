@@ -81,6 +81,7 @@
                 <li><a href="#Score" id="tab_score">SCORE</a></li>
                 <li><a href="#Friends" id="tab_friends">FRIENDS</a></li>
                 <li><a href="#Account" id="tab_account">ACCOUNT</a></li>
+                <li><a href="#Password" id="tab_account">PASSWORD</a></li>
             </ul>
 
             <div id="Score" class="whiteBackground">
@@ -91,59 +92,83 @@
             </div>
 
             <div id="Account" class="whiteBackground">
-                <form class="mainForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="profile_form">
+                <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="profile_form">
                     <fieldset>
                         <input type="hidden" name="sf_method" value="put">
                         <input type="hidden" name="tab" value="profile">
                         <?php echo $pform->renderGlobalErrors() ?>
                         <?php echo $pform->renderHiddenFields() ?>
-                        <table width="425" border="0" cellspacing="3" align="left">
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['first_name']->renderLabel('First name') ?><?php echo $pform['first_name']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['first_name'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['last_name']->renderLabel('Last Name') ?><?php echo $pform['last_name']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['last_name'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['email']->renderLabel('Email') ?><?php echo $pform['email']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['email'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['handicap']->renderLabel('Handicap') ?><?php echo $pform['handicap']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['handicap'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['gender']->renderLabel('Gender') ?><?php echo $pform['gender']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['gender'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['state']->renderLabel('State') ?><?php echo $pform['state']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['state'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['city']->renderLabel('City') ?><?php echo $pform['city']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['city'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['home_course_name']->renderLabel('Home Golf Course') ?><?php echo $pform['home_course_name']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['home_course_name'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['new_password']->renderLabel('New Password') ?><?php echo $pform['new_password']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['new_password'] ?></td>
-                            </tr>
-                            <tr>
-                                <td align="left" width="50%"><?php echo $pform['confirm_password']->renderLabel('Confirm New Password') ?><?php echo $pform['confirm_password']->renderError() ?></td>
-                                <td align="left" width="50%"><?php echo $pform['confirm_password'] ?></td>
-                            </tr>
-                            <tr>
-                                <td><input name="Submit" type="submit" value="Submit" class="customButton"/></td>
-                                <td></td>
-                            </tr>
-                        </table>
-                
+                        <div class="profileform_cell">
+                            <?php echo $pform['first_name']->renderLabel('First name') ?>
+                            <?php echo $pform['first_name']->renderError() ?>
+                            <div class=""><?php echo $pform['first_name'] ?></div>
+                        </div>
+                        <div class="profileform_cell">
+                            <?php echo $pform['last_name']->renderLabel('Last name') ?>
+                            <?php echo $pform['last_name']->renderError() ?>
+                            <div class=""><?php echo $pform['last_name'] ?></div>
+                        </div>
+                        <div class="profileform_cell">
+                            <?php echo $pform['email']->renderLabel('Email') ?>
+                            <?php echo $pform['email']->renderError() ?>
+                            <div class=""><?php echo $pform['email'] ?></div>
+                        </div>
+                        <div class="profileform_cell">
+                            <?php echo $pform['gender']->renderLabel('Gender') ?>
+                            <?php echo $pform['gender']->renderError() ?>
+                            <div class=""><?php echo $pform['gender'] ?></div>
+                        </div>
+                        <div class="profileform_cell">
+                            <?php echo $pform['state']->renderLabel('State') ?>
+                            <?php echo $pform['state']->renderError() ?>
+                            <div class=""><?php echo $pform['state'] ?></div>
+                        </div>
+                        <div class="profileform_cell">
+                            <?php echo $pform['city']->renderLabel('City') ?>
+                            <?php echo $pform['city']->renderError() ?>
+                            <div class=""><?php echo $pform['city'] ?></div>
+                        </div>
+                        <div class="profileform_cell">
+                            <?php echo $pform['handicap']->renderLabel('Handicap') ?>
+                            <?php echo $pform['handicap']->renderError() ?>
+                            <div class=""><?php echo $pform['handicap'] ?></div>
+                        </div>
+                        <div class="profileform_cell">
+                            <?php echo $pform['home_course_name']->renderLabel('Home Golf Course') ?>
+                            <?php echo $pform['home_course_name']->renderError() ?>
+                            <div class=""><?php echo $pform['home_course_name'] ?></td>
+                        </div>
+                        <div class="profileform_cell">
+                            <input name="Submit" type="submit" value="Submit" class="customButton"/>
+                        </div>
+                </form>
+            </div><!--End Account-->
+        </div><!--End container-->
+            <div id="Password" class="whiteBackground">
+                <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="profile_form">
+                    <fieldset>
+                        <input type="hidden" name="sf_method" value="put">
+                        <input type="hidden" name="tab" value="profile">
+                        <?php echo $pform->renderGlobalErrors() ?>
+                        <?php echo $pform->renderHiddenFields() ?>
+                        <div class="regform_cell">
+                            <?php echo $pform['old_password']->renderLabel('Old Password') ?>
+                            <?php echo $pform['old_password']->renderError() ?>
+                            <div class=""><td align="left" width="50%"><?php echo $pform['old_password'] ?></div>
+                        </div>
+                        <div class="regform_cell">
+                            <?php echo $pform['new_password']->renderLabel('New Password') ?>
+                            <?php echo $pform['new_password']->renderError() ?>
+                            <div class=""><?php echo $pform['new_password'] ?></div>
+                        </div>
+                        <div class="regform_cell">
+                            <?php echo $pform['confirm_password']->renderLabel('Confirm New Password') ?>
+                            <?php echo $pform['confirm_password']->renderError() ?>
+                            <div class=""><?php echo $pform['confirm_password'] ?></div>
+                        </div>
+                        <div class="regform_cell">
+                            <input name="Submit" type="submit" value="Submit" class="customButton"/>
+                        </div>
                 </form>
             </div><!--End Account-->
         </div><!--End container-->

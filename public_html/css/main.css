@@ -189,7 +189,14 @@ body {
 }
 
 #playerNameAndHandicapWrapper {
-	width:173px; height:50px; margin:-18px auto 0 auto; padding:0; background:url(../images/playerNameHandicapBg.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0) no-repeat; position:relative; z-index:2;
+	width:173px; 
+        height:50px; 
+        margin:-18px auto 0 auto; 
+        padding:0; 
+        background-image: url(../images/playerNameHandicapBg.png); 
+/*        background:url(../images/playerNameHandicapBg.png) no-repeat scroll 0 0 rgba(0, 0, 0, 0) no-repeat; */
+        position:relative;
+        z-index:2;
 }
 
 #playerName {
@@ -299,6 +306,21 @@ body {
 	text-align:center;
 }
 
+.customProfileForm {
+/*	margin:auto;*/
+	position:relative;
+	width:91%;
+	font: 17px/41px 'Arial';
+	font-weight:bold;
+	color:#FFF;
+	text-decoration:none;
+	-webkit-border-radius:13px;
+	-moz-border-radius:13px;
+	border-radius:13px;
+/*	padding:20px;*/
+	text-align:center;
+}
+
 .customInput {
 	width:200px;
 	display:block;
@@ -319,19 +341,30 @@ body {
 	margin:auto;
 }
 
-
+.regform_cell {
+        float: left;
+        width: 360px;
+        height: 80px;
+}
+.profileform_cell {
+        float: left;
+        width: 300px;
+        height: 80px;
+}
 /***********CSS FOR CUSTOM BUTTONS*******************/
 
 .customButton
 {
-	background:url(../images/customButtonBackground.png) no-repeat;
-	background-color: transparent;
-	height: 46px;
-	width: 142px;
-	border: none;
-	text-transform:uppercase;
-	font:17px/10px 'Arial';
-	color:#FFF;
+/*        background: url("../images/customButtonBackground.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+        background-color: #587700;
+        border: medium none;
+        border-radius: 13px 13px 13px 13px;
+        color: #FFFFFF;
+        font: 17px/10px 'Arial';
+        height: 41px;
+        margin-top: 20px;
+        text-transform: uppercase;
+        width: 186px;
 /*	text-align:*/
 	/*text-indent: -999em;*/
 }

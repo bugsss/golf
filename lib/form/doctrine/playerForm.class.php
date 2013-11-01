@@ -18,34 +18,38 @@ class playerForm extends BaseplayerForm
             );
 
 
-        $this->widgetSchema['first_name'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['last_name'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['home_course_name'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['new_password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "validate[required]" ));
-        $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword( array (), array( 'autocomplete' => 'off', 'class' => "validate[required]" ) );
+        $this->widgetSchema['first_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['last_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['home_course_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['new_password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword( array (), array( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ) );
 
-        $states = array(    "" => "Select state",
-                            "AL" => "AL", "AK" => "AK", "AZ" => "AZ", "AR" => "AR", "CA" => "CA", "CO" => "CO", "CT" => "CT", "CA" => "CA", "DE" => "DE", 
-                            "FL" => "FL", "GA" => "GA", "HI" => "HI", "ID" => "ID", "IL" => "IL", "IN" => "IN", "IA" => "IA", "KS" => "KS", "KY" => "KY", 
-                            "LA" => "LA", "ME" => "ME", "MD" => "MD", "MA" => "MA", "MI" => "MI", "MH" => "MN", "NY" => "NY", "NC" => "NC", "ND" => "ND", 
-                            "OH" => "OH", "OK" => "OK", "OR" => "OR", "PA" => "PA", "RI" => "RI", "SC" => "SC", "SD" => "SD", "TN" => "TN", "TX" => "TX", 
-                            "UT" => "UT", "VT" => "VT", "VA" => "VA", "WA" => "WA", "WV" => "WV", "WI" => "WI", "WY" => "WY" );
+        $states = array(    "" => "Select state", 
+                            "AL" => "Alabama", "AK" => "Alaska", "AZ" => "Arizona", "AR" => "Arkansas", "CA" =>	"California", "CO" => "Colorado", "CT" => "Connecticut",
+                            "DE" => "Delaware", "FL" =>	"Florida", "GA" => "Georgia", "HI" => "Hawaii", "ID" => "Idaho", "IL" => "Illinois", "IN" => "Indiana", "IA" =>	"Iowa",
+                            "KS" => "Kansas", "KY" => "Kentucky[C]", "LA" => "Louisiana", "ME" => "Maine", "MD" => "Maryland", "MA" => "Massachusetts[D]", "MI" => "Michigan",
+                            "MN" => "Minnesota", "MS" => "Mississippi", "MO" => "Missouri", "MT" => "Montana", "NE" => "Nebraska", "NV" => "Nevada", "NH" => "New Hampshire",
+                            "NJ" => "New Jersey", "NM" => "New Mexico", "NY" => "New York", "NC" => "North Carolina", "ND" => "North Dakota", "OH" => "Ohio", "OK" => "Oklahoma",
+                            "OR" => "Oregon", "PA" => "Pennsylvania[E]", "RI" => "Rhode Island[F]", "SC" => "South Carolina", "SD" => "South Dakota", "TN" => "Tennessee", "TX"	 => "Texas",
+                            "UT" => "Utah", "VT" => "Vermont", "VA" => "Virginia[G]", "WA" => "Washington", "WV" => "West Virginia", "WI" => "Wisconsin", "WY" => "Wyoming"
+                        );
         
         $this->widgetSchema['state'] = new sfWidgetFormChoice(
                                             array(
                                                     'choices'   => $states, 
                                                     'multiple'  => false, 
                                                     'expanded'  => false
-                                                ));
-        $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
-        $this->widgetSchema['handicap'] = new sfWidgetFormInput( array (), array ( 'class' => "validate[required]" ));
+                                                ), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['handicap'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['gender'] = new sfWidgetFormChoice(
                                             array(
                                                     'choices'   => array( "" => "Select gender", "male" => "Male", "female" => "Female"), 
                                                     'multiple'  => false, 
                                                     'expanded'  => false
-                                                ));
+                                                ), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema->setLabels(array(
                 'confirm_password'		=>	'Retype password'
         ));
