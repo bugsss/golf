@@ -20,37 +20,40 @@
  * @property string $home_course_name
  * @property string $image
  * @property timestamp $created
+ * @property Doctrine_Collection $Events
  * 
- * @method integer   getPlayerId()         Returns the current record's "player_id" value
- * @method string    getFirstName()        Returns the current record's "first_name" value
- * @method string    getLastName()         Returns the current record's "last_name" value
- * @method string    getEmail()            Returns the current record's "email" value
- * @method string    getPassword()         Returns the current record's "password" value
- * @method char      getGender()           Returns the current record's "gender" value
- * @method float     getHandicap()         Returns the current record's "handicap" value
- * @method string    getUsgaIndex()        Returns the current record's "usga_index" value
- * @method integer   getIsUser()           Returns the current record's "is_user" value
- * @method string    getState()            Returns the current record's "state" value
- * @method string    getCity()             Returns the current record's "city" value
- * @method string    getHomeCourse()       Returns the current record's "home_course" value
- * @method string    getHomeCourseName()   Returns the current record's "home_course_name" value
- * @method string    getImage()            Returns the current record's "image" value
- * @method timestamp getCreated()          Returns the current record's "created" value
- * @method player    setPlayerId()         Sets the current record's "player_id" value
- * @method player    setFirstName()        Sets the current record's "first_name" value
- * @method player    setLastName()         Sets the current record's "last_name" value
- * @method player    setEmail()            Sets the current record's "email" value
- * @method player    setPassword()         Sets the current record's "password" value
- * @method player    setGender()           Sets the current record's "gender" value
- * @method player    setHandicap()         Sets the current record's "handicap" value
- * @method player    setUsgaIndex()        Sets the current record's "usga_index" value
- * @method player    setIsUser()           Sets the current record's "is_user" value
- * @method player    setState()            Sets the current record's "state" value
- * @method player    setCity()             Sets the current record's "city" value
- * @method player    setHomeCourse()       Sets the current record's "home_course" value
- * @method player    setHomeCourseName()   Sets the current record's "home_course_name" value
- * @method player    setImage()            Sets the current record's "image" value
- * @method player    setCreated()          Sets the current record's "created" value
+ * @method integer             getPlayerId()         Returns the current record's "player_id" value
+ * @method string              getFirstName()        Returns the current record's "first_name" value
+ * @method string              getLastName()         Returns the current record's "last_name" value
+ * @method string              getEmail()            Returns the current record's "email" value
+ * @method string              getPassword()         Returns the current record's "password" value
+ * @method char                getGender()           Returns the current record's "gender" value
+ * @method float               getHandicap()         Returns the current record's "handicap" value
+ * @method string              getUsgaIndex()        Returns the current record's "usga_index" value
+ * @method integer             getIsUser()           Returns the current record's "is_user" value
+ * @method string              getState()            Returns the current record's "state" value
+ * @method string              getCity()             Returns the current record's "city" value
+ * @method string              getHomeCourse()       Returns the current record's "home_course" value
+ * @method string              getHomeCourseName()   Returns the current record's "home_course_name" value
+ * @method string              getImage()            Returns the current record's "image" value
+ * @method timestamp           getCreated()          Returns the current record's "created" value
+ * @method Doctrine_Collection getEvents()           Returns the current record's "Events" collection
+ * @method player              setPlayerId()         Sets the current record's "player_id" value
+ * @method player              setFirstName()        Sets the current record's "first_name" value
+ * @method player              setLastName()         Sets the current record's "last_name" value
+ * @method player              setEmail()            Sets the current record's "email" value
+ * @method player              setPassword()         Sets the current record's "password" value
+ * @method player              setGender()           Sets the current record's "gender" value
+ * @method player              setHandicap()         Sets the current record's "handicap" value
+ * @method player              setUsgaIndex()        Sets the current record's "usga_index" value
+ * @method player              setIsUser()           Sets the current record's "is_user" value
+ * @method player              setState()            Sets the current record's "state" value
+ * @method player              setCity()             Sets the current record's "city" value
+ * @method player              setHomeCourse()       Sets the current record's "home_course" value
+ * @method player              setHomeCourseName()   Sets the current record's "home_course_name" value
+ * @method player              setImage()            Sets the current record's "image" value
+ * @method player              setCreated()          Sets the current record's "created" value
+ * @method player              setEvents()           Sets the current record's "Events" collection
  * 
  * @package    Golf
  * @subpackage model
@@ -130,6 +133,12 @@ abstract class Baseplayer extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasMany('event as Events', array(
+             'local' => 'player_id',
+             'foreign' => 'player_id',
+             'onDelete' => 'cascade',
+             'cascade' => array(
+             0 => 'delete',
+             )));
     }
 }

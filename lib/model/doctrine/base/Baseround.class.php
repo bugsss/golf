@@ -17,6 +17,7 @@
  * @property float $round_hcp
  * @property integer $bet_hcp
  * @property boolean $saved
+ * @property event $Event
  * 
  * @method integer getRoundId()     Returns the current record's "round_id" value
  * @method integer getPlayerId()    Returns the current record's "player_id" value
@@ -30,6 +31,7 @@
  * @method float   getRoundHcp()    Returns the current record's "round_hcp" value
  * @method integer getBetHcp()      Returns the current record's "bet_hcp" value
  * @method boolean getSaved()       Returns the current record's "saved" value
+ * @method event   getEvent()       Returns the current record's "Event" value
  * @method round   setRoundId()     Sets the current record's "round_id" value
  * @method round   setPlayerId()    Sets the current record's "player_id" value
  * @method round   setTeesId()      Sets the current record's "tees_id" value
@@ -42,6 +44,7 @@
  * @method round   setRoundHcp()    Sets the current record's "round_hcp" value
  * @method round   setBetHcp()      Sets the current record's "bet_hcp" value
  * @method round   setSaved()       Sets the current record's "saved" value
+ * @method round   setEvent()       Sets the current record's "Event" value
  * 
  * @package    Golf
  * @subpackage model
@@ -117,6 +120,8 @@ abstract class Baseround extends sfDoctrineRecord
     public function setUp()
     {
         parent::setUp();
-        
+        $this->hasOne('event as Event', array(
+             'local' => 'event_id',
+             'foreign' => 'event_id'));
     }
 }

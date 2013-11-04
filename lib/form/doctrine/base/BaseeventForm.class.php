@@ -16,8 +16,8 @@ abstract class BaseeventForm extends BaseFormDoctrine
   {
     $this->setWidgets(array(
       'event_id'   => new sfWidgetFormInputHidden(),
-      'player_id'  => new sfWidgetFormInputText(),
-      'course_id'  => new sfWidgetFormInputText(),
+      'player_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Player'), 'add_empty' => false)),
+      'course_id'  => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Course'), 'add_empty' => false)),
       'event_name' => new sfWidgetFormInputText(),
       'event_date' => new sfWidgetFormInputText(),
       'start_hole' => new sfWidgetFormInputText(),
@@ -26,8 +26,8 @@ abstract class BaseeventForm extends BaseFormDoctrine
 
     $this->setValidators(array(
       'event_id'   => new sfValidatorChoice(array('choices' => array($this->getObject()->get('event_id')), 'empty_value' => $this->getObject()->get('event_id'), 'required' => false)),
-      'player_id'  => new sfValidatorInteger(),
-      'course_id'  => new sfValidatorString(array('max_length' => 20)),
+      'player_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Player'))),
+      'course_id'  => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Course'))),
       'event_name' => new sfValidatorString(array('max_length' => 100)),
       'event_date' => new sfValidatorPass(),
       'start_hole' => new sfValidatorInteger(),

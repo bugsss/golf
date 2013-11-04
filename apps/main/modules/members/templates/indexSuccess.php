@@ -49,25 +49,25 @@
         <div id="profilePictureCanvas">
 
             <div id="profilePicture">
-                <img src="images/JFProfilePicture.png" border="0" />
+                <img src="../images/no_user_pic.jpg" border="0" style="width: 100%;"/>
             </div><!--End profilePicture-->
 
             <div id="playerNameAndHandicapWrapper">
                 <div id="playerName">
-                    JF Bertrand
+                    <?php echo $user->getFullName(); ?>
                 </div><!--End playerName-->
 
                 <div id="handicap">
-                    2.8
+                    <?php echo $user->getHandicap(); ?>
                 </div><!--End handicap-->
             </div><!--End playerNameAndHandiCapWrapper-->
 
             <div id="cityState">
-                Scotsdale, Arizona
+                <?php echo $user->getAddress(); ?>
             </div><!--End cityState-->
 
             <div id="homeGolfCourse">
-                The 500 Club
+                <?php echo $user->getHomeCourseName(); ?>
             </div><!--End homeGolfCourse"-->
 
 
@@ -85,6 +85,19 @@
             </ul>
 
             <div id="Score" class="whiteBackground">
+                <div id="scores_div" style=" height: 358px; margin-top: 5px; overflow: auto; width: 96%;">
+                    <table>
+                        <?php foreach( $user->getScores() as $score ): ?>
+                            <tr>
+                                <td rowspan="2" ><?php echo $score["total_score"];?></td>
+                                <td ><?php echo $score["course_name"];?></td>
+                            </tr>
+                            <tr>
+                                <td ><?php echo $score["event_date"]; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
             </div>
 
             <div id="Friends" class="whiteBackground">
@@ -95,7 +108,6 @@
                 <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="profile_form">
                     <fieldset>
                         <input type="hidden" name="sf_method" value="put">
-                        <input type="hidden" name="tab" value="profile">
                         <?php echo $pform->renderGlobalErrors() ?>
                         <?php echo $pform->renderHiddenFields() ?>
                         <div class="profileform_cell">
@@ -141,36 +153,37 @@
                         <div class="profileform_cell">
                             <input name="Submit" type="submit" value="Submit" class="customButton"/>
                         </div>
+                    </fieldset>
+                </form>
+            </div>
+            <div id="Password" class="whiteBackground">
+                <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="credential_form">
+                    <fieldset>
+                        <input type="hidden" name="sf_method" value="put">
+                        <?php echo $cform->renderGlobalErrors() ?>
+                        <?php echo $cform->renderHiddenFields() ?>
+                        <div class="">
+                            <?php echo $cform['old_password']->renderLabel('Old Password') ?>
+                            <?php echo $cform['old_password']->renderError() ?>
+                            <div class=""><td align="left" width="50%"><?php echo $cform['old_password'] ?></div>
+                        </div>
+                        <div class="">
+                            <?php echo $cform['new_password']->renderLabel('New Password') ?>
+                            <?php echo $cform['new_password']->renderError() ?>
+                            <div class=""><?php echo $cform['new_password'] ?></div>
+                        </div>
+                        <div class="">
+                            <?php echo $cform['confirm_password']->renderLabel('Confirm New Password') ?>
+                            <?php echo $cform['confirm_password']->renderError() ?>
+                            <div class=""><?php echo $cform['confirm_password'] ?></div>
+                        </div>
+                        <div class="">
+                            <input name="Submit" type="submit" value="Submit" class="customButton"/>
+                        </div>
+                    </fieldset>
                 </form>
             </div><!--End Account-->
         </div><!--End container-->
-            <div id="Password" class="whiteBackground">
-                <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="profile_form">
-                    <fieldset>
-                        <input type="hidden" name="sf_method" value="put">
-                        <input type="hidden" name="tab" value="profile">
-                        <?php echo $pform->renderGlobalErrors() ?>
-                        <?php echo $pform->renderHiddenFields() ?>
-                        <div class="regform_cell">
-                            <?php echo $pform['old_password']->renderLabel('Old Password') ?>
-                            <?php echo $pform['old_password']->renderError() ?>
-                            <div class=""><td align="left" width="50%"><?php echo $pform['old_password'] ?></div>
-                        </div>
-                        <div class="regform_cell">
-                            <?php echo $pform['new_password']->renderLabel('New Password') ?>
-                            <?php echo $pform['new_password']->renderError() ?>
-                            <div class=""><?php echo $pform['new_password'] ?></div>
-                        </div>
-                        <div class="regform_cell">
-                            <?php echo $pform['confirm_password']->renderLabel('Confirm New Password') ?>
-                            <?php echo $pform['confirm_password']->renderError() ?>
-                            <div class=""><?php echo $pform['confirm_password'] ?></div>
-                        </div>
-                        <div class="regform_cell">
-                            <input name="Submit" type="submit" value="Submit" class="customButton"/>
-                        </div>
-                </form>
-            </div><!--End Account-->
         </div><!--End container-->
     </div><!--End FormColumn-->
 </div>

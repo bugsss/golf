@@ -132,5 +132,10 @@ class RegistrationForm extends BaseplayerForm
         }
         return true;
     }
+    
+    public function getName()
+    {
+        return "Registration";
+    }
 }
 ?>

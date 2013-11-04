@@ -23,12 +23,19 @@ class membersActions extends sfActions
 	{
             $this->user = $this->getUser()->getAttribute("user");
             $this->pform = new PlayerForm( $this->user );
+            $this->cform = new CredentialForm( $this->user );
             if( $request->getParameter( $this->pform->getName() ) )
             {
-                $this->processRegistration( $request, $this->pform );
+                $this->processProfile( $request, $this->pform );
                 $this->getUser()->setFlash("select_tab", "account");
             }
-//            $this->sform = new PlayerForm();
+
+            $this->cform = new CredentialForm( $this->user );
+            if( $request->getParameter( $this->cform->getName() ) )
+            {
+                $this->processCredentials( $request, $this->cform );
+                $this->getUser()->setFlash("select_tab", "password");
+            }
 	}
         
         public function executeGetCourses( sfWebRequest $request )
@@ -37,7 +44,7 @@ class membersActions extends sfActions
             return sfView::NONE;            
         }
         
-	protected function processRegistration ( sfWebRequest $request, sfForm $form )
+	protected function processProfile ( sfWebRequest $request, sfForm $form )
 	{
 		$valori_form = $request->getParameter( $form->getName() );
 //var_dump($valori_form);
@@ -61,6 +68,16 @@ class membersActions extends sfActions
                 $user->save();
 	}
 
-        
-        
+	protected function processCredentials ( sfWebRequest $request, sfForm $form )
+	{
+		$valori_form = $request->getParameter( $form->getName() );
+//var_dump($valori_form);
+                $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
+                $user = $this->getUser()->getAttribute("user");
+                if ( $form->isValid() )
+                {
+                    $user->setPassword( $valori_form["old_password"] );
+                    $user->save();
+                }
+	}
 }

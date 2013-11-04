@@ -12,4 +12,37 @@
  */
 class player extends Baseplayer
 {
+    public function getScores()
+    {
+        $ret = array();
+        $events = Doctrine_Query::create()
+                    ->from( "event" )
+                    ->where( "player_id = ? ", $this->player_id )
+                    ->orderBy("event_date")
+                    ->execute();
+        foreach( $events as $event )
+        {
+            foreach( $event->getRounds() as $round)
+            {
+                $temp = array();
+                $temp["total_score"] = $round->getTotalScore();
+                $temp["course_name"] = $event->getCourse()->getCourseName() . "(" . $round->getTeesId().  ")";
+                $temp["event_date"] = $event->getEventName();
+                $ret[] = $temp;
+            }
+            
+        }
+        return $ret;
+    }
+    
+    public function getFullName()
+    {
+        return $this->getFirstName() . " " . $this->getLastName();
+    }
+    
+    public function getAddress()
+    {
+        return $this->getCity() . ( trim( $this->getState() ) != "" ?  ", " . $this->getState() : "" );
+    }
+    
 }
