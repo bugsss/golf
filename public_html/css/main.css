@@ -295,7 +295,7 @@ body {
 	margin:auto;
 	position:relative;
 	width:70%;
-	font: 17px/41px 'Arial';
+	font: 17px/35px 'Arial';
 	font-weight:bold;
 	color:#FFF;
 	text-decoration:none;
@@ -324,7 +324,7 @@ body {
 .customInput {
 	width:200px;
 	display:block;
-	height:30px;
+	height:25px;
 	border-radius:8px;
 	-webkit-border-radius:8px;
 	-moz-border-radius:8px;
@@ -334,7 +334,7 @@ body {
 .customSelect {
 	width:200px;
 	display:block;
-	height:30px;
+	height:25px;
 	border-radius:8px;
 	-webkit-border-radius:8px;
 	-moz-border-radius:8px;
