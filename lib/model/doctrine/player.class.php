@@ -18,7 +18,7 @@ class player extends Baseplayer
         $events = Doctrine_Query::create()
                     ->from( "event" )
                     ->where( "player_id = ? ", $this->player_id )
-                    ->orderBy("event_date")
+                    ->orderBy("event_date DESC")
                     ->execute();
         foreach( $events as $event )
         {

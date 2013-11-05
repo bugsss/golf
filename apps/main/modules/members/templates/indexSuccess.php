@@ -3,45 +3,58 @@
     <div id="spacer2"></div>
 
     <div id="add_score_layer" style="display: none;">
-        <form id="Add Score" name="Add Score" method="post" action="addScore.php?action=email_us">
-            <table width="425" border="0" cellspacing="3" align="left">
-                <tr>
-                    <td align="left" width="50%">Date</td>
-                    <td align="left" width="50%"><input type="text" name="date" id="Date" value="" /></td>
-                </tr>
-                <tr>
-                    <td align="left" width="50%">State</td>
-                    <td align="left" width="50%">
-                        <select name="state_input_field">
-                            <option value="Select Stage">Select Stage</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left" width="50%">Home Golf Course</td>
-                    <td align="left" width="50%">
-                        <select name="course_input_field">
-                            <option value="Select Course">Select Course</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left" width="50%">Tees</td>
-                    <td align="left" width="50%">
-                        <select name="tees_input_field">
-                            <option value="Select Tees">Select Tees</option>
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <td align="left" width="50%">Score</td>
-                    <td align="left" width="50%"><input type="text" name="score" id="Score" value="" /></td>
-                </tr>
-                <tr>
-                    <td><input name="Submit" type="submit" value="Submit" class="customButton"/></td>
-                    <td></td>
-                </tr>
-            </table>
+        <form id="add_score_form" name="add_score" action="/main_dev.php/members.html" method="post">
+            <fieldset>
+                <input type="hidden" name="sf_method" value="put">
+                <?php echo $sform->renderGlobalErrors() ?>
+                <?php echo $sform->renderHiddenFields() ?>
+                <div class="" style="padding-top:15px">
+                    <?php echo $sform['score_date']->renderLabel('Date') ?>
+                    <?php echo $sform['score_date']->renderError() ?>
+                    <div class="" style="margin-top: -20px;"><?php echo $sform['score_date'] ?></div>
+                </div>
+                <div class="" style="padding-top:15px">
+                    <?php echo $sform['state']->renderLabel('State') ?>
+                    <?php echo $sform['state']->renderError() ?>
+                    <div class="" style="margin-top: -20px;"><?php echo $sform['state'] ?></div>
+                </div>
+                <div class="" style="padding-top:15px">
+                    <?php echo $sform['course']->renderLabel('Course') ?>
+                    <?php echo $sform['course']->renderError() ?>
+                    <div class="" style="margin-top: -20px;">
+                        <img src="../images/loader5.gif" border="0" style="display:none; margin-left: 155px;" id="course_loader"/>
+                        <?php echo $sform['course'] ?>
+                    </div>
+                </div>
+                <div class="" style="padding-top:15px">
+                    <?php echo $sform['teese']->renderLabel('Teese') ?>
+                    <?php echo $sform['teese']->renderError() ?>
+                    <div class="" style="margin-top: -20px;">
+                        <img src="../images/loader5.gif" border="0" style="display:none; margin-left: 155px;" id="teese_loader"/>
+                        <?php echo $sform['teese'] ?>
+                    </div>
+                </div>
+                <div class="" style="padding-top:15px">
+                    <?php echo $sform['score']->renderLabel('Score') ?>
+                    <?php echo $sform['score']->renderError() ?>
+                    <div class="" style="margin-top: -20px;"><?php echo $sform['score'] ?></div>
+                </div>
+            </fieldset>
+        </form>
+    </div>
+    
+    <div id="add_foto_layer" style="display: none;">
+        <form class="fotoForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="foto_form" enctype='multipart/form-data'>
+            <fieldset>
+                <input type="hidden" name="sf_method" value="put">
+                <?php echo $fform->renderGlobalErrors() ?>
+                <?php echo $fform->renderHiddenFields() ?>
+                <div class="" style="margin-top:30px; margin-bottom:30px;">
+                    <?php echo $fform['image']->renderLabel(' ') ?>
+                    <?php echo $fform['image']->renderError() ?>
+                    <div class=""><?php echo $fform['image'] ?></div>
+                </div>
+            </fieldset>
         </form>
     </div>
     
@@ -49,7 +62,7 @@
         <div id="profilePictureCanvas">
 
             <div id="profilePicture">
-                <img src="../images/no_user_pic.jpg" border="0" style="width: 100%;"/>
+                <img src="<?php echo ( trim($user->getImage()) != "" ? "../uploads/assets/pimages/" . $user->getImage() : "../images/defaultProfilePicture.jpg") ?>" border="0" style="width: 100%;"/>
             </div><!--End profilePicture-->
 
             <div id="playerNameAndHandicapWrapper">
@@ -70,7 +83,6 @@
                 <?php echo $user->getHomeCourseName(); ?>
             </div><!--End homeGolfCourse"-->
 
-
         </div><!--End profilePictureCanvas-->
     </div><!--End ProfilePictureColumn-->
 
@@ -86,17 +98,10 @@
 
             <div id="Score" class="whiteBackground">
                 <div id="scores_div" style=" height: 358px; margin-top: 5px; overflow: auto; width: 96%;">
-                    <table>
-                        <?php foreach( $user->getScores() as $score ): ?>
-                            <tr>
-                                <td rowspan="2" ><?php echo $score["total_score"];?></td>
-                                <td ><?php echo $score["course_name"];?></td>
-                            </tr>
-                            <tr>
-                                <td ><?php echo $score["event_date"]; ?></td>
-                            </tr>
-                        <?php endforeach; ?>
-                    </table>
+                    <img src="../images/loading.gif" border="0" style="margin-left: auto; margin-right: auto; display: block; margin-top: 125px;"/>
+                </div>
+                <div class="">
+                    <input id="add_score_button" name="add_score_button" type="button" value="Add Score" class="customButton" style="width: 130px !important; height: 35px !important;"/>
                 </div>
             </div>
 
@@ -195,10 +200,155 @@
                 $("#tab_" + "<?php echo $sf_user->getFlash('select_tab') ?>").trigger( "click" );
                 <?php $sf_user->setFlash('select_tab', null) ?>
         <?php endif; ?>
+            
 	$( "#player_home_course_name" ).autocomplete({
               minLength: 3,
               source: "get_courses.html"
 	    });
+
+        $(document).on("click", "#add_score_button", function(){ $("#add_score_layer").dialog("open" ); });
+        $("#add_score_layer").dialog({
+            autoOpen: false,
+            height: 400,
+            width: 500,
+            modal: true,
+            title: "Add new score",
+            buttons: {
+                       "Add score": function() {
+                           var ok = true;
+                           
+                           if( $("#score_score_date").val().length == 0 ){
+                               ok = false;
+                               $("label[for='score_score_date']").css("color", "red");
+                               $("#score_score_date").focus();
+                           }else{
+                               $("label[for='score_score_date']").css("color", "white");
+                           }
+                           
+                           if( $("#score_state").val().length == 0 ){
+                               ok = false;
+                               $("label[for='score_state']").css("color", "red");
+                               $("#score_state").focus();
+                           }else{
+                               $("label[for='score_state']").css("color", "white");
+                           }
+                           
+                           if( $("#score_course").val().length == 0 ){
+                               ok = false;
+                               $("label[for='score_course']").css("color", "red");
+                               $("#score_course").focus();
+                           }else{
+                               $("label[for='score_course']").css("color", "white");
+                           }
+                           
+                           if( $("#score_teese").val().length == 0 ){
+                               ok = false;
+                               $("label[for='score_teese']").css("color", "red");
+                               $("#score_teese").focus();
+                           }else{
+                               $("label[for='score_teese']").css("color", "white");
+                           }
+                           
+                           if( $("#score_score").val().length == 0 ){
+                               ok = false;
+                               $("label[for='score_score']").css("color", "red");
+                               $("#score_score").focus();
+                           }else{
+                               $("label[for='score_score']").css("color", "white");
+                           }
+                           if(ok) $("#add_score_form").submit();
+                        },
+                        Cancel: function() {
+                            $( this ).dialog( "close" );
+                        }
+            }
+        });
+        
+        $(document).on("click", "#profilePicture", function(){ $("#add_foto_layer").dialog("open" ); });
+        $("#add_foto_layer").dialog({
+            autoOpen: false,
+            height: 300,
+            width: 350,
+            modal: true,
+            title: "Upload profile photo",
+            buttons: {
+                       "Upload photo": function() {
+                           if( $("#foto_image").val().length == 0 ) 
+                                $("#foto_image").trigger("click")
+                           else
+                                $("#foto_form").submit();
+                        },
+                        Cancel: function() {
+                            $( this ).dialog( "close" );
+                        }
+            }
+        });
+        
+        $.post(
+                "<?php echo url_for('@get_scores'); ?>",
+                {},
+                function(data){
+                    var tbl = ""
+                    $.each( data, function(i, e){
+                        tbl += "<tr><td rowspan='2' >" + e.total_score + "</td><td >" + e.course_name + "</td></tr><tr><td >" + e.event_date + "</td></tr>";
+                        $("#scores_div").html("<table>" + tbl + "</table>");
+                    })
+                },
+                "json"
+        )
             
+        $("#score_score_date").datepicker({
+            dateFormat : "yy-mm-dd"
+        })
+            
+        $(document).on("change", "#score_state", function(){
+            $("#score_course").hide();
+            $("#course_loader").show();
+            if( $("#score_state").val() != '')
+                $.post(
+                        "<?php echo url_for('@get_state_courses'); ?>",
+                        { term : $("#score_state").val() },
+                        function(data){
+                            var opts = ""
+                            $.each( data, function(i, e){
+                                opts += "<option value='" + e.id + "'>" + e.label + "</option>";
+                                $("#score_course").html("<option selected='selected' value=''>Select course</option>" + opts);
+                                $("#score_course").show();
+                                $("#course_loader").hide();
+                            })
+                        },
+                        "json"
+                )
+        })
+        
+        $(document).on("change", "#score_course", function(){
+            $("#score_teese").hide();
+            $("#teese_loader").show();
+            if( $("#score_course").val() != '')
+                $.post(
+                        "<?php echo url_for('@get_course_tees'); ?>",
+                        { term : $("#score_course").val() },
+                        function(data){
+                            var opts = ""
+                            $.each( data, function(i, e){
+                                opts += "<option value='" + e.id + "'>" + e.label + "</option>";
+                                $("#score_teese").html("<option selected='selected' value=''>Select course</option>" + opts);
+                                $("#score_teese").show();
+                                $("#teese_loader").hide();
+                            })
+                        },
+                        "json"
+                )
+        })
+        
+        <?php if( $sf_user->hasFlash('show_file_upload') && $sf_user->hasFlash('show_file_upload') ): ?>
+                $("#profilePicture").trigger( "click" );
+                <?php $sf_user->setFlash('show_file_upload', null) ?>
+        <?php endif; ?>
+            
+        <?php if( $sf_user->hasFlash('show_add_score') && $sf_user->hasFlash('show_add_score') ): ?>
+                $("#add_score_button").trigger( "click" );
+                <?php $sf_user->setFlash('show_add_score', null) ?>
+        <?php endif; ?>
     })
 </script>

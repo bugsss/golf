@@ -13,6 +13,7 @@ class playerForm extends BaseplayerForm
     public function configure()
     {
         unset(
+                $this['image'],
                 $this['is_user'],
                 $this['created_at']
             );

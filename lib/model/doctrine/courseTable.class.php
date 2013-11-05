@@ -24,10 +24,42 @@ class courseTable extends Doctrine_Table
                                         ->select( "course_id, CourseName")
                                         ->where( "LOWER(CourseName) LIKE '" . trim( strtolower( $term) ) . "%'" )
                                         ->orderBy( "CourseName" )
+                                        ->groupBy( "CourseName" )
                                         ->execute();//getSqlQuery();
         $return = Array();
         foreach( $res as $c)
             $return[] = array( "label" => $c->getCourseName()."(".$c->getCourseId().")" );
+
+        return $return;
+    }
+    
+    public static function getStateCourseList( $term )
+    {
+        $res = Doctrine_Core::getTable( "course" )
+                                        ->createQuery()
+                                        ->select( "course_id, CourseName")
+                                        ->where( "LOWER(StateorRegion) = ? ", trim( strtolower( $term) ) )
+                                        ->orderBy( "CourseName" )
+                                        ->groupBy( "CourseName" )
+                                        ->execute();//getSqlQuery();
+        $return = Array();
+        foreach( $res as $c)
+            $return[] = array( "label" => $c->getCourseName()."(".$c->getCourseId().")", "id" => $c->getCourseId() );
+
+        return $return;
+    }
+    
+    public static function getCourseTeesList( $term )
+    {
+        $res = Doctrine_Core::getTable( "course" )
+                                        ->createQuery()
+                                        ->select( "course_id, CourseName")
+                                        ->where( "LOWER(course_id) = ? ", trim( strtolower( $term) ) )
+                                        ->orderBy( "CourseName" )
+                                        ->execute();//getSqlQuery();
+        $return = Array();
+        foreach( $res as $c)
+            $return[] = array( "label" => $c->getTeesId(), "id" => $c->getCourseId() );
 
         return $return;
     }

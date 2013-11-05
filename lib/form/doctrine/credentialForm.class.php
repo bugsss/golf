@@ -12,7 +12,6 @@ class credentialForm extends BaseplayerForm
 {
     public function configure()
     {
-//        $this->setName("Credential");
         unset(
                 $this['first_name'],
                 $this['last_name'],
@@ -22,6 +21,7 @@ class credentialForm extends BaseplayerForm
                 $this['city'],
                 $this['handicap'],
                 $this['gender'],
+                $this['image'],
                 $this['is_user'],
                 $this['created_at']
             );
@@ -68,8 +68,6 @@ class credentialForm extends BaseplayerForm
             throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
         }
         $user = sfContext::getInstance()->getUser()->getAttribute("user");
-var_dump($values['old_password']);print_r("<br />");
-var_dump($user->getPassword());print_r("<br />");
         if ($values['old_password'] != $user->getPassword() )
         {
             $error = new sfValidatorError($validator, 'Invalid old password.');

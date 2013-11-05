@@ -65,6 +65,18 @@ get_courses:
   url:   /get_courses.html
   param: { module: members, action: getCourses }
 
+get_state_courses:
+  url:   /get_state_courses.html
+  param: { module: members, action: getStateCourses }
+
+get_course_tees:
+  url:   /get_course_tees.html
+  param: { module: members, action: getCourseTees }
+
+get_scores:
+  url:   /get_scores.html
+  param: { module: members, action: getScores }
+
 
 
 
