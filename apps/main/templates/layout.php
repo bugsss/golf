@@ -38,10 +38,10 @@
                                 </li>
                             <?php else: ?>
                                 <li>
-                                    <a href="/members.html" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "members" ? "selected_menu" : ""; ?>">Members Area</a>
+                                    <a href="/main_dev.php/members.html" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "members" ? "selected_menu" : ""; ?>">Members Area</a>
                                 </li>
                                 <li>
-                                    <a href="/logout.html" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "login" ? "selected_menu" : ""; ?>">log out</a>
+                                    <a href="/main_dev.php/logout.html" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "login" ? "selected_menu" : ""; ?>">log out</a>
                                 </li>
                             <?php endif; ?>
                         </ul>
