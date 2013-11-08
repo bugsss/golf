@@ -168,7 +168,7 @@ class publicActions extends sfActions
                     $message = $this->getMailer()->compose(array($From => $FromName), trim("arpad.rozsnyai@gmail.com"), 'www.golfgamekeeper - ' . $FromName, $Body);
                     $this->getMailer()->send( $message );
                     $this->getUser()->setFlash("conatct_message", "sent");
-                    $this->redirect("@members");
+                    $this->redirect("@contact_us");
                 }
                 else
                 {   
