@@ -166,6 +166,7 @@ class publicActions extends sfActions
                     $Body = "From: " . $FromName . "\n" . "Mail address: " . $From . "\n\n\n Message: " . $valori_form['message'];
                     $message = $this->getMailer()->compose(array($From => $FromName), trim("arpad.rozsnyai@gmail.com"), 'www.golfgamekeeper - ' . $FromName, $Body);
                     $this->getMailer()->send( $message );
+                    return "as";
                 }
                 else
                 {   
