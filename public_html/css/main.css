@@ -377,7 +377,7 @@ body {
 	/*text-indent: -999em;*/
 }
 
-#error_div {
+#errors_div {
         background-color: #333333;
         font-size: 80%; 
         position: absolute; 
