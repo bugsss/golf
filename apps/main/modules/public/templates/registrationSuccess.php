@@ -2,11 +2,13 @@
     <div style="width:100%; height:50px;"></div>
     
     <form class="customForm" action="<?php echo url_for('@register')  ?>" method="post" id="register_form">
-        <div id="errors_div" style="background-color: #333333;font-size: 80%; position: absolute; text-align: left; width: 210px; border-radius: 13px; right: -200px; ">
-            <?php foreach( $errors as $field => $error) : ?>
-                    <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
-            <?php endforeach; ?>
-        </div>
+        <?php if( isset( $errors ) && is_array( $errors ) ): ?>
+            <div id="errors_div" style="background-color: #333333;font-size: 80%; position: absolute; text-align: left; width: 210px; border-radius: 13px; right: -200px; ">
+                <?php foreach( $errors as $field => $error) : ?>
+                        <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <fieldset>
             <input class="" type="hidden" name="sf_method" value="put">
             <?php echo $form->renderGlobalErrors() ?>
