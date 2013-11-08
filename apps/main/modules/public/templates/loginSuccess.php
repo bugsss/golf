@@ -2,7 +2,7 @@
     <div id="logInFormTopSpacer"></div>
     <form class="customForm" action="<?php echo url_for('@login') ?>" method="post" id="login_form">
         <?php if( isset( $errors ) && is_array( $errors ) ): ?>
-            <div id="errors_div" style="background-color: #333333;font-size: 80%; position: absolute; text-align: left; width: 210px; border-radius: 13px; right: -200px; ">
+            <div id="errors_div">
                 <?php foreach( $errors as $field => $error) : ?>
                         <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
                 <?php endforeach; ?>
