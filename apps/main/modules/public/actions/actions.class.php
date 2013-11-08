@@ -52,7 +52,7 @@ class publicActions extends sfActions
 	{
             $this->getUser()->setAttribute('selected_menu', "support");
             $this->form = new ContactusForm();
-            if( $this->getUser()->hasFlash("conatct_message" ) ) = $this->errors = "sent";
+            if( $this->getUser()->hasFlash("conatct_message" ) ) $this->errors = "sent";
             if( $request->getParameter( $this->form->getName() ) ) $this->errors = $this->processContactUs( $request, $this->form );
 	}
         
