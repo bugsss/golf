@@ -147,6 +147,7 @@ player:
     handicap:     { type: float }
     usga_index:   { type: string(45) }
     is_user:      { type: integer, notnull: true, default 0 }
+    is_admin:     { type: integer, notnull: true, default 0 }
     state:        { type: string(2) }
     city:         { type: string(32) }
     home_course:  { type: string(64) }
