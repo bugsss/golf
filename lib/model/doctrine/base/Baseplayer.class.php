@@ -14,6 +14,7 @@
  * @property float $handicap
  * @property string $usga_index
  * @property integer $is_user
+ * @property integer $is_admin
  * @property string $state
  * @property string $city
  * @property string $home_course
@@ -31,6 +32,7 @@
  * @method float               getHandicap()         Returns the current record's "handicap" value
  * @method string              getUsgaIndex()        Returns the current record's "usga_index" value
  * @method integer             getIsUser()           Returns the current record's "is_user" value
+ * @method integer             getIsAdmin()          Returns the current record's "is_admin" value
  * @method string              getState()            Returns the current record's "state" value
  * @method string              getCity()             Returns the current record's "city" value
  * @method string              getHomeCourse()       Returns the current record's "home_course" value
@@ -47,6 +49,7 @@
  * @method player              setHandicap()         Sets the current record's "handicap" value
  * @method player              setUsgaIndex()        Sets the current record's "usga_index" value
  * @method player              setIsUser()           Sets the current record's "is_user" value
+ * @method player              setIsAdmin()          Sets the current record's "is_admin" value
  * @method player              setState()            Sets the current record's "state" value
  * @method player              setCity()             Sets the current record's "city" value
  * @method player              setHomeCourse()       Sets the current record's "home_course" value
@@ -98,6 +101,11 @@ abstract class Baseplayer extends sfDoctrineRecord
              'length' => 45,
              ));
         $this->hasColumn('is_user', 'integer', null, array(
+             'type' => 'integer',
+             'notnull' => true,
+             'default' => 0,
+             ));
+        $this->hasColumn('is_admin', 'integer', null, array(
              'type' => 'integer',
              'notnull' => true,
              'default' => 0,

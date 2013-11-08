@@ -193,4 +193,17 @@ round:
       foreignAlias: Rounds
 
 
-
+blog:
+  tableName: blog
+  options:            { collate: utf8_unicode_ci, charset: utf8 }
+  columns:
+    id:               { type: integer, primary: true, autoincrement: true }
+    title:            { type: string(150), notnull: true }
+    metadescription:  { type: text }
+    metakeywords:     { type: text }
+    content:          { type: text }
+    filename:         { type: string(200), notnull: true }
+    active:           { type: boolean, default: true }
+    deleted:          { type: boolean, default: false }
+    publish_bate:     { type: datetime }
+  
