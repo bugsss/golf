@@ -34,14 +34,14 @@
                             </li>
                             <?php if( !$sf_user->isAuthenticated() ): ?>
                                 <li>
-                                    <a href="/login.html" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "login" ? "selected_menu" : ""; ?>">log in</a>
+                                    <a href="<?php echo url_for("@login") ?>" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "login" ? "selected_menu" : ""; ?>">log in</a>
                                 </li>
                             <?php else: ?>
                                 <li>
-                                    <a href="/main_dev.php/members.html" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "members" ? "selected_menu" : ""; ?>">Members Area</a>
+                                    <a href="<?php echo url_for("@members") ?>" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "members" ? "selected_menu" : ""; ?>">Members Area</a>
                                 </li>
                                 <li>
-                                    <a href="/main_dev.php/logout.html" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "login" ? "selected_menu" : ""; ?>">log out</a>
+                                    <a href="<?php echo url_for("@logout") ?>" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "login" ? "selected_menu" : ""; ?>">log out</a>
                                 </li>
                             <?php endif; ?>
                         </ul>

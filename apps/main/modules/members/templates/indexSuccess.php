@@ -291,8 +291,8 @@
                     var tbl = ""
                     $.each( data, function(i, e){
                         tbl += "<tr><td rowspan='2' >" + e.total_score + "</td><td >" + e.course_name + "</td></tr><tr><td >" + e.event_date + "</td></tr>";
-                        $("#scores_div").html("<table>" + tbl + "</table>");
                     })
+                    $("#scores_div").html("<table>" + tbl + "</table>");
                 },
                 "json"
         )

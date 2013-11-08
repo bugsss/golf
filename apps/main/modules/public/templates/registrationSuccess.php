@@ -1,48 +1,56 @@
 <div id="introCellWrapper">
     <div style="width:100%; height:50px;"></div>
-    <form class="customForm" action="/main_dev.php/registration.html<?php //echo url_for('@register')  ?>" method="post" id="register_form">
+    
+    <form class="customForm" action="<?php echo url_for('@register')  ?>" method="post" id="register_form">
+        <?php if( isset( $errors ) && is_array( $errors ) ): ?>
+            <div id="errors_div" style="background-color: #333333;font-size: 80%; position: absolute; text-align: left; width: 210px; border-radius: 13px; right: -200px; ">
+                <?php foreach( $errors as $field => $error) : ?>
+                        <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
         <fieldset>
             <input class="" type="hidden" name="sf_method" value="put">
             <?php echo $form->renderGlobalErrors() ?>
             <?php echo $form->renderHiddenFields() ?>
             <div class="regform_cell">
                 <?php echo $form['first_name']->renderLabel('First name') ?>
-                <?php echo $form['first_name']->renderError() ?>
+                <?php //echo $form['first_name']->renderError() ?>
                 <div class=""><?php echo $form['first_name'] ?></div>
             </div>
             <div class="regform_cell">
                 <?php echo $form['last_name']->renderLabel('Last name') ?>
-                <?php echo $form['last_name']->renderError() ?>
+                <?php //echo $form['last_name']->renderError() ?>
                 <div class=""><?php echo $form['last_name'] ?></div>
             </div>
             <div class="regform_cell">
                 <?php echo $form['email']->renderLabel('Email') ?>
-                <?php echo $form['email']->renderError() ?>
+                <?php //echo $form['email']->renderError() ?>
                 <div class=""><?php echo $form['email'] ?></div>
             </div>
             <div class="regform_cell">
                 <?php echo $form['gender']->renderLabel('Gender') ?>
-                <?php echo $form['gender']->renderError() ?>
+                <?php //echo $form['gender']->renderError() ?>
                 <div class=""><?php echo $form['gender'] ?></div>
             </div>
             <div class="regform_cell">
                 <?php echo $form['state']->renderLabel('State') ?>
-                <?php echo $form['state']->renderError() ?>
+                <?php //echo $form['state']->renderError() ?>
                 <div class=""><?php echo $form['state'] ?></div>
             </div>
             <div class="regform_cell">
                 <?php echo $form['city']->renderLabel('City') ?>
-                <?php echo $form['city']->renderError() ?>
+                <?php //echo $form['city']->renderError() ?>
                 <div class=""><?php echo $form['city'] ?></div>
             </div>
             <div class="regform_cell">
                 <?php echo $form['password']->renderLabel('Password') ?>
-                <?php echo $form['password']->renderError() ?>
+                <?php //echo $form['password']->renderError() ?>
                 <div class=""><?php echo $form['password'] ?></div>
             </div>
             <div class="regform_cell">
                 <?php echo $form['re_password']->renderLabel('Re - password') ?>
-                <?php echo $form['re_password']->renderError() ?>
+                <?php //echo $form['re_password']->renderError() ?>
                 <div class=""><?php echo $form['re_password'] ?></div>
             </div>
             <div class="regform_cell">

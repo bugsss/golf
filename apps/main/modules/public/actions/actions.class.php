@@ -51,13 +51,16 @@ class publicActions extends sfActions
 	public function executeContactUs ( sfWebRequest $request )
 	{
             $this->getUser()->setAttribute('selected_menu', "support");
+            $this->form = new ContactusForm();
+            $this->errors = "";
+            if( $request->getParameter( $this->form->getName() ) ) $this->errors = $this->processContactUs( $request, $this->form );
 	}
         
 	public function executeLogin ( sfWebRequest $request )
 	{
             $this->getUser()->setAttribute('selected_menu', "login");
             $this->form = new LoginForm();
-            if( $request->getParameter( $this->form->getName() ) ) $this->processSignin( $request, $this->form );
+            if( $request->getParameter( $this->form->getName() ) ) $this->errors = $this->processSignin( $request, $this->form );
 	}
         
 	public function executeLogout ( sfWebRequest $request )
@@ -77,10 +80,11 @@ class publicActions extends sfActions
 	{
             $this->getUser()->setAttribute('selected_menu', "login");
             $this->form = new RegistrationForm();
-            if( $request->getParameter( $this->form->getName() ) ) $this->processRegistration( $request, $this->form );
+            if( $request->getParameter( $this->form->getName( $this->user) ) ) $this->errors = $this->processRegistration( $request, $this->form );
 	}
         
-        
+
+    
 	protected function processRegistration ( sfWebRequest $request, sfForm $form )
 	{
 		$valori_form = $request->getParameter( $form->getName() );
@@ -102,6 +106,14 @@ class publicActions extends sfActions
                     $this->getUser()->setAttribute("user", $user);
                     $this->getUser()->setFlash("select_tab", "account");
                     $this->redirect("@members");
+                }
+                else
+                {   
+                    $errors = array();
+                    foreach($form->getErrorSchema()->getErrors() as $key => $value) {
+                        $errors[$key] = $value->__toString();
+                    }
+                    return $errors;
                 }
 	}
 
@@ -126,6 +138,14 @@ class publicActions extends sfActions
                         {
                         }
                     }
+                    else
+                    {
+                        $errors = array();
+                        foreach($form->getErrorSchema()->getErrors() as $key => $value) {
+                            $errors[$key] = $value->__toString();
+                        }
+                        return $errors;
+                    }
                 }
                 else
                 {
@@ -135,5 +155,28 @@ class publicActions extends sfActions
                 }
 	}
 
-        
+        protected function processContactUs( sfWebRequest $request, sfForm $form )
+        {
+		$valori_form = $request->getParameter( $form->getName() );
+//var_dump($valori_form);
+                $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
+                if ( $form->isValid() )
+                {
+                    $From = substr( $valori_form['email'], 0, 60);
+                    $FromName = $valori_form['name'];
+                    $Body = "From: " . $FromName . "\n" . "Mail address: " . $From . "\n\n\n Message: " . $valori_form['message'];
+                    $message = $this->getMailer()->compose(array($From => $FromName), trim("arpad.rozsnyai@gmail.com"), 'www.golfgamekeeper - ' . $FromName, $Body);
+                    $this->getMailer()->send( $message );
+                    return "<br /><br /><span>Your message was sent to us.</span><br /><br />";
+                }
+                else
+                {   
+                    $errors = array();
+                    foreach($form->getErrorSchema()->getErrors() as $key => $value) {
+                        $errors[$key] = $value->__toString();
+                    }
+                    return $errors;
+                }
+        }
+
 }
