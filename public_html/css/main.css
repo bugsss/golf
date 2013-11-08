@@ -331,6 +331,14 @@ body {
 	margin:auto;
 }
 
+.customTextarea {
+	display:block;
+	border-radius:8px;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	margin:auto;
+}
+
 .customSelect {
 	width:200px;
 	display:block;
@@ -367,4 +375,14 @@ body {
         width: 186px;
 /*	text-align:*/
 	/*text-indent: -999em;*/
+}
+
+#error_div {
+        background-color: #333333;
+        font-size: 80%; 
+        position: absolute; 
+        text-align: left; 
+        width: 210px; 
+        border-radius: 13px; 
+        right: -200px;     
 }

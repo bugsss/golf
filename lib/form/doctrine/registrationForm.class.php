@@ -68,7 +68,8 @@ class RegistrationForm extends BaseplayerForm
 
         $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
                         new sfValidatorCallback( array ('callback' => array ($this, 'checkNewPass'))))));
-
+        
+        $this->widgetSchema->setNameFormat('registration[%s]');
         $this->validatorSchema->setOption('allow_extra_fields', true);
         $this->validatorSchema->setOption('filter_extra_fields', false);
     }
@@ -135,11 +136,6 @@ class RegistrationForm extends BaseplayerForm
             }
         }
         return true;
-    }
-    
-    public function getName()
-    {
-        return "Registration";
     }
 }
 ?>
