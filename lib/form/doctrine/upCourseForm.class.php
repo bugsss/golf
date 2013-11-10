@@ -23,6 +23,7 @@ class upCourseForm extends BaseplayerForm
                 $this['gender'],
                 $this['password'],
                 $this['is_user'],
+                $this['is_admin'],
                 $this['created_at']
             );
 

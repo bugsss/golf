@@ -8,12 +8,13 @@ class RegistrationForm extends BaseplayerForm
     public function configure()
     {
         unset(
+                $this['home_course_name'],
                 $this['handicap'],
                 $this['image'],
                 $this['is_user'],
-                $this['city'],
-                $this['created_at'],
-                $this['home_course']
+                $this['is_admin'],
+                $this['created_at']
+
             );
 
 

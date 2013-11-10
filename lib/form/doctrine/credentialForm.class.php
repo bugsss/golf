@@ -23,6 +23,7 @@ class credentialForm extends BaseplayerForm
                 $this['gender'],
                 $this['image'],
                 $this['is_user'],
+                $this['is_admin'],
                 $this['created_at']
             );
 

@@ -13,10 +13,13 @@ class playerForm extends BaseplayerForm
     public function configure()
     {
         unset(
-                $this['image'],
                 $this['handicap'],
+                $this['image'],
+                $this['password'],
                 $this['is_user'],
+                $this['is_admin'],
                 $this['created_at']
+
             );
 
 
@@ -52,9 +55,6 @@ class playerForm extends BaseplayerForm
                                                     'multiple'  => false, 
                                                     'expanded'  => false
                                                 ), array ( 'class' => "customInput validate[required]" ));
-        $this->widgetSchema->setLabels(array(
-                'confirm_password'		=>	'Retype password'
-        ));
 //        $this -> validatorSchema['first_name'] = new sfValidatorString();
 //        $this -> validatorSchema['last_name'] = new sfValidatorString();
 //        $this -> validatorSchema['state'] = new sfValidatorString();
@@ -62,8 +62,6 @@ class playerForm extends BaseplayerForm
 //        $this -> validatorSchema['handicap'] = new sfValidatorString();
 //        $this -> validatorSchema['gender'] = new sfValidatorString();
 //        $this -> validatorSchema['home_course'] = new sfValidatorString();
-//        $this -> validatorSchema['new_password'] = new sfValidatorString();
-//        $this -> validatorSchema['confirm_password'] = new sfValidatorString();
 
 
         $this -> validatorSchema['email'] = new sfValidatorAnd(array(

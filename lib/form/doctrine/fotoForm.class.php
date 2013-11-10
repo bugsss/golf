@@ -23,7 +23,9 @@ class fotoForm extends BaseplayerForm
                 $this['gender'],
                 $this['password'],
                 $this['is_user'],
+                $this['is_admin'],
                 $this['created_at']
+
             );
 
         $this->setWidget('image', new sfWidgetFormInputFileEditable( array( 'edit_mode'=>false, 'with_delete' => false, 'file_src' => '' ), array ( 'class' => "customInput validate[required]" ) ));
