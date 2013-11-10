@@ -19,6 +19,10 @@ press:
   url:   /press.html
   param: { module: public, action: press }
 
+products:
+  url:   /products.html
+  param: { module: public, action: products }
+
 support:
   url:   /support.html
   param: { module: public, action: support }
@@ -27,9 +31,9 @@ how_to:
   url:   /support/how_to.html
   param: { module: public, action: howTo }
 
-submit_a_course:
-  url:   /support/submit_a_course.html
-  param: { module: public, action: submitAcourse }
+#submit_a_course:
+#  url:   /support/submit_a_course.html
+#  param: { module: public, action: submitAcourse }
 
 contact_us:
   url:   /support/contact_us.html

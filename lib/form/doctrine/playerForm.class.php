@@ -14,6 +14,7 @@ class playerForm extends BaseplayerForm
     {
         unset(
                 $this['image'],
+                $this['handicap'],
                 $this['is_user'],
                 $this['created_at']
             );
@@ -44,7 +45,7 @@ class playerForm extends BaseplayerForm
                                                     'expanded'  => false
                                                 ), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
-        $this->widgetSchema['handicap'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+//        $this->widgetSchema['handicap'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['gender'] = new sfWidgetFormChoice(
                                             array(
                                                     'choices'   => array( "" => "Select gender", "male" => "Male", "female" => "Female"), 

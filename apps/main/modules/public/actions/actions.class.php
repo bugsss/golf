@@ -31,6 +31,12 @@ class publicActions extends sfActions
 	public function executePress ( sfWebRequest $request )
 	{
             $this->getUser()->setAttribute('selected_menu', "press");
+            $this->articles = blogsTable::getArticles();
+	}
+        
+	public function executeProducts ( sfWebRequest $request )
+	{
+            $this->getUser()->setAttribute('selected_menu', "products");
 	}
         
 	public function executeSupport ( sfWebRequest $request )
@@ -43,10 +49,10 @@ class publicActions extends sfActions
             $this->getUser()->setAttribute('selected_menu', "support");
 	}
         
-	public function executeSubmitAcourse ( sfWebRequest $request )
-	{
-            $this->getUser()->setAttribute('selected_menu', "support");
-	}
+//	public function executeSubmitAcourse ( sfWebRequest $request )
+//	{
+//            $this->getUser()->setAttribute('selected_menu', "support");
+//	}
         
 	public function executeContactUs ( sfWebRequest $request )
 	{

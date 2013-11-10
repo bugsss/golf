@@ -94,6 +94,8 @@
                 <li><a href="#Friends" id="tab_friends">FRIENDS</a></li>
                 <li><a href="#Account" id="tab_account">ACCOUNT</a></li>
                 <li><a href="#Password" id="tab_account">PASSWORD</a></li>
+                <li><a href="#SubmitCourse" id="tab_scourse">SUBMIT A COURSE</a></li>
+                
             </ul>
 
             <div id="Score" class="whiteBackground">
@@ -145,11 +147,11 @@
                             <?php echo $pform['city']->renderError() ?>
                             <div class=""><?php echo $pform['city'] ?></div>
                         </div>
-                        <div class="profileform_cell">
-                            <?php echo $pform['handicap']->renderLabel('Handicap') ?>
-                            <?php echo $pform['handicap']->renderError() ?>
-                            <div class=""><?php echo $pform['handicap'] ?></div>
-                        </div>
+<!--                        <div class="profileform_cell">
+                            <?php //echo $pform['handicap']->renderLabel('Handicap') ?>
+                            <?php// echo $pform['handicap']->renderError() ?>
+                            <div class=""><?php //echo $pform['handicap'] ?></div>
+                        </div>-->
                         <div class="profileform_cell">
                             <?php echo $pform['home_course_name']->renderLabel('Home Golf Course') ?>
                             <?php echo $pform['home_course_name']->renderError() ?>
@@ -186,6 +188,21 @@
                             <input name="Submit" type="submit" value="Submit" class="customButton"/>
                         </div>
                     </fieldset>
+                </form>
+            </div>
+            <div id="SubmitCourse" class="whiteBackground">
+                <form class="courseForm" action="<?php echo url_for('@members') ?>" method="post" id="course_form" enctype='multipart/form-data'>
+                    <input type="hidden" name="sf_method" value="put">
+                    <?php echo $scform->renderGlobalErrors() ?>
+                    <?php echo $scform->renderHiddenFields() ?>
+                    <div class="" style="margin-top:30px; margin-bottom:30px;">
+                        <?php echo $scform['image']->renderLabel(' ') ?>
+                        <?php echo $scform['image']->renderError() ?>
+                        <div class=""><?php echo $scform['image'] ?></div>
+                    </div>
+                    <div class="">
+                        <input id="upload_button" name="upload_button" type="submit" value="Upload" class="customButton" style="width: 130px !important; height: 35px !important;"/>
+                    </div>
                 </form>
             </div><!--End Account-->
         </div><!--End container-->

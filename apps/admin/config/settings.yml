@@ -26,6 +26,8 @@ all:
   .settings:
     # Form security secret (CSRF protection)
     csrf_secret:            372a25c674968a2a3b330c70567ece6776629cbd
+    
+    compressed:             true
 
     # Output escaping settings
     escaping_strategy:      true
@@ -33,3 +35,22 @@ all:
 
     # Enable the database manager
     use_database:           true
+
+    login_module:           index
+    login_action:           index
+
+  .actions:
+    error_403_module: index   # To be called when a 404 error is raised
+    error_403_action: 403   # Or when the requested URL doesn't match any route
+
+    error_404_module: index 
+    error_404_action: 404   
+
+    error_405_module: index 
+    error_405_action: 405   
+
+    error_500_module: index 
+    error_500_action: 500   
+
+    error_503_module: index 
+    error_503_action: 503   

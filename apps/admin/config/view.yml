@@ -12,9 +12,94 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css]
+  stylesheets:
+#    - default.css
+#    - jquery.alerts.css
+#    - main.css
+#    - style2.css
+#    - scrollable-navig.css
+#    - cluetip/jquery.cluetip.css
+#    - redmond/jquery-ui-1.8.16.custom.css
+    - colorbox/colorbox.css
+    - jquery.jtable/themes/lightcolor/gray/jtable.css
+    - liquid-light/main.css
+    - http://fonts.googleapis.com/css?family=Cuprum
+    
+  javascripts:
+    - jquery-1.7.1.min.js
+#    - jquery.easing.1.3.js
+#    - jquery.timers-1.2.js
+#    - jquery.alerts.js
+    - jquery.form.js
+#    - jquery.tools.min.js
+#    - main.js
+    - passwordStrengthMeter.js
+    - functions.js
+#    - cluetip/jquery.cluetip.js
+    - colorbox/jquery.colorbox-min.js
 
-  javascripts:    []
+#    - liquid-light/liquid-light.js
+    - liquid-light/plugins/spinner/jquery.mousewheel.js
+    - liquid-light/plugins/spinner/ui.spinner.js
 
+    - liquid-light/plugins/wysiwyg/jquery.wysiwyg.js
+    - liquid-light/plugins/wysiwyg/wysiwyg.image.js
+    - liquid-light/plugins/wysiwyg/wysiwyg.link.js
+    - liquid-light/plugins/wysiwyg/wysiwyg.table.js
+
+    - liquid-light/plugins/flot/jquery.flot.js
+#    - liquid-light/plugins/flot/jquery.flot.orderBars.js
+#    - liquid-light/plugins/flot/jquery.flot.pie.js
+#    - liquid-light/plugins/flot/excanvas.min.js
+#    - liquid-light/plugins/flot/jquery.flot.resize.js
+
+    - liquid-light/plugins/tables/jquery.dataTables.js
+    - liquid-light/plugins/tables/colResizable.min.js
+
+    - liquid-light/plugins/forms/forms.js
+    - liquid-light/plugins/forms/autogrowtextarea.js
+    - liquid-light/plugins/forms/autotab.js
+    - liquid-light/plugins/forms/jquery.validationEngine-en.js
+    - liquid-light/plugins/forms/jquery.validationEngine.js
+    - liquid-light/plugins/forms/jquery.dualListBox.js
+    - liquid-light/plugins/forms/chosen.jquery.min.js
+    - liquid-light/plugins/forms/jquery.maskedinput.min.js
+    - liquid-light/plugins/forms/jquery.inputlimiter.min.js
+    - liquid-light/plugins/forms/jquery.tagsinput.min.js
+    
+    - liquid-light/plugins/wizards/jquery.form.wizard.js
+    - liquid-light/plugins/wizards/jquery.validate.js
+
+    - liquid-light/plugins/other/calendar.min.js
+    - liquid-light/plugins/other/elfinder.min.js
+
+    - liquid-light/plugins/uploader/plupload.js
+    - liquid-light/plugins/uploader/plupload.html5.js
+    - liquid-light/plugins/uploader/plupload.html4.js
+    - liquid-light/plugins/uploader/jquery.plupload.queue.js
+
+    - liquid-light/plugins/ui/jquery.progress.js
+    - liquid-light/plugins/ui/jquery.jgrowl.js
+    - liquid-light/plugins/ui/jquery.tipsy.js
+    - liquid-light/plugins/ui/jquery.alerts.js
+    - liquid-light/plugins/ui/jquery.colorpicker.js
+
+    - liquid-light/plugins/wizards/jquery.form.wizard.js
+    - liquid-light/plugins/wizards/jquery.validate.js
+
+    - liquid-light/plugins/ui/jquery.breadcrumbs.js
+    - liquid-light/plugins/ui/jquery.collapsible.min.js
+    - liquid-light/plugins/ui/jquery.ToTop.js
+    - liquid-light/plugins/ui/jquery.listnav.js
+    - liquid-light/plugins/ui/jquery.sourcerer.js
+    - liquid-light/plugins/ui/jquery.timeentry.min.js
+    - liquid-light/plugins/ui/jquery.prettyPhoto.js
+
+#    - liquid-light/charts/chart.js
+    - liquid-light/custom.js
+
+    - jquery-ui-1.8.20.custom.min.js
+    - jquery.jtable/jquery.jtable.js  
+  
   has_layout:     true
   layout:         layout

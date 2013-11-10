@@ -25,7 +25,7 @@ class loginForm extends BaseplayerForm
                 $this['home_course']
         );    
         
-        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required,custom[email]]" ));
         $this->widgetSchema['password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ));
     
         $this->widgetSchema->setLabels(array(
@@ -33,12 +33,14 @@ class loginForm extends BaseplayerForm
                 'password'  =>	'Password'
         ));
         $this -> validatorSchema['password'] = new sfValidatorString();
+
         $this -> validatorSchema['email'] = new sfValidatorEmail();
-
-
-        $this->widgetSchema->setNameFormat('login[%s]');
+        
         $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
+        
+        $this->widgetSchema->setNameFormat('login[%s]');
         $this->validatorSchema->setOption('allow_extra_fields', true);
         $this->validatorSchema->setOption('filter_extra_fields', false);
     }
+    
 }

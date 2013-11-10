@@ -11,30 +11,31 @@
                             <div class="loginWrapper" style="float: left;">
                             <div class="loginLogo"><img src="../images/logo.png" alt="" /></div>
                             <div class="loginPanel">
-                                <div class="head"><h5 class="iUser"><?php echo __('Login'); ?></h5></div>
-                                <form class="mainForm" action="<?php echo url_for('@signin') ?>" method="post" id="registration_form_signin">
+                                <div class="head"><h5 class="iUser">Login</h5></div>
+                                <form class="mainForm" action="<?php echo url_for('@homepage') ?>" method="post" id="<?php echo $sign_in_form->getName() ?>">
+                                    <input type="hidden" id="login_ftype" name="login[ftype]" value="admin" />
                                     <fieldset>
                                         <input type="hidden" name="sf_method" value="put">
                                         <?php echo $sign_in_form->renderGlobalErrors() ?>
                                         <?php echo $sign_in_form->renderHiddenFields() ?>
+                                        <div class="loginRow noborder" style="text-align:center; color:red;">
+                                            <?php if( isset( $errors ) ) echo $errors ?>
+                                            <div class="fix"></div>
+                                        </div>
                                         <div class="loginRow noborder">
-                                            <?php echo $sign_in_form['username']->renderLabel( __('Username') ) ?>
-                                            <?php echo $sign_in_form['username']->renderError() ?>
-                                            <div class="loginInput"><?php echo $sign_in_form['username'] ?></div>
+                                            <?php echo $sign_in_form['email']->renderLabel( "Username") ?>
+                                            <?php echo $sign_in_form['email']->renderError() ?>
+                                            <div class="loginInput"><?php echo $sign_in_form['email'] ?></div>
                                             <div class="fix"></div>
                                         </div>
                                         <div class="loginRow">
-                                            <?php echo $sign_in_form['password']->renderLabel( __('Password')) ?>
+                                            <?php echo $sign_in_form['password']->renderLabel( 'Password') ?>
                                             <?php echo $sign_in_form['password']->renderError() ?>
                                             <div class="loginInput"><?php echo $sign_in_form['password'] ?></div>
                                             <div class="fix"></div>
                                         </div>
                                         <div class="loginRow" style="margin-bottom: -14px;">
-                                            <div class="rememberMe">
-                                                    <?php echo $sign_in_form['remember'] ?>
-                                                    <?php echo $sign_in_form['remember']->renderLabel( __('Remember me') ) ?>
-                                            </div>
-                                            <input type="submit" value="<?php echo __('Sign in') ?>" id="sigin_submit" class="greyishBtn submitForm" style="margin-top: -20px; padding-bottom: 4px;"/>
+                                            <input type="submit" value="<?php echo 'Sign in' ?>" id="sigin_submit" class="greyishBtn submitForm" style=""/>
                                             <div class="fix"></div>
                                         </div>
                                     </fieldset>
@@ -49,5 +50,17 @@
 </div>
 <script type="text/javascript">
     $(document).ready(function() {
+    });
+</script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("#sigin_submit").click(function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            
+            if( $("#login").validationEngine("validate") ) $("#login").submit();
+        })
+        $("#login").validationEngine();
+        
     });
 </script>

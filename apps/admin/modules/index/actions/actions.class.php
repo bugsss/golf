@@ -3,7 +3,7 @@
 /**
  * index actions.
  *
- **** @package    divi
+ **** @package    golf
  * @subpackage index
  * @author     Bugs
  * @version    SVN: $Id: actions.class.php 23810 2009-11-12 11:07:44Z Kris.Wallsmith $
@@ -12,7 +12,6 @@ class indexActions extends sfActions
 {
         public function preExecute()
         {
-            sfContext::getInstance()->getConfiguration()->loadHelpers( array ( 'I18N' ) );
         }
 
 	/**
@@ -23,49 +22,28 @@ class indexActions extends sfActions
 	public function executeIndex ( sfWebRequest $request )
 	{
             if( $this->getUser()->isAuthenticated() ) $this->redirect('@loggedin_homepage');
-            $this->sign_in_form = new sfGuardFormSignin();
+            $this->sign_in_form = new loginForm();
+            if( $request->isMethod('put') ) $this->errors = $this->processSignin( $request, $this->sign_in_form );
+
 	}
 	
 	public function executeSignin ( sfWebRequest $request )
 	{
 		$this->forward404Unless($request->isMethod('put'));
-		$this->sign_in_form = new sfGuardFormSignin();
+		$this->sign_in_form = new loginForm();
 		$this->processSignin( $request, $this->sign_in_form );
 		return sfView::NONE;
 	}
 
-	protected function processSignin ( sfWebRequest $request, sfForm $form )
+	public function executeSignout ( sfWebRequest $request )
 	{
-		$valori_form = $request->getParameter( $form->getName() );
-                $user = sfGuardUserTable::getInstance()->findOneByUsername( $valori_form['username'] );
-                if( $user instanceof sfGuardUser )
-                {
-                    $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
-//                    $json = array ( );
-                    if ( $form->isValid() )
-                    {
-                            $values = $form->getValues();
-                            $this->getUser()->signin( $values['user'], array_key_exists( 'remember', $values ) ? $values['remember'] : false );
-                            $user = $this->getUser();
-                            $user->setCulture( sfConfig::get( 'app_default_language' ) );
-//                            $user_id = $user->getGuardUser()->getId();
-
-                            foreach($user->getAttributeHolder()->getAll() as $key => $value)
-                            {
-                               $user->setAttribute($key, NULL);
-                            }
-                            $this->redirect( "@loggedin_homepage" );
-                    }
-                    else 
-                    {
-                        var_dump( $form->getErrorSchema()->__toString() );
-                    }
-                }
+                $this->getUser()->setAuthenticated(false);
+                $this->getUser()->setAttribute("user", null);
                 $this->redirect( '@homepage' );
 	}
 
 
-	public function executeHome ( sfWebRequest $request )
+	public function executeDashboard ( sfWebRequest $request )
 	{
 //            log_listTable::insertIntoLog( 'index', '404', "Error404 for: {$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" );
 	}
@@ -93,6 +71,44 @@ class indexActions extends sfActions
 	public function execute503 ( sfWebRequest $request )
 	{
 //            log_listTable::insertIntoLog( 'index', '404', "Error404 for: {$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}" );
+	}
+
+        
+	protected function processSignin ( sfWebRequest $request, sfForm $form )
+	{
+		$valori_form = $request->getParameter( $form->getName() );
+                $errors = "";
+
+//var_dump($valori_form);
+                $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
+                if ( $form->isValid() )
+                {
+                    $user = playerTable::getUser( $valori_form['email'] );
+                    if( $user instanceof player )
+                    {
+                        if( $user->getPassword() == $valori_form['password'] )
+                        {
+                            if( $user->getIsAdmin() == 1 )
+                            {
+                                $this->getUser()->setAuthenticated(true);
+                                $this->getUser()->setAttribute("user", $user);
+                                $this->getUser()->addCredential("admin");
+                                $this->redirect("@loggedin_homepage");
+                            }
+                            else $errors .= "Invalid credentials. ";
+                        }
+                        else $errors .= "Invalid username/password.";
+                    }
+                    else $errors .= "Invalid username/password.";
+                }
+                else
+                {
+                    foreach($form->getErrorSchema()->getErrors() as $key => $value) {
+                        if( $key == "email") $error .= "Username is requeired. ";
+                        if( $key == "password") $error .= "Password is requeired. ";
+                    }
+                }
+                return $errors;
 	}
 
 }

@@ -1,14 +1,36 @@
-blog:
-  class: sfDoctrineRouteCollection
-  options:
-    model:                Blog
-    module:               blog
-    prefix_path:          /blog
-    column:               id
-    with_wildcard_routes: true
-
 # You can find more information about this file on the symfony website:
 # http://www.symfony-project.org/reference/1_4/en/10-Routing
+
+
+blog:
+  url:   /press.html
+  param: { module: blog, action: index }
+  
+get_article:
+  url:   /get_article.html
+  param: { module: blog, action: getArticle }
+  
+set_activate:
+  url:   /set_activate.html
+  param: { module: blog, action: setActivate }
+
+delete_article:
+  url:   /delete_article.html
+  param: { module: blog, action: deleteArticle }
+
+
+
+signin:
+  url:   /sigin.html
+  param: { module: index, action: signin }
+
+signout:
+  url:   /sigout.html
+  param: { module: index, action: signout }
+
+loggedin_homepage:
+  url:   /dashboard.html
+  param: { module: index, action: dashboard }
 
 # default rules
 homepage:

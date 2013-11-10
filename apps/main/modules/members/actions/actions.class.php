@@ -23,6 +23,8 @@ class membersActions extends sfActions
 	{
             $this->user = $this->getUser()->getAttribute("user");
             $this->pform = new PlayerForm( $this->user );
+            $this->getUser()->setFlash("select_tab", "score");
+                    
             if( $request->getParameter( $this->pform->getName() ) )
             {
                 $this->processProfile( $request, $this->pform );
@@ -41,6 +43,13 @@ class membersActions extends sfActions
             {
                 if( !$this->processFoto( $request, $this->fform ) ) $this->getUser()->setFlash("show_file_upload", true );
                 else $this->getUser()->setFlash("show_file_upload", null );
+            }
+            
+            $this->scform = new UpCourseForm( $this->user );
+            if( $request->getParameter( $this->scform->getName() ) )
+            {
+                if( !$this->processCourse( $request, $this->scform ) ) $this->getUser()->setFlash("select_tab", "scourse");
+                else $this->getUser()->setFlash("show_course_upload", null );
             }
             
             $this->sform = new ScoreForm( $this->user );
@@ -130,6 +139,21 @@ class membersActions extends sfActions
             return false;
         }
         
+        protected function processCourse(sfWebRequest $request, sfForm $form)
+        {
+            $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
+            if ($form->isValid())
+            {
+//                $form->save();
+                return true;
+            }
+            else 
+            {
+                //var_dump( $form->getErrorSchema()->__toString() );
+            }
+            return false;
+        }
+        
         protected function processScore(sfWebRequest $request, sfForm $form)
         {
             $valori_form = $request->getParameter( $form->getName() );
@@ -177,5 +201,6 @@ class membersActions extends sfActions
             }
             return false;
         }
+        
 }
 

@@ -19,16 +19,15 @@
                                 <a href="/" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "" ? "selected_menu" : ""; ?>">home</a>
                             </li>
                             <li>
-                                <a href="/about.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "about" ? "selected_menu" : ""; ?>">about</a>
+                                <a href="/press.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "press" ? "selected_menu" : ""; ?>">press</a>
                             </li>
                             <li>
-                                <a href="/press.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "press" ? "selected_menu" : ""; ?>">press</a>
+                                <a href="/products.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "products" ? "selected_menu" : ""; ?>">products</a>
                             </li>
                             <li>
                                 <a href="/support.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "support" ? "selected_menu" : ""; ?>">support >></a>
                                 <ul style="top: 46px; visibility: visible; left: 0px; width: 171px; display: none;">
                                     <li><a href="/support/how_to.html">HOW TO</a></li>
-                                    <li><a href="/support/submit_a_course.html">SUBMIT A COURSE</a></li>
                                     <li><a href="/support/contact_us.html">CONTACT US</a></li>
                                 </ul>
                             </li>
@@ -44,14 +43,11 @@
                                     <a href="<?php echo url_for("@logout") ?>" class="withoutBorder <?php echo $sf_user->getAttribute('selected_menu') == "login" ? "selected_menu" : ""; ?>">log out</a>
                                 </li>
                             <?php endif; ?>
+                            <li>
+                                <a href="/about.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "about" ? "selected_menu" : ""; ?>">about</a>
+                            </li>
                         </ul>
                     </div>
-                </div>
-                <div id="social">
-                    <ul>
-                        <li><a href="https://www.facebook.com/golfgameskeeper" target="_blank"><img src="/images/facebook.png" border="0" /></a></li>
-                        <li><a href="https://twitter.com/golfgameskeeper" target="_blank"><img src="/images/twitter.png" border="0" /></a></li>
-                    </ul>
                 </div>
             </div>
         </div>
@@ -60,8 +56,17 @@
         </div>
         <div id="thinkBlackLine">
             <div id="footerWrapper">
-                <div id="footer">golf gameskeeper, llc &copy; 2013 <a href="/PrivacyPolicy.htm" target="_blank">privacy policy</a></div>
+                <div id="footer">
+                    golf gameskeeper, llc &copy; 2013 <a href="/PrivacyPolicy.htm" target="_blank">privacy policy</a>
+                </div>
+                <div id="social" style="float: right; margin-top: -35px;">
+                    <ul>
+                        <li><a href="https://www.facebook.com/golfgameskeeper" target="_blank"><img src="/images/facebook.png" border="0" /></a></li>
+                        <li><a href="https://twitter.com/golfgameskeeper" target="_blank"><img src="/images/twitter.png" border="0" /></a></li>
+                    </ul>
+                </div>
             </div>
+            
         </div>
     </body>
 </html>

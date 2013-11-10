@@ -26,7 +26,7 @@ class player extends Baseplayer
             {
                 $temp = array();
                 $temp["total_score"] = $round->getTotalScore();
-                $temp["course_name"] = $event->getCourse()->getCourseName() . "(" . $round->getTeesId().  ")";
+                $temp["course_name"] = $event->getCourse()->getCourseName();
                 $temp["event_date"] = $event->getEventName();
                 $ret[] = $temp;
             }
