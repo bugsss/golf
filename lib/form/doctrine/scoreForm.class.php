@@ -17,16 +17,14 @@ class scoreForm extends BaseplayerForm
                 $this['last_name'],
                 $this['email'],
                 $this['home_course_name'],
-                $this['state'],
                 $this['city'],
                 $this['handicap'],
                 $this['gender'],
                 $this['image'],
                 $this['password'],
                 $this['is_user'],
-                $this['created_at'],
-                $this['home_course']
-                
+                $this['is_admin'],
+                $this['created_at']
             );
         
         $this->widgetSchema['score_date'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
