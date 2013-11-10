@@ -15,16 +15,16 @@ class contactusForm extends BaseplayerForm
         unset(
                 $this['first_name'],
                 $this['last_name'],
-                $this['email'],
-                $this['password'],
-                $this['gender'],
-                $this['handicap'],
-                $this['usga_index'],
-                $this['is_user'],
+                $this['home_course_name'],
                 $this['state'],
                 $this['city'],
-                $this['created_at'],
-                $this['home_course']
+                $this['handicap'],
+                $this['gender'],
+                $this['image'],
+                $this['password'],
+                $this['is_user'],
+                $this['is_admin'],
+                $this['created_at']
         );    
         
         $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
