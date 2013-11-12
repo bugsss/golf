@@ -1,6 +1,23 @@
 @charset "utf-8";
 /* GOLF GAME KEEPERS LLC. */
 
+h1.fontface1 {font: 27px/27px 'cantarellregular'; color:#FFF; margin:0; padding:20px 0 20px 0;}
+h2.fontface2 {font: 20px/20px 'cantarellregular'; color:#FFF; margin:0; padding:0 0 10px 0;}
+h3.fontface3 {font: 17px/17px 'cantarellregular'; color:#FFF; margin:0; padding:0 0 10px 0;}
+
+p.style1 {font: 15px/20px 'cantarellregular'; color:#000; margin:0; padding:0 20px 30px 0;}
+.style20 {color:#060;}
+.style21 {color:#000;}
+
+.TL {margin:0; padding:0 10px 10px 0; float:left;}
+.TR {margin:0; padding:0 0 10px 10px; float: right;}
+.ML {margin:0; padding:10px 10px 10px 0; float:left;}
+.MR {margin:0; padding:10px 0 10px 10px; float:right;}
+.BL {margin:0; padding:10px 10px 0 0; float:left;}
+.BR {margin:0; padding:10px 0 0 10px; float:right;}
+
+
+
 .clearFix {
 	clear:both;
 }
