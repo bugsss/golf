@@ -202,7 +202,11 @@ body {
 }
 
 #profilePicture{
-	width:173px; height:157px; margin:0 auto 0 auto; padding:5px 0 0 0;
+	width:173px; 
+        height:157px; 
+        margin:0 auto 0 auto; 
+        padding:5px 0 0 0;
+        overflow: hidden;
 }
 
 #playerNameAndHandicapWrapper {
