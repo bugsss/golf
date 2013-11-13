@@ -14,7 +14,7 @@ abstract class BaseroundFormFilter extends BaseFormFilterDoctrine
   {
     $this->setWidgets(array(
       'player_id'   => new sfWidgetFormFilterInput(array('with_empty' => false)),
-      'tees_id'     => new sfWidgetFormFilterInput(array('with_empty' => false)),
+      'tees_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Course'), 'add_empty' => true)),
       'event_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Event'), 'add_empty' => true)),
       'rating'      => new sfWidgetFormFilterInput(),
       'slope'       => new sfWidgetFormFilterInput(array('with_empty' => false)),
@@ -28,7 +28,7 @@ abstract class BaseroundFormFilter extends BaseFormFilterDoctrine
 
     $this->setValidators(array(
       'player_id'   => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
-      'tees_id'     => new sfValidatorPass(array('required' => false)),
+      'tees_id'     => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Course'), 'column' => 'course_id')),
       'event_id'    => new sfValidatorDoctrineChoice(array('required' => false, 'model' => $this->getRelatedModelName('Event'), 'column' => 'event_id')),
       'rating'      => new sfValidatorSchemaFilter('text', new sfValidatorNumber(array('required' => false))),
       'slope'       => new sfValidatorSchemaFilter('text', new sfValidatorInteger(array('required' => false))),
@@ -59,7 +59,7 @@ abstract class BaseroundFormFilter extends BaseFormFilterDoctrine
     return array(
       'round_id'    => 'Number',
       'player_id'   => 'Number',
-      'tees_id'     => 'Text',
+      'tees_id'     => 'ForeignKey',
       'event_id'    => 'ForeignKey',
       'rating'      => 'Number',
       'slope'       => 'Number',

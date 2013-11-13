@@ -18,33 +18,36 @@
  * @property integer $bet_hcp
  * @property boolean $saved
  * @property event $Event
+ * @property Doctrine_Collection $Course
  * 
- * @method integer getRoundId()     Returns the current record's "round_id" value
- * @method integer getPlayerId()    Returns the current record's "player_id" value
- * @method string  getTeesId()      Returns the current record's "tees_id" value
- * @method integer getEventId()     Returns the current record's "event_id" value
- * @method float   getRating()      Returns the current record's "rating" value
- * @method integer getSlope()       Returns the current record's "slope" value
- * @method string  getHolesScore()  Returns the current record's "holes_score" value
- * @method string  getHolesHcp()    Returns the current record's "holes_hcp" value
- * @method integer getTotalScore()  Returns the current record's "total_score" value
- * @method float   getRoundHcp()    Returns the current record's "round_hcp" value
- * @method integer getBetHcp()      Returns the current record's "bet_hcp" value
- * @method boolean getSaved()       Returns the current record's "saved" value
- * @method event   getEvent()       Returns the current record's "Event" value
- * @method round   setRoundId()     Sets the current record's "round_id" value
- * @method round   setPlayerId()    Sets the current record's "player_id" value
- * @method round   setTeesId()      Sets the current record's "tees_id" value
- * @method round   setEventId()     Sets the current record's "event_id" value
- * @method round   setRating()      Sets the current record's "rating" value
- * @method round   setSlope()       Sets the current record's "slope" value
- * @method round   setHolesScore()  Sets the current record's "holes_score" value
- * @method round   setHolesHcp()    Sets the current record's "holes_hcp" value
- * @method round   setTotalScore()  Sets the current record's "total_score" value
- * @method round   setRoundHcp()    Sets the current record's "round_hcp" value
- * @method round   setBetHcp()      Sets the current record's "bet_hcp" value
- * @method round   setSaved()       Sets the current record's "saved" value
- * @method round   setEvent()       Sets the current record's "Event" value
+ * @method integer             getRoundId()     Returns the current record's "round_id" value
+ * @method integer             getPlayerId()    Returns the current record's "player_id" value
+ * @method string              getTeesId()      Returns the current record's "tees_id" value
+ * @method integer             getEventId()     Returns the current record's "event_id" value
+ * @method float               getRating()      Returns the current record's "rating" value
+ * @method integer             getSlope()       Returns the current record's "slope" value
+ * @method string              getHolesScore()  Returns the current record's "holes_score" value
+ * @method string              getHolesHcp()    Returns the current record's "holes_hcp" value
+ * @method integer             getTotalScore()  Returns the current record's "total_score" value
+ * @method float               getRoundHcp()    Returns the current record's "round_hcp" value
+ * @method integer             getBetHcp()      Returns the current record's "bet_hcp" value
+ * @method boolean             getSaved()       Returns the current record's "saved" value
+ * @method event               getEvent()       Returns the current record's "Event" value
+ * @method Doctrine_Collection getCourse()      Returns the current record's "Course" collection
+ * @method round               setRoundId()     Sets the current record's "round_id" value
+ * @method round               setPlayerId()    Sets the current record's "player_id" value
+ * @method round               setTeesId()      Sets the current record's "tees_id" value
+ * @method round               setEventId()     Sets the current record's "event_id" value
+ * @method round               setRating()      Sets the current record's "rating" value
+ * @method round               setSlope()       Sets the current record's "slope" value
+ * @method round               setHolesScore()  Sets the current record's "holes_score" value
+ * @method round               setHolesHcp()    Sets the current record's "holes_hcp" value
+ * @method round               setTotalScore()  Sets the current record's "total_score" value
+ * @method round               setRoundHcp()    Sets the current record's "round_hcp" value
+ * @method round               setBetHcp()      Sets the current record's "bet_hcp" value
+ * @method round               setSaved()       Sets the current record's "saved" value
+ * @method round               setEvent()       Sets the current record's "Event" value
+ * @method round               setCourse()      Sets the current record's "Course" collection
  * 
  * @package    Golf
  * @subpackage model
@@ -123,5 +126,9 @@ abstract class Baseround extends sfDoctrineRecord
         $this->hasOne('event as Event', array(
              'local' => 'event_id',
              'foreign' => 'event_id'));
+
+        $this->hasMany('course as Course', array(
+             'local' => 'tees_id',
+             'foreign' => 'tees_id'));
     }
 }

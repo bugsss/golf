@@ -80,11 +80,11 @@ class membersActions extends sfActions
         
         public function executeGetScores( sfWebRequest $request )
         {
-            if ($request->isMethod('post')) {
+//            if ($request->isMethod('post')) {
                 $this->rendertext( json_encode( $this->getUser()->getAttribute("user")->getScores() ) );
                 return sfView::NONE;
-            }
-            else $this->redirect404 ();
+//            }
+//            else $this->redirect404 ();
                 
         }
         

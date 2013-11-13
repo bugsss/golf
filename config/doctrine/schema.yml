@@ -191,6 +191,13 @@ round:
       type: one
       foreignType: mnay
       foreignAlias: Rounds
+    Course:
+      class: course
+      foreign: tees_id
+      local: tees_id
+      type: many
+      foreignType: one
+      foreignAlias: Events
 
 
 blogs:

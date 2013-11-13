@@ -15,22 +15,28 @@ class player extends Baseplayer
     public function getScores()
     {
         $ret = array();
-        $events = Doctrine_Query::create()
-                    ->from( "event" )
-                    ->where( "player_id = ? ", $this->player_id )
-                    ->orderBy("event_date DESC")
-                    ->execute();
-        foreach( $events as $event )
+//select c.coursename, r.total_score, e.event_date from event c, round b, course a 
+//where r.player_id=@player_id and e.event_id=r.event_id and c.tees_id=r.tees_id order by e.event_date desc;        
+        $connection = Doctrine_Manager::connection();
+        $query = "SELECT 
+                        c.coursename AS coursename, 
+                        r.total_score AS total_score, 
+                        e.event_date AS event_date 
+                  FROM event AS e, round AS r, course AS c 
+                  WHERE 
+                        r.player_id = {$this->player_id} AND 
+                        e.event_id = r.event_id AND 
+                        c.tees_id = r.tees_id 
+                  ORDER BY e.event_date DESC";
+        $statement = $connection->execute($query);
+        $statement->execute();
+        foreach( $statement as $event )
         {
-            foreach( $event->getRounds() as $round)
-            {
-                $temp = array();
-                $temp["total_score"] = $round->getTotalScore();
-                $temp["course_name"] = $event->getCourse()->getCourseName();
-                $temp["event_date"] = $event->getEventName();
-                $ret[] = $temp;
-            }
-            
+            $temp = array();
+            $temp["total_score"] = $event["total_score"];
+            $temp["course_name"] = $event["coursename"];
+            $temp["event_date"] = $event["event_date"];
+            $ret[] = $temp;
         }
         return $ret;
     }

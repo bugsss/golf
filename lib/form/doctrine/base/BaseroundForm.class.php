@@ -17,7 +17,7 @@ abstract class BaseroundForm extends BaseFormDoctrine
     $this->setWidgets(array(
       'round_id'    => new sfWidgetFormInputHidden(),
       'player_id'   => new sfWidgetFormInputText(),
-      'tees_id'     => new sfWidgetFormInputText(),
+      'tees_id'     => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Course'), 'add_empty' => false)),
       'event_id'    => new sfWidgetFormDoctrineChoice(array('model' => $this->getRelatedModelName('Event'), 'add_empty' => false)),
       'rating'      => new sfWidgetFormInputText(),
       'slope'       => new sfWidgetFormInputText(),
@@ -32,7 +32,7 @@ abstract class BaseroundForm extends BaseFormDoctrine
     $this->setValidators(array(
       'round_id'    => new sfValidatorChoice(array('choices' => array($this->getObject()->get('round_id')), 'empty_value' => $this->getObject()->get('round_id'), 'required' => false)),
       'player_id'   => new sfValidatorInteger(),
-      'tees_id'     => new sfValidatorString(array('max_length' => 20)),
+      'tees_id'     => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Course'))),
       'event_id'    => new sfValidatorDoctrineChoice(array('model' => $this->getRelatedModelName('Event'))),
       'rating'      => new sfValidatorNumber(array('required' => false)),
       'slope'       => new sfValidatorInteger(array('required' => false)),
