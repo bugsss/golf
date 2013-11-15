@@ -48,14 +48,19 @@ class credentialForm extends BaseplayerForm
 
     public function checkNewPass($validator, $values)
     {
-        if ($values['new_password'] == '' || $values['confirm_password'] == '')
+        if ($values['new_password'] == '')
         {
-            $error = new sfValidatorError($validator, 'You must fill both the "New password" and "Confirm password" fields.');
-            throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
+            $error = new sfValidatorError($validator, 'Required.');
+            throw new sfValidatorErrorSchema($validator, array ('new_password'=>$error));
+        }
+        if ($values['confirm_password'] == '')
+        {
+            $error = new sfValidatorError($validator, 'Required.');
+            throw new sfValidatorErrorSchema($validator, array ('confirm_password'=>$error));
         }
         if ($values['new_password'] != $values['confirm_password'])
         {
-            $error = new sfValidatorError($validator, 'The password which you entered doesn\'t match <br />with the password from the re-type field. <br />Please make sure you enter the same password <br />in both fields.');
+            $error = new sfValidatorError($validator, 'Did not match with confirm password.');
             throw new sfValidatorErrorSchema($validator, array ('new_password'=>$error));
         }
         return $values;
@@ -65,13 +70,13 @@ class credentialForm extends BaseplayerForm
     {
         if ($values['old_password'] == '' )
         {
-            $error = new sfValidatorError($validator, 'You must fill the "Old password" field.');
-            throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
+            $error = new sfValidatorError($validator, 'Required.');
+            throw new sfValidatorErrorSchema($validator, array ('old_password'=>$error));
         }
         $user = sfContext::getInstance()->getUser()->getAttribute("user");
         if ($values['old_password'] != $user->getPassword() )
         {
-            $error = new sfValidatorError($validator, 'Invalid old password.');
+            $error = new sfValidatorError($validator, 'Invalid.');
             throw new sfValidatorErrorSchema($validator, array ('old_password'=>$error));
         }
         return $values;

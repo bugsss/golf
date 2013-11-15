@@ -27,7 +27,7 @@
                     </div>
                 </div>
                 <div class="" style="padding-top:15px">
-                    <?php echo $sform['teese']->renderLabel('Teese') ?>
+                    <?php echo $sform['teese']->renderLabel('Tees') ?>
                     <?php echo $sform['teese']->renderError() ?>
                     <div class="" style="margin-top: -20px;">
                         <img src="../images/loader5.gif" border="0" style="display:none; margin-left: 155px;" id="teese_loader"/>
@@ -93,7 +93,7 @@
                 <li><a href="#Score" id="tab_score">SCORE</a></li>
                 <li><a href="#Friends" id="tab_friends">FRIENDS</a></li>
                 <li><a href="#Account" id="tab_account">ACCOUNT</a></li>
-                <li><a href="#Password" id="tab_account">PASSWORD</a></li>
+                <li><a href="#Password" id="tab_password">PASSWORD</a></li>
                 <li><a href="#SubmitCourse" id="tab_scourse">SUBMIT A COURSE</a></li>
                 
             </ul>
@@ -165,23 +165,31 @@
             </div>
             <div id="Password" class="whiteBackground">
                 <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="credential_form">
+                    <?php if( isset( $c_errors ) ): ?>
+                        <?php if( count( $c_errors ) > 0 ): ?>
+                            <div id="errors_div" >
+                                <?php foreach( $c_errors as $field => $error) : ?>
+                                        <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php else: ?>
+                            <span style="color: green;">Password successfully changed.</span>
+                        <?php endif; ?>
+                    <?php endif; ?>
                     <fieldset>
                         <input type="hidden" name="sf_method" value="put">
                         <?php echo $cform->renderGlobalErrors() ?>
                         <?php echo $cform->renderHiddenFields() ?>
                         <div class="">
                             <?php echo $cform['old_password']->renderLabel('Old Password') ?>
-                            <?php echo $cform['old_password']->renderError() ?>
                             <div class=""><td align="left" width="50%"><?php echo $cform['old_password'] ?></div>
                         </div>
                         <div class="">
                             <?php echo $cform['new_password']->renderLabel('New Password') ?>
-                            <?php echo $cform['new_password']->renderError() ?>
                             <div class=""><?php echo $cform['new_password'] ?></div>
                         </div>
                         <div class="">
                             <?php echo $cform['confirm_password']->renderLabel('Confirm New Password') ?>
-                            <?php echo $cform['confirm_password']->renderError() ?>
                             <div class=""><?php echo $cform['confirm_password'] ?></div>
                         </div>
                         <div class="">

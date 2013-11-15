@@ -79,7 +79,12 @@ class publicActions extends sfActions
 	public function executeForgot ( sfWebRequest $request )
 	{
             $this->getUser()->setAttribute('selected_menu', "login");
-            $this->getUser()->setAuthenticated(false);
+            $this->form = new ForgotForm();
+            if( $request->getParameter( $this->form->getName() ) ) 
+            {
+                $this->f_errors = $this->processForgot( $request, $this->form );
+var_dump($this->f_errors);print_r("<br />");
+            }
 	}
         
 	public function executeRegistration ( sfWebRequest $request )
@@ -91,6 +96,30 @@ class publicActions extends sfActions
         
 
     
+	protected function processForgot ( sfWebRequest $request, sfForm $form )
+	{
+		$valori_form = $request->getParameter( $form->getName() );
+                $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
+                if ( $form->isValid() )
+                {
+                    $user = playerTable::getInstance()->findOneBy( "email", $valori_form["email"] );
+                    $From = "no-replay@golfgameskeeper.com";
+                    $FromName = "GolfGamesKeeper";
+                    $Body = "Your password: {$user->getPassword()}";
+                    $message = $this->getMailer()->compose(array($From => $FromName), $valori_form["email"], 'www.golfgamekeeper - Password reminder', $Body);
+                    $this->getMailer()->send( $message );
+                    return $valori_form["email"];
+                }
+                else
+                {   
+                    $errors = array();
+                    foreach($form->getErrorSchema()->getErrors() as $key => $value) {
+                        $errors[$key] = $value->__toString();
+                    }
+                    return $errors;
+                }
+	}
+
 	protected function processRegistration ( sfWebRequest $request, sfForm $form )
 	{
 		$valori_form = $request->getParameter( $form->getName() );
@@ -164,7 +193,6 @@ class publicActions extends sfActions
         protected function processContactUs( sfWebRequest $request, sfForm $form )
         {
 		$valori_form = $request->getParameter( $form->getName() );
-//var_dump($valori_form);
                 $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
                 if ( $form->isValid() )
                 {

@@ -44,7 +44,7 @@ class courseTable extends Doctrine_Table
                                         ->execute();//getSqlQuery();
         $return = Array();
         foreach( $res as $c)
-            $return[] = array( "label" => $c->getCourseName()."(".$c->getCourseId().")", "id" => $c->getCourseId() );
+            $return[] = array( "label" => $c->getCourseName(), "id" => $c->getCourseId() );
 
         return $return;
     }
@@ -53,13 +53,13 @@ class courseTable extends Doctrine_Table
     {
         $res = Doctrine_Core::getTable( "course" )
                                         ->createQuery()
-                                        ->select( "course_id, CourseName")
+                                        ->select( "tees_id, teename")
                                         ->where( "LOWER(course_id) = ? ", trim( strtolower( $term) ) )
-                                        ->orderBy( "CourseName" )
+                                        ->orderBy( "teename" )
                                         ->execute();//getSqlQuery();
         $return = Array();
         foreach( $res as $c)
-            $return[] = array( "label" => $c->getTeesId(), "id" => $c->getCourseId() );
+            $return[] = array( "label" => $c->getTeename(), "id" => $c->getTeesId() );
 
         return $return;
     }

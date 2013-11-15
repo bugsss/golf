@@ -34,7 +34,7 @@
 <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){
         $(document).on( "click", "#login_submit", function(e){ $("#login_form").submit(); })
-        $(document).on( "click", "#registration_submit", function(e){ window.location = "/registration.html"; })
-        $(document).on( "click", "#forgot_submit", function(e){ window.location = "/forgot.html"; })
+        $(document).on( "click", "#registration_submit", function(e){ window.location = "<?php echo url_for("@register"); ?>"; })
+        $(document).on( "click", "#forgot_submit", function(e){ window.location = "<?php echo url_for("@forgot"); ?>"; })
     })
 </script>

@@ -34,7 +34,7 @@ class membersActions extends sfActions
             $this->cform = new CredentialForm( $this->user );
             if( $request->getParameter( $this->cform->getName() ) )
             {
-                $this->processCredentials( $request, $this->cform );
+                $this->c_errors = $this->processCredentials( $request, $this->cform );
                 $this->getUser()->setFlash("select_tab", "password");
             }
 
@@ -52,7 +52,7 @@ class membersActions extends sfActions
                 else $this->getUser()->setFlash("show_course_upload", null );
             }
             
-            $this->sform = new ScoreForm( $this->user );
+            $this->sform = new ScoreForm();
             if( $request->getParameter( $this->sform->getName() ) )
             {
                 if( !$this->processScore( $request, $this->sform ) ) $this->getUser()->setFlash("show_add_score", true );
@@ -114,14 +114,27 @@ class membersActions extends sfActions
 
 	protected function processCredentials ( sfWebRequest $request, sfForm $form )
 	{
+                $errors = array();
 		$valori_form = $request->getParameter( $form->getName() );
                 $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
                 $user = $this->getUser()->getAttribute("user");
                 if ( $form->isValid() )
                 {
-                    $user->setPassword( $valori_form["old_password"] );
+                    $user->setPassword( $valori_form["new_password"] );
                     $user->save();
                 }
+                else
+                {   
+                    foreach($form->getErrorSchema()->getErrors() as $key => $value) {
+                        $errors[$key] = $value->__toString();
+                    }
+                }
+                return $errors;
+//                else
+//                {
+//                    var_dump( $form->getErrorSchema()->__toString() );die("aaaaaaaaaaaaaaaaaaaaaaaa");
+//                }
+                
 	}
 
         protected function processFoto(sfWebRequest $request, sfForm $form)
@@ -173,14 +186,14 @@ class membersActions extends sfActions
 //insert into round(event_id,tees_id,player_id,rating,slope,total_score,round_hcp,saved)
 // values(last_insert_id(), @tee_id,@player_id,@rating,@slope,@score, 113*(@score-@rating)/@slope, 1); 
                 $user = $this->getUser()->getAttribute("user");
-                $course = courseTable::getInstance()->findOneBy( "course_id", $valori_form["course"] );
+                $course = courseTable::getInstance()->findOneBy( "tees_id", $valori_form["teese"] );
                 $event = new Event();
                     $event->setPlayerId( $user->getPlayer_id() );
                     $event->setEventName( $valori_form["score_date"] ) ;
                     $event->setEventDate( $valori_form["score_date"] ." ". date("H:i:s") );
                     $event->setStartHole(1);
                     $event->setStatus(-1);
-                    $event->setCourseId( $valori_form["course"] );
+                    $event->setCourseId( $course->getCourseId() );
                 $event->save();
                 
                 $round = new Round();

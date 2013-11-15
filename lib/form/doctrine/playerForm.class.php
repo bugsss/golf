@@ -27,9 +27,6 @@ class playerForm extends BaseplayerForm
         $this->widgetSchema['last_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['home_course_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
-        $this->widgetSchema['old_password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ));
-        $this->widgetSchema['new_password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ));
-        $this->widgetSchema['confirm_password'] = new sfWidgetFormInputPassword( array (), array( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ) );
 
         $states = array(    "" => "Select state", 
                             "AL" => "Alabama", "AK" => "Alaska", "AZ" => "Arizona", "AR" => "Arkansas", "CA" =>	"California", "CO" => "Colorado", "CT" => "Connecticut",
@@ -77,21 +74,6 @@ class playerForm extends BaseplayerForm
 
         $this->validatorSchema->setOption('allow_extra_fields', true);
         $this->validatorSchema->setOption('filter_extra_fields', false);
-    }
-
-    public function checkNewPass($validator, $values)
-    {
-        if ($values['password'] == '' || $values['re_password'] == '')
-        {
-            $error = new sfValidatorError($validator, 'You must fill both the "Password" and "Re password" fields.');
-            throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
-        }
-        if ($values['new_password'] != $values['confirm_password'])
-        {
-            $error = new sfValidatorError($validator, 'The password which you entered doesn\'t match <br />with the password from the re-type field. <br />Please make sure you enter the same password <br />in both fields.');
-            throw new sfValidatorErrorSchema($validator, array ('new_password'=>$error));
-        }
-        return $values;
     }
 
     public function checkEmail($validator, $values)
