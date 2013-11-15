@@ -1,8 +1,8 @@
 @charset "utf-8";
 /* GOLF GAME KEEPERS LLC. */
 
-h1.fontface1 {font: 27px/27px 'cantarellregular'; color:#FFF; margin:0; padding:20px 0 20px 0;}
-h2.fontface2 {font: 20px/20px 'cantarellregular'; color:#FFF; margin:0; padding:0 0 10px 0;}
+h1.fontface1 {font: 27px/27px 'Oswald'; color:#FFF; margin:0; padding:20px 0 20px 0;}
+h2.fontface2 {font: 20px/20px 'Oswald'; color:#FFF; margin:0; padding:0 0 10px 0;}
 h3.fontface3 {font: 17px/17px 'cantarellregular'; color:#FFF; margin:0; padding:0 0 10px 0;}
 
 p.style1 {font: 15px/20px 'cantarellregular'; color:#000; margin:0; padding:0 20px 30px 0;}
@@ -262,7 +262,7 @@ body {
 .whiteBackground {
 	background:#FFF;
 	width:737px;
-	height:410px;
+	height:430px;
 	padding:20px;
 	border-bottom-left-radius:10px;
 	border-bottom-right-radius:10px;
@@ -289,7 +289,7 @@ body {
 	font: bold 11px/11px 'Arial';
 	text-transform: uppercase;
 	padding: 10px 15px;
-	border-right: 1px solid #fff;
+	/*border-right: 1px solid #fff;*/
 }
 
 .tabs li a:hover {
@@ -384,7 +384,7 @@ body {
 
 .customButton
 {
-/*        background: url("../images/customButtonBackground.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
+/*      background: url("../images/customButtonBackground.png") no-repeat scroll 0 0 rgba(0, 0, 0, 0);*/
         background-color: #587700;
         border: medium none;
         border-radius: 13px 13px 13px 13px;
@@ -406,4 +406,15 @@ body {
         width: 210px; 
         border-radius: 13px; 
         right: -200px;     
+}
+
+/*********************SPECIAL CLASS FOR SCORE TAB TARGETS THE SCORE IN THE SCORE TABLE***********************************/
+.golf_score_number {
+	font-size:24px;
+	margin:0;
+	padding:0 20px 0 0;
+}
+
+.score_separator {
+	padding:17px 0 0 0;
 }

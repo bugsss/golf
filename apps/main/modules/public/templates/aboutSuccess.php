@@ -10,6 +10,8 @@
     });
 </script>
 
+<link href='http://fonts.googleapis.com/css?family=Oswald:700' rel='stylesheet' type='text/css'>
+
 <div id="introCellWrapper">
     <div id="boxScroll">
         <h1 class="fontface1">Company Summary</h1>

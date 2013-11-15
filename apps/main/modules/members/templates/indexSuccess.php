@@ -315,7 +315,7 @@
                 function(data){
                     var tbl = ""
                     $.each( data, function(i, e){
-                        tbl += "<tr><td rowspan='2' >" + e.total_score + "</td><td >" + e.course_name + "</td></tr><tr><td >" + e.event_date + "</td></tr>";
+                        tbl += "<tr><td rowspan='2' class='golf_score_number'>" + e.total_score + "</td><td >" + e.course_name + "</td></tr><tr><td >" + e.event_date + "</td></tr><tr class='score_separator'><td colspan='2'> </td></tr>";
                     })
                     $("#scores_div").html("<table>" + tbl + "</table>");
                 },
