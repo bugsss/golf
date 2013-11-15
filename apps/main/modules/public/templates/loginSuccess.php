@@ -1,25 +1,21 @@
 <div id="introCellWrapper">
     <div id="logInFormTopSpacer"></div>
     <form class="customForm" action="<?php echo url_for('@login') ?>" method="post" id="login_form">
-        <?php if( isset( $errors ) && is_array( $errors ) ): ?>
-            <div id="errors_div">
-                <?php foreach( $errors as $field => $error) : ?>
-                        <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
-                <?php endforeach; ?>
-            </div>
-        <?php endif; ?>
         <fieldset>
             <input class="customInput" type="hidden" name="sf_method" value="put">
             <?php echo $form->renderGlobalErrors() ?>
             <?php echo $form->renderHiddenFields() ?>
             <div class="">
                 <?php echo $form['email']->renderLabel('Email') ?>
-                <?php //echo $form['email']->renderError() ?>
+                <?php if( isset( $errors ) && count( $errors ) > 0 ): ?>
+                        <?php foreach( $errors as $field => $error) : ?>
+                                <br /><span style="color: red;"><?php echo $error ?></span>
+                        <?php endforeach; ?>
+                <?php endif; ?>
                 <div class=""><?php echo $form['email'] ?></div>
             </div>
             <div class="">
                 <?php echo $form['password']->renderLabel('Password') ?>
-                <?php //echo $form['password']->renderError() ?>
                 <div class=""><?php echo $form['password'] ?></div>
             </div>
             <div class="">

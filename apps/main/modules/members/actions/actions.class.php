@@ -24,7 +24,10 @@ class membersActions extends sfActions
             $this->user = $this->getUser()->getAttribute("user");
             $this->pform = new PlayerForm( $this->user );
             $this->getUser()->setFlash("select_tab", "score");
-                    
+            if( $this->user->getHomeCourse() != "" )
+            {
+                $this->getUser()->setFlash("has_selected_home_course", $this->user->getHomeCourse() );
+            }
             if( $request->getParameter( $this->pform->getName() ) )
             {
                 $this->processProfile( $request, $this->pform );
@@ -48,8 +51,8 @@ class membersActions extends sfActions
             $this->scform = new UpCourseForm( $this->user );
             if( $request->getParameter( $this->scform->getName() ) )
             {
-                if( !$this->processCourse( $request, $this->scform ) ) $this->getUser()->setFlash("select_tab", "scourse");
-                else $this->getUser()->setFlash("show_course_upload", null );
+                $this->sc_errors = $this->processCourse( $request, $this->scform );
+                $this->getUser()->setFlash("select_tab", "scourse");
             }
             
             $this->sform = new ScoreForm();
@@ -93,22 +96,25 @@ class membersActions extends sfActions
 		$valori_form = $request->getParameter( $form->getName() );
 //var_dump($valori_form);
                 $form->bind( $valori_form, $request->getFiles( $form->getName() ) );
-                $hc = "";
+                $valori_form['home_course'] = "";
                 if( isset($valori_form['home_course_name']) )
                 {
-                    $hc = explode( "(", $valori_form['home_course_name'] );
-                    $hc = trim( substr( $hc[1], 0, -1 ) );
+                    $course = courseTable::getInstance()->findOneBy( "course_id", $valori_form['home_course_name'] );
+                    if( $course instanceof course ) {
+                        $valori_form['home_course'] = $valori_form['home_course_name'];
+                        $valori_form['home_course_name'] = $course->getCourseName();
+                    }
                 }
                 $user = $this->getUser()->getAttribute("user");
-                if( $user->getFirstName()       != $valori_form['first_name']   && trim( $valori_form['first_name'] ) != "" )   $user->setFirstName( $valori_form['first_name'] );
-                if( $user->getLastName()        != $valori_form['last_name']    && trim( $valori_form['last_name'] ) != "" )    $user->setLastName( $valori_form['last_name'] );
-                if( $user->getCity()            != $valori_form['city']         && trim( $valori_form['city'] ) != "" )         $user->setCity( $valori_form['city'] );
-                if( $user->getState()           != $valori_form['state']        && trim( $valori_form['state'] ) != "" )        $user->setState( $valori_form['state'] );
-                if( $user->getGender()          != $valori_form['gender']       && trim( $valori_form['gender'] ) != "" )       $user->setGender( $valori_form['gender'] );
+                if( $user->getFirstName()       != $valori_form['first_name']       && trim( $valori_form['first_name'] ) != "" )       $user->setFirstName( $valori_form['first_name'] );
+                if( $user->getLastName()        != $valori_form['last_name']        && trim( $valori_form['last_name'] ) != "" )        $user->setLastName( $valori_form['last_name'] );
+                if( $user->getCity()            != $valori_form['city']             && trim( $valori_form['city'] ) != "" )             $user->setCity( $valori_form['city'] );
+                if( $user->getState()           != $valori_form['state']            && trim( $valori_form['state'] ) != "" )            $user->setState( $valori_form['state'] );
+                if( $user->getGender()          != $valori_form['gender']           && trim( $valori_form['gender'] ) != "" )           $user->setGender( $valori_form['gender'] );
 //                if( $user->getPassword()        != $valori_form['new_password'] && trim( $valori_form['new_password'] ) != ""  && $valori_form['new_password'] == $valori_form['confirm_password'] )   $user->setPassword( $valori_form['new_password'] );
-                if( $user->getEmail()           != $valori_form['email']        && trim( $valori_form['email'] ) != "" )        $user->setEmail( $valori_form['email'] );
-                if( $user->getHomeCourse()      != $hc                          && trim( $hc ) != "" )                          $user->setHomeCourse( $hc );
-                if( $user->getHomeCourseName()  != $valori_form['home_course_name']  && trim( $valori_form['home_course_name'] ) != "" )  $user->setHomeCourseName( trim( $valori_form['home_course_name'] ) );
+                if( $user->getEmail()           != $valori_form['email']            && trim( $valori_form['email'] ) != "" )            $user->setEmail( $valori_form['email'] );
+                if( $user->getHomeCourse()      != $valori_form['home_course']      && trim( $valori_form['home_course'] ) != "" )      $user->setHomeCourse( $valori_form['home_course'] );
+                if( $user->getHomeCourseName()  != $valori_form['home_course_name'] && trim( $valori_form['home_course_name'] ) != "" ) $user->setHomeCourseName( $valori_form['home_course_name'] );
                 $user->save();
 	}
 
@@ -154,17 +160,17 @@ class membersActions extends sfActions
         
         protected function processCourse(sfWebRequest $request, sfForm $form)
         {
+            $errors = array();
             $form->bind($request->getParameter($form->getName()), $request->getFiles($form->getName()));
             if ($form->isValid())
             {
-//                $form->save();
-                return true;
+                // Do something with the file
             }
             else 
             {
-                //var_dump( $form->getErrorSchema()->__toString() );
+                $errore["file"] = "Invalid file type.";
             }
-            return false;
+            return $errors;
         }
         
         protected function processScore(sfWebRequest $request, sfForm $form)

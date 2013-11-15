@@ -155,7 +155,10 @@
                         <div class="profileform_cell">
                             <?php echo $pform['home_course_name']->renderLabel('Home Golf Course') ?>
                             <?php echo $pform['home_course_name']->renderError() ?>
-                            <div class=""><?php echo $pform['home_course_name'] ?></td>
+                            <div class="">
+                                <img src="../images/loader5.gif" border="0" style="display:none;" id="home_course_loader"/>
+                                <?php echo $pform['home_course_name'] ?>
+                            </div>
                         </div>
                         <div class="profileform_cell">
                             <input name="Submit" type="submit" value="Submit" class="customButton"/>
@@ -165,21 +168,19 @@
             </div>
             <div id="Password" class="whiteBackground">
                 <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="credential_form">
-                    <?php if( isset( $c_errors ) ): ?>
-                        <?php if( count( $c_errors ) > 0 ): ?>
-                            <div id="errors_div" >
-                                <?php foreach( $c_errors as $field => $error) : ?>
-                                        <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
-                                <?php endforeach; ?>
-                            </div>
-                        <?php else: ?>
-                            <span style="color: green;">Password successfully changed.</span>
-                        <?php endif; ?>
-                    <?php endif; ?>
                     <fieldset>
                         <input type="hidden" name="sf_method" value="put">
                         <?php echo $cform->renderGlobalErrors() ?>
                         <?php echo $cform->renderHiddenFields() ?>
+                        <?php if( isset( $c_errors ) ): ?>
+                            <?php if( count( $c_errors ) > 0 ): ?>
+                                <?php foreach( $c_errors as $field => $error) : ?>
+                                        <span style="color: red"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span><br/>
+                                <?php endforeach; ?>
+                            <?php else: ?>
+                                <span style="color: green;">Password successfully changed.</span>
+                            <?php endif; ?>
+                        <?php endif; ?>
                         <div class="">
                             <?php echo $cform['old_password']->renderLabel('Old Password') ?>
                             <div class=""><td align="left" width="50%"><?php echo $cform['old_password'] ?></div>
@@ -204,6 +205,13 @@
                     <?php echo $scform->renderGlobalErrors() ?>
                     <?php echo $scform->renderHiddenFields() ?>
                     <div class="" style="margin-top:30px; margin-bottom:30px;">
+                        <?php if( isset( $sc_errors ) ): ?>
+                            <?php if( count( $sc_errors ) > 0 ): ?>
+                                <span style="color: red">Upload error.</span><br/>
+                            <?php else: ?>
+                                <span style="color: green;">Upload successfull.</span>
+                            <?php endif; ?>
+                        <?php endif; ?>
                         <?php echo $scform['image']->renderLabel(' ') ?>
                         <?php echo $scform['image']->renderError() ?>
                         <div class=""><?php echo $scform['image'] ?></div>
@@ -225,6 +233,36 @@
                 $("#tab_" + "<?php echo $sf_user->getFlash('select_tab') ?>").trigger( "click" );
                 <?php $sf_user->setFlash('select_tab', null) ?>
         <?php endif; ?>
+            
+        <?php if( $sf_user->hasFlash('has_selected_home_course') ): ?>
+                $.post(
+                        "<?php echo url_for('@get_state_courses'); ?>",
+                        { term : $("#player_state").val() },
+                        function(data){
+                            var opts = ""
+                            $.each( data, function(i, e){
+                                var selected = "";
+                                if( e.id == "<?php echo $sf_user->getFlash('has_selected_home_course') ?>") selected = "selected='selected'";
+                                opts += "<option value='" + e.id + "' " + selected + ">" + e.label + "</option>";
+                            })
+                            $("#player_home_course_name").html("<option selected='selected' value=''>Select course</option>" + opts);
+                            $("#player_home_course_name").show();
+                            $("#home_course_loader").hide();
+                        },
+                        "json"
+                )
+        <?php endif; ?>
+            
+        <?php if( $sf_user->hasFlash('show_file_upload') && $sf_user->hasFlash('show_file_upload') ): ?>
+                $("#profilePicture").trigger( "click" );
+                <?php $sf_user->setFlash('show_file_upload', null) ?>
+        <?php endif; ?>
+            
+        <?php if( $sf_user->hasFlash('show_add_score') && $sf_user->hasFlash('show_add_score') ): ?>
+                $("#add_score_button").trigger( "click" );
+                <?php $sf_user->setFlash('show_add_score', null) ?>
+        <?php endif; ?>
+            
             
 	$( "#player_home_course_name" ).autocomplete({
               minLength: 3,
@@ -329,7 +367,7 @@
         $(document).on("change", "#score_state", function(){
             $("#score_course").hide();
             $("#course_loader").show();
-            if( $("#score_state").val() != '')
+            if( $("#score_state").val() != ''){
                 $.post(
                         "<?php echo url_for('@get_state_courses'); ?>",
                         { term : $("#score_state").val() },
@@ -337,13 +375,41 @@
                             var opts = ""
                             $.each( data, function(i, e){
                                 opts += "<option value='" + e.id + "'>" + e.label + "</option>";
-                                $("#score_course").html("<option selected='selected' value=''>Select course</option>" + opts);
-                                $("#score_course").show();
-                                $("#course_loader").hide();
                             })
+                            $("#score_course").html("<option selected='selected' value=''>Select course</option>" + opts);
+                            $("#score_course").show();
+                            $("#course_loader").hide();
                         },
                         "json"
                 )
+            }else{
+                $("#score_course").show();
+                $("#course_loader").hide();
+            }
+        })
+        
+        $(document).on("change", "#player_state", function(){
+            $("#player_home_course_name").hide();
+            $("#home_course_loader").show();
+            if( $("#player_state").val() != ''){
+                $.post(
+                        "<?php echo url_for('@get_state_courses'); ?>",
+                        { term : $("#player_state").val() },
+                        function(data){
+                            var opts = ""
+                            $.each( data, function(i, e){
+                                opts += "<option value='" + e.id + "'>" + e.label + "</option>";
+                            })
+                            $("#player_home_course_name").html("<option selected='selected' value=''>Select course</option>" + opts);
+                            $("#player_home_course_name").show();
+                            $("#home_course_loader").hide();
+                        },
+                        "json"
+                )
+            }else{
+                $("#player_home_course_name").show();
+                $("#home_course_loader").hide();
+            }
         })
         
         $(document).on("change", "#score_course", function(){
@@ -357,23 +423,14 @@
                             var opts = ""
                             $.each( data, function(i, e){
                                 opts += "<option value='" + e.id + "'>" + e.label + "</option>";
-                                $("#score_teese").html("<option selected='selected' value=''>Select course</option>" + opts);
-                                $("#score_teese").show();
-                                $("#teese_loader").hide();
                             })
+                            $("#score_teese").html("<option selected='selected' value=''>Select course</option>" + opts);
+                            $("#score_teese").show();
+                            $("#teese_loader").hide();
                         },
                         "json"
                 )
         })
         
-        <?php if( $sf_user->hasFlash('show_file_upload') && $sf_user->hasFlash('show_file_upload') ): ?>
-                $("#profilePicture").trigger( "click" );
-                <?php $sf_user->setFlash('show_file_upload', null) ?>
-        <?php endif; ?>
-            
-        <?php if( $sf_user->hasFlash('show_add_score') && $sf_user->hasFlash('show_add_score') ): ?>
-                $("#add_score_button").trigger( "click" );
-                <?php $sf_user->setFlash('show_add_score', null) ?>
-        <?php endif; ?>
     })
 </script>

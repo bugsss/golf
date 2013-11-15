@@ -56,10 +56,13 @@ class courseTable extends Doctrine_Table
                                         ->select( "tees_id, teename")
                                         ->where( "LOWER(course_id) = ? ", trim( strtolower( $term) ) )
                                         ->orderBy( "teename" )
-                                        ->execute();//getSqlQuery();
-        $return = Array();
-        foreach( $res as $c)
-            $return[] = array( "label" => $c->getTeename(), "id" => $c->getTeesId() );
+//                                        ->getSqlQuery();
+//                                        ->execute();
+                                        ->fetchArray();
+        $return = array();
+        foreach( $res as $c){
+            $return[] = array( "label" => $c ["teename"], "id" => $c["tees_id"] );
+        }
 
         return $return;
     }

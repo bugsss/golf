@@ -38,19 +38,19 @@ class ForgotForm extends BaseplayerForm
         $this->validatorSchema->setOption('filter_extra_fields', false);
     }
 
-    public function checkEmail($validator, $values)
+    public function checkEmail($validator, $value)
     {
         $nr_of_same_usernames = Doctrine::getTable("player")
                             ->createQuery()
-                            ->where(" email =  ? ", trim($values['email']))
+                            ->where(" email =  ? ", trim($value))
                             ->count();
-        if( !($nr_of_same_usernames > 0 ) )
+        if( $nr_of_same_usernames == 0 )
         {
-            $error = new sfValidatorError($validator, 'Invalid email address.');
+            $error = new sfValidatorError($validator, 'Invalid email addressss.');
             throw new sfValidatorErrorSchema($validator, array ('email'=>$error));
         }
 
-        return $values;
+        return $value;
     }
 
     public function check_email_address($email)

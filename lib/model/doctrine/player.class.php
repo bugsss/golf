@@ -35,7 +35,7 @@ class player extends Baseplayer
             $temp = array();
             $temp["total_score"] = $event["total_score"];
             $temp["course_name"] = $event["coursename"];
-            $temp["event_date"] = $event["event_date"];
+            $temp["event_date"] = date( "Y-m-d", strtotime($event["event_date"]) );
             $ret[] = $temp;
         }
         return $ret;

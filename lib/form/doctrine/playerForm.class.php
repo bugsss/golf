@@ -26,7 +26,7 @@ class playerForm extends BaseplayerForm
         $this->widgetSchema['first_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['last_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
-        $this->widgetSchema['home_course_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+//        $this->widgetSchema['home_course_name'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
 
         $states = array(    "" => "Select state", 
                             "AL" => "Alabama", "AK" => "Alaska", "AZ" => "Arizona", "AR" => "Arkansas", "CA" =>	"California", "CO" => "Colorado", "CT" => "Connecticut",
@@ -44,6 +44,12 @@ class playerForm extends BaseplayerForm
                                                     'multiple'  => false, 
                                                     'expanded'  => false
                                                 ), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['home_course_name'] = new sfWidgetFormChoice(
+                                            array(
+                                                    'choices'   => array( "" => "Select course"), 
+                                                    'multiple'  => false, 
+                                                    'expanded'  => false
+                                                ), array ( 'class' => "customSelect validate[required]" ));
         $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
 //        $this->widgetSchema['handicap'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['gender'] = new sfWidgetFormChoice(
@@ -69,9 +75,6 @@ class playerForm extends BaseplayerForm
 
         $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
-        $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-                        new sfValidatorCallback( array ('callback' => array ($this, 'checkNewPass'))))));
-
         $this->validatorSchema->setOption('allow_extra_fields', true);
         $this->validatorSchema->setOption('filter_extra_fields', false);
     }
@@ -91,37 +94,4 @@ class playerForm extends BaseplayerForm
         return $values;
     }
 
-    public function check_email_address($email)
-    {
-        if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email))
-        {
-            return false;
-        }
-
-        $email_array = explode("@", $email);
-        $local_array = explode(".", $email_array[0]);
-        for ($i = 0; $i < sizeof($local_array); $i++)
-        {
-            if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i]))
-            {
-                return false;
-            }
-        }
-        if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1]))
-        {
-            $domain_array = explode(".", $email_array[1]);
-            if (sizeof($domain_array) < 2)
-            {
-                return false;
-            }
-            for ($i = 0; $i < sizeof($domain_array); $i++)
-            {
-                if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i]))
-                {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
 }

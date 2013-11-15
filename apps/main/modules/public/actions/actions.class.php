@@ -80,11 +80,7 @@ class publicActions extends sfActions
 	{
             $this->getUser()->setAttribute('selected_menu', "login");
             $this->form = new ForgotForm();
-            if( $request->getParameter( $this->form->getName() ) ) 
-            {
-                $this->f_errors = $this->processForgot( $request, $this->form );
-var_dump($this->f_errors);print_r("<br />");
-            }
+            if( $request->getParameter( $this->form->getName() ) ) $this->f_errors = $this->processForgot( $request, $this->form );
 	}
         
 	public function executeRegistration ( sfWebRequest $request )
@@ -114,7 +110,7 @@ var_dump($this->f_errors);print_r("<br />");
                 {   
                     $errors = array();
                     foreach($form->getErrorSchema()->getErrors() as $key => $value) {
-                        $errors[$key] = $value->__toString();
+                        $errors[$key] = "Invalid email adress.";
                     }
                     return $errors;
                 }
@@ -154,6 +150,7 @@ var_dump($this->f_errors);print_r("<br />");
 
 	protected function processSignin ( sfWebRequest $request, sfForm $form )
 	{
+                $errors = array();
 		$valori_form = $request->getParameter( $form->getName() );
 //var_dump($valori_form);
                 $user = playerTable::getUser( $valori_form['email'] );
@@ -169,25 +166,15 @@ var_dump($this->f_errors);print_r("<br />");
                                 $this->getUser()->setAttribute("user", $user);
                                 $this->redirect("@members");
                         }
-                        else
-                        {
-                        }
+                        else $errors["Username"] = "Invalid username/password.";
                     }
                     else
                     {
-                        $errors = array();
-                        foreach($form->getErrorSchema()->getErrors() as $key => $value) {
-                            $errors[$key] = $value->__toString();
-                        }
-                        return $errors;
+                        $errors["Username"] = "Invalid username/password.";
                     }
                 }
-                else
-                {
-                    $json['status'] = 0;
-                    $json['message'] = "Login failed2";
-                    $json['message2'] = $form->getErrorSchema()->__toString();
-                }
+                else $errors["Username"] = "Invalid username/password.";
+                return $errors;
 	}
 
         protected function processContactUs( sfWebRequest $request, sfForm $form )
