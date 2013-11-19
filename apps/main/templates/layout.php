@@ -66,7 +66,11 @@
                     </ul>
                 </div>
             </div>
-            
         </div>
+        <script type="text/javascript" language="JavaScript">
+            $(document).ready(function(){
+                $("#smoothmenu1 ul li ul").hide();
+            })
+        </script>        
     </body>
 </html>

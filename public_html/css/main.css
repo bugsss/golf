@@ -1,5 +1,8 @@
 @charset "utf-8";
 /* GOLF GAME KEEPERS LLC. */
+fieldset {
+    border: 0 none;
+}
 
 h1.fontface1 {font: 27px/27px 'Oswald'; color:#FFF; margin:0; padding:20px 0 20px 0;}
 h2.fontface2 {font: 20px/20px 'Oswald'; color:#FFF; margin:0; padding:0 0 10px 0;}

@@ -9,11 +9,6 @@
                 <?php echo $sform->renderGlobalErrors() ?>
                 <?php echo $sform->renderHiddenFields() ?>
                 <div class="" style="padding-top:15px">
-                    <?php echo $sform['score_date']->renderLabel('Date') ?>
-                    <?php echo $sform['score_date']->renderError() ?>
-                    <div class="" style="margin-top: -20px;"><?php echo $sform['score_date'] ?></div>
-                </div>
-                <div class="" style="padding-top:15px">
                     <?php echo $sform['state']->renderLabel('State') ?>
                     <?php echo $sform['state']->renderError() ?>
                     <div class="" style="margin-top: -20px;"><?php echo $sform['state'] ?></div>
@@ -38,6 +33,11 @@
                     <?php echo $sform['score']->renderLabel('Score') ?>
                     <?php echo $sform['score']->renderError() ?>
                     <div class="" style="margin-top: -20px;"><?php echo $sform['score'] ?></div>
+                </div>
+                <div class="" style="padding-top:15px">
+                    <?php echo $sform['score_date']->renderLabel('Date') ?>
+                    <?php echo $sform['score_date']->renderError() ?>
+                    <div class="" style="margin-top: -20px;"><?php echo $sform['score_date'] ?></div>
                 </div>
             </fieldset>
         </form>

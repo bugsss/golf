@@ -11,7 +11,7 @@
                         <td style="width: 20%; float: right"><?php echo date( "Y-m-d", strtotime( $article->getPublishDate() ) ); ?></td>
                     </tr>
                     <tr>
-                        <td colspan="2" style="width: 100%"><?php echo $article->getContent(); ?></td>
+                        <td colspan="2" style="width: 100%"><?php echo html_entity_decode( $article->getContent() ); ?></td>
                     </tr>
                     <tr><td colspan="2" style="height: 15px;"> </td></tr>
                 <?php endforeach; ?>
