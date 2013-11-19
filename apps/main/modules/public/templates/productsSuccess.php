@@ -36,7 +36,7 @@
         
         <br />
         
-        <h3 class="fontface3">GPS Enabled Course Finder</h3>
+        <h2 class="fontface2">GPS Enabled Course Finder</h2>
         
         <img src="images/pas_2.png" border="0" />
         
@@ -50,7 +50,7 @@
         
         <br />
         
-        <h3 class="fontface3">Select Tees, and Starting Hole</h3>
+        <h2 class="fontface2">Select Tees, and Starting Hole</h2>
         
         <img src="images/pas_3.png" border="0" />
         
@@ -64,7 +64,7 @@
         
         <br />
         
-        <h3 class="fontface3">Add Players</h3>
+        <h2 class="fontface2">Add Players</h2>
         
         <img src="images/pas_4.png" border="0" class="TL" />
      	
@@ -90,7 +90,7 @@
         
         <br />
         
-        <h3 class="fontface3">Course Check-in</h3>
+        <h2 class="fontface2">Course Check-in</h2>
         
         <img src="images/pas_5.png" border="0" class="TL" />
         
@@ -112,7 +112,7 @@
         
         <br />
         
-        <h3 class="fontface3">Add Bets</h3>
+        <h2 class="fontface2">Add Bets</h2>
         
         <img src="images/pas_6.png" />
         
@@ -140,7 +140,7 @@
         
         <br />
         
-        <h3 class="fontface3">Scoring and Presses</h3>
+        <h2 class="fontface2">Scoring and Presses</h2>
         
         <img src="images/pas_7.png" border="0" />
         
