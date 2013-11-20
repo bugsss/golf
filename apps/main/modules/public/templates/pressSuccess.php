@@ -2,7 +2,7 @@
     <div id="spacer1"></div>
     <div id="spacer2"></div>
 
-    <div id="formColumn">
+    <div id="pressScroll" style="height: 508px;">
         <div id="container">
             <table styel="width: 100%">
                 <?php foreach( $articles as $article ): ?>
@@ -19,3 +19,17 @@
         </div>
     </div>
 </div>
+
+<script type="text/javascript" language="JavaScript">
+    $(document).ready(function() {
+        $("#pressScroll").niceScroll({
+		touchbehavior:false,
+		cursorcolor:"#96B613",
+		cursoropacitymax:0.7,
+		cursorwidth:7,
+		cursorborder:"1px solid #000",
+            	cursorborderradius:"3px",
+		background:"#6B820C",
+		autohidemode:"false"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
+    });
+</script>
