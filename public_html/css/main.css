@@ -421,3 +421,10 @@ body {
 .score_separator {
 	padding:17px 0 0 0;
 }
+
+
+
+/************************  CSS FOR PRESS PAGE  ****************************************************************************/
+.article_title {font: 27px/27px 'Oswald'; color:#FFF; margin:0; padding:20px 0 20px 0;}
+.article_date {font: 15px/20px 'cantarellregular'; color:#FFF; margin:0; padding:0;}
+.article_content {font: 15px/20px 'cantarellregular'; color:#000; margin:0; padding:0 20px 30px 0;}
