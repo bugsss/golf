@@ -360,11 +360,13 @@
                 "<?php echo url_for('@get_scores'); ?>",
                 {},
                 function(data){
-                    var tbl = ""
+                    var tbl = "",
+			odd = true;
                     $.each( data, function(i, e){
-                        tbl += "<tr><td rowspan='2' class='golf_score_number'>" + e.total_score + "</td><td >" + e.course_name + "</td></tr><tr><td >" + e.event_date + "</td></tr><tr class='score_separator'><td colspan='2'> </td></tr>";
+                        tbl += "<tr class='" + (odd ? "score_odd" : "score_even" ) + "'><td rowspan='2' class='golf_score_number'>" + e.total_score + "</td><td >" + e.course_name + "</td></tr><tr class='" + (odd ? "score_odd" : "score_even" ) + "'><td >" + e.event_date + "</td></tr>";
+			odd = !odd;
                     })
-                    $("#scores_div").html("<table>" + tbl + "</table>");
+                    $("#scores_div").html("<table id='score_table'>" + tbl + "</table>");
                 },
                 "json"
         )
