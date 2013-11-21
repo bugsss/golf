@@ -412,10 +412,15 @@ body {
 }
 
 /*********************SPECIAL CLASS FOR SCORE TAB TARGETS THE SCORE IN THE SCORE TABLE************************************/
+#score_table{
+	width: 96%;
+}
+
 .golf_score_number {
 	font-size:24px;
 	margin:0;
 	padding:15px 15px 15px 15px;
+	width: 30px;
 }
 
 .score_separator {
