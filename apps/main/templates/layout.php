@@ -25,7 +25,7 @@
                                 <a href="/products.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "products" ? "selected_menu" : ""; ?>">products</a>
                             </li>
                             <li>
-                                <a href="/support.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "support" ? "selected_menu" : ""; ?>">support</a>
+                                <a href="/support.html" class="withBorder <?php echo $sf_user->getAttribute('selected_menu') == "support" ? "selected_menu" : ""; ?>">support >></a>
                                 <ul style="top: 46px; visibility: visible; left: 0px; width: 171px; display: none;">
                                     <li><a href="/support/how_to.html">HOW TO</a></li>
                                     <li><a href="/support/contact_us.html">CONTACT US</a></li>
