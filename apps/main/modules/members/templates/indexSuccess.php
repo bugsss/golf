@@ -276,7 +276,7 @@
 		cursorborder:"1px solid #000",
             	cursorborderradius:"3px",
 		background:"#6B820C",
-		autohidemode:"false"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
+		autohidemode:"false"}); // MAC like scrollbar
             
         $(document).on("click", "#add_score_button", function(){ $("#add_score_layer").dialog("open" ); });
         $("#add_score_layer").dialog({

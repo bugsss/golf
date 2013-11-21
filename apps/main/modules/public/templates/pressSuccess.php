@@ -30,6 +30,6 @@
 		cursorborder:"1px solid #000",
             	cursorborderradius:"3px",
 		background:"#6B820C",
-		autohidemode:"false"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
+		autohidemode:"false"}); // MAC like scrollbar
     });
 </script>
