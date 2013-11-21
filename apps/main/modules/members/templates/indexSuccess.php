@@ -91,7 +91,7 @@
         <div id="container">
             <ul class="tabs">
                 <li><a href="#Score" id="tab_score">SCORE</a></li>
-                <li><a href="#Friends" id="tab_friends">FRIENDS</a></li>
+<!--                <li><a href="#Friends" id="tab_friends">FRIENDS</a></li>-->
                 <li><a href="#Account" id="tab_account">ACCOUNT</a></li>
                 <li><a href="#Password" id="tab_password">PASSWORD</a></li>
                 <li><a href="#SubmitCourse" id="tab_scourse">SUBMIT A COURSE</a></li>
@@ -107,9 +107,9 @@
                 </div>
             </div>
 
-            <div id="Friends" class="whiteBackground">
+<!--            <div id="Friends" class="whiteBackground">
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-            </div>
+            </div>-->
 
             <div id="Account" class="whiteBackground">
                 <form class="customProfileForm" action="/main_dev.php/members.html<?php //echo url_for('@register') ?>" method="post" id="profile_form">
@@ -268,7 +268,16 @@
               minLength: 3,
               source: "get_courses.html"
 	    });
-
+        $("#scores_div").niceScroll({
+		touchbehavior:false,
+		cursorcolor:"#96B613",
+		cursoropacitymax:0.7,
+		cursorwidth:7,
+		cursorborder:"1px solid #000",
+            	cursorborderradius:"3px",
+		background:"#6B820C",
+		autohidemode:"false"}); // MAC like scrollbar
+            
         $(document).on("click", "#add_score_button", function(){ $("#add_score_layer").dialog("open" ); });
         $("#add_score_layer").dialog({
             autoOpen: false,
