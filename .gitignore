@@ -217,3 +217,5 @@ pip-log.txt
 cache/
 log/
 public_html-old/
+public_html/robots.txt
+
