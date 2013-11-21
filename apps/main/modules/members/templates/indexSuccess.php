@@ -268,7 +268,16 @@
               minLength: 3,
               source: "get_courses.html"
 	    });
-
+        $("#scores_div").niceScroll({
+		touchbehavior:false,
+		cursorcolor:"#96B613",
+		cursoropacitymax:0.7,
+		cursorwidth:7,
+		cursorborder:"1px solid #000",
+            	cursorborderradius:"3px",
+		background:"#6B820C",
+		autohidemode:"false"}).cursor.css({"background-image":"url(img/mac6scroll.png)"}); // MAC like scrollbar
+            
         $(document).on("click", "#add_score_button", function(){ $("#add_score_layer").dialog("open" ); });
         $("#add_score_layer").dialog({
             autoOpen: false,
