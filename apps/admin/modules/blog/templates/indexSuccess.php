@@ -74,9 +74,11 @@
                             <div class="head">
                                 <h5 class="art_title" id="at_<?php echo $article->getId(); ?>" style="<?php echo $style; ?>"><?php echo $article->getTitle(); ?></h5>
                                 <span style="float:right; margin-right: 15px; margin-top: 10px; <?php echo $style; ?>" class="art_pd" id="pd_<?php echo $article->getId(); ?>"><?php echo date( "Y-m-d", strtotime( $article->getPublishDate() ) ); ?></span>
+                                <span style="float:right; margin-right: 15px; margin-top: 3px; <?php echo $style; ?>" class="art_pt" id="pt_<?php echo $article->getId(); ?>"><img src="/images/twitter.png" border="0" style="width: 33px;"/></span>
+                                <span style="float:right; margin-top: 3px; <?php echo $style; ?>" class="art_pf" id="pf_<?php echo $article->getId(); ?>"><img src="/images/facebook.png" border="0" style="width: 33px;"/></span>
                             </div>
                             <div class="menu_body">
-                                <span><?php echo $article->getContent(); ?></span>
+                                <span><?php echo html_entity_decode( $article->getContent() ); ?></span>
                                 <div class="rowElem noborder">
                                     <br />
                                     <input type="button" class="greenBtn modify_button" id="btmod_<?php echo $article->getId(); ?>" value="Modify">
@@ -92,6 +94,14 @@
     </div>
 <script type="text/javascript">
     $(document).ready(function() {
+        $(".art_pf").click( function(e){
+              alert("facebook post")
+        });
+        
+        $(".art_pt").click( function(e){
+              alert("twitter tweet")
+        });
+        
         $(".modify_button").click( function(e){
            e.stopPropagation();
            e.preventDefault();
