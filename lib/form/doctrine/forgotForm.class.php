@@ -22,7 +22,7 @@ class ForgotForm extends BaseplayerForm
             );
 
 
-        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
+        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required, custom[email]]" ));
 
 
         $this -> validatorSchema['email'] = new sfValidatorAnd(array(

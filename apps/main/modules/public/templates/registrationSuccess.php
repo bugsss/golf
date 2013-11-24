@@ -66,7 +66,10 @@
 </div><!--END introCellWrapper-->
 <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){
-        $(document).on( "click", "#registration_submit", function(e){ $("#register_form").submit(); })
+        $("#register_form").validationEngine();
+        $(document).on( "click", "#registration_submit", function(e){ 
+            if( $("#register_form").validationEngine("validate") ) $("#register_form").submit();
+        })
         $(document).on( "click", "#login_submit", function(e){ window.location = "/login.html"; })
     })
 </script>

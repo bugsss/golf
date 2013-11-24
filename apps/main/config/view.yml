@@ -12,9 +12,25 @@ default:
     #language:     en
     #robots:       index, follow
 
-  stylesheets:    [main.css, FONTSQUIRREL/stylesheet.css, wowslider-style, trontastic/jquery-ui-1.9.2.custom.min.css, ddsmoothmenu.css]
+  stylesheets:    
+    - main.css
+    - FONTSQUIRREL/stylesheet.css
+    - wowslider-style
+    - trontastic/jquery-ui-1.9.2.custom.min.css
+    - ddsmoothmenu.css
+    - jquery.validationengine/validationEngine.jquery.css
 
-  javascripts:    [jquery-1.8.3.js, jquery-ui-1.9.2.custom.min.js, wowslider.js, script.js, ddsmoothmenu.js, ddsmoothmenu-start.js, jquery.nicescroll.js]
+  javascripts:    
+    - jquery-1.8.3.js
+    - jquery-ui-1.9.2.custom.min.js
+    - wowslider.js
+    - script.js
+    - ddsmoothmenu.js
+    - ddsmoothmenu-start.js
+    - jquery.nicescroll.js
+    - jquery.validationengine/languages/jquery.validationEngine-en.js
+    - jquery.validationengine/jquery.validationEngine.js
+    
 
   has_layout:     true
   layout:         layout

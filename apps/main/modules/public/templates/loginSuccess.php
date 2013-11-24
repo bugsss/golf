@@ -29,7 +29,10 @@
 </div><!--END introCellWrapper-->
 <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){
-        $(document).on( "click", "#login_submit", function(e){ $("#login_form").submit(); })
+        $("#login_form").validationEngine();
+        $(document).on( "click", "#login_submit", function(e){ 
+            if( $("#login_form").validationEngine("validate") ) $("#login_form").submit();
+        })
         $(document).on( "click", "#registration_submit", function(e){ window.location = "<?php echo url_for("@register"); ?>"; })
         $(document).on( "click", "#forgot_submit", function(e){ window.location = "<?php echo url_for("@forgot"); ?>"; })
     })

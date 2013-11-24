@@ -27,5 +27,9 @@
 </div>
 <script type="text/javascript" language="JavaScript">
     $(document).ready(function(){
+        $("#forgot_form").validationEngine();
+        $(document).on( "click", "#forgot_submit", function(e){ 
+            if( $("#forgot_form").validationEngine("validate") ) $("#forgot_form").submit();
+        })
     })
 </script>

@@ -27,7 +27,7 @@ class loginForm extends BaseplayerForm
 
         );    
         
-        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required,custom[email]]" ));
+        $this->widgetSchema['email'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required, custom[email]]" ));
         $this->widgetSchema['password'] = new sfWidgetFormInputPassword( array(), array ( 'autocomplete' => 'off', 'class' => "customInput validate[required]" ));
     
         $this->widgetSchema->setLabels(array(
