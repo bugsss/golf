@@ -54,7 +54,7 @@ class playerForm extends BaseplayerForm
 //        $this->widgetSchema['handicap'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['gender'] = new sfWidgetFormChoice(
                                             array(
-                                                    'choices'   => array( "" => "Select gender", "male" => "Male", "female" => "Female"), 
+                                                    'choices'   => array( "" => "Select gender", "m" => "Male", "f" => "Female"), 
                                                     'multiple'  => false, 
                                                     'expanded'  => false
                                                 ), array ( 'class' => "customInput validate[required]" ));

@@ -43,7 +43,7 @@ class RegistrationForm extends BaseplayerForm
         $this->widgetSchema['city'] = new sfWidgetFormInput( array (), array ( 'class' => "customInput validate[required]" ));
         $this->widgetSchema['gender'] = new sfWidgetFormChoice(
                                             array(
-                                                    'choices'   => array( "" => "Select gender", "male" => "Male", "female" => "Female"), 
+                                                    'choices'   => array( "" => "Select gender", "m" => "Male", "f" => "Female"), 
                                                     'multiple'  => false, 
                                                     'expanded'  => false
                                                 ), array ( 'class' => "customSelect validate[required]" ));
@@ -94,7 +94,7 @@ class RegistrationForm extends BaseplayerForm
     {
         $nr_of_same_usernames = Doctrine::getTable("player")
                             ->createQuery()
-                            ->where(" email =  ? ", trim($values['email']))
+                            ->where(" email =  ? ", trim($values))
                             ->count();
         if( $nr_of_same_usernames > 0 )
         {

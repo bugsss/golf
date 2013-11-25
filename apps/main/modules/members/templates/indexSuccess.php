@@ -242,6 +242,7 @@
                             var opts = ""
                             $.each( data, function(i, e){
                                 var selected = "";
+                               
                                 if( e.id == "<?php echo $sf_user->getFlash('has_selected_home_course') ?>") selected = "selected='selected'";
                                 opts += "<option value='" + e.id + "' " + selected + ">" + e.label + "</option>";
                             })
@@ -399,6 +400,7 @@
             }
         })
         
+	$("#player_state").trigger("change");
         $(document).on("change", "#player_state", function(){
             $("#player_home_course_name").hide();
             $("#home_course_loader").show();
@@ -409,9 +411,12 @@
                         function(data){
                             var opts = ""
                             $.each( data, function(i, e){
-                                opts += "<option value='" + e.id + "'>" + e.label + "</option>";
+                                selected = "";
+				if( e.id == "<?php echo $sf_user->getFlash('has_selected_home_course') ?>") selected = "selected='selected'";
+                                opts += "<option value='" + e.id + "' " + selected + ">" + e.label + "</option>";
+                                //opts += "<option value='" + e.id + "'>" + e.label + "</option>";
                             })
-                            $("#player_home_course_name").html("<option selected='selected' value=''>Select course</option>" + opts);
+                            $("#player_home_course_name").html("<option value=''>Select course</option>" + opts);
                             $("#player_home_course_name").show();
                             $("#home_course_loader").hide();
                         },
