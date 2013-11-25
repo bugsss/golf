@@ -1,11 +1,10 @@
 <div id="introCellWrapper">
     <div style="width:100%; height:50px;"></div>
-<?php var_dump($errors); ?>    
     <form class="customForm" action="<?php echo url_for('@register')  ?>" method="post" id="register_form">
         <?php if( isset( $errors ) && count( $errors ) > 0 ): ?>
             <div id="errors_div">
                 <?php foreach( $errors as $field => $error) : ?>
-                        <span style="color: red; float: left"><?php echo ucwords( str_replace("_", " ", $field) ) . ": " . $error ?></span>
+                        <span style="color: red; padding-left: 15px"><?php echo $error ?></span>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>

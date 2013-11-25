@@ -142,7 +142,13 @@ class publicActions extends sfActions
                 {   
                     $errors = array();
                     foreach($form->getErrorSchema()->getErrors() as $key => $value) {
-                        $errors[$key] = $value->__toString();
+                        $message = $value->getMessage();
+                        if( strstr( $message, "[" ) ){
+                            $message = explode("[", $message );
+                            $message = explode("]", $message[1] );
+                            $message = $message[0];
+                        }
+                        $errors[$key] = $message;
                     }
                     return $errors;
                 }

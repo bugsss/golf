@@ -402,13 +402,8 @@ body {
 }
 
 #errors_div {
-        background-color: #333333;
-        font-size: 80%; 
-        position: absolute; 
-        text-align: left; 
-        width: 210px; 
-        border-radius: 13px; 
-        right: -200px;     
+        text-align: center;
+        width: 100%;
 }
 
 /*********************SPECIAL CLASS FOR SCORE TAB TARGETS THE SCORE IN THE SCORE TABLE************************************/

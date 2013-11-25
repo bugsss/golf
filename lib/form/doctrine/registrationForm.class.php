@@ -50,25 +50,28 @@ class RegistrationForm extends BaseplayerForm
         $this->widgetSchema->setLabels(array(
                 're_password'		=>	'Retype password'
         ));
-        $this -> validatorSchema['first_name'] = new sfValidatorString();
-        $this -> validatorSchema['last_name'] = new sfValidatorString();
-        $this -> validatorSchema['state'] = new sfValidatorString();
-        $this -> validatorSchema['city'] = new sfValidatorString();
-        $this -> validatorSchema['gender'] = new sfValidatorString();
-        $this -> validatorSchema['password'] = new sfValidatorString();
-        $this -> validatorSchema['re_password'] = new sfValidatorString();
+        $this -> validatorSchema['first_name'] = new sfValidatorString( array(),array("required" => "First name required") );
+        $this -> validatorSchema['last_name'] = new sfValidatorString( array(),array("required" => "Last name required") );
+        $this -> validatorSchema['state'] = new sfValidatorString( array(),array("required" => "State required") );
+        $this -> validatorSchema['city'] = new sfValidatorString( array(),array("required" => "City required") );
+        $this -> validatorSchema['gender'] = new sfValidatorString( array(),array("required" => "Gender required") );
+        $this -> validatorSchema['password'] = new sfValidatorString( array(),array("required" => "Password required") );
+        $this -> validatorSchema['re_password'] = new sfValidatorString( array(),array("required" => "Re-password required") );
 
 
-        $this -> validatorSchema['email'] = new sfValidatorAnd(array(
-                    new sfValidatorEmail(),
-                    new sfValidatorCallback(array("callback" => array($this, 'checkEmail')))
-        ));
+        $this -> validatorSchema['email'] = new sfValidatorEmail();
 
 
         $this->errorSchema = new sfValidatorErrorSchema($this->validatorSchema);
 
-        $this->validatorSchema->setPostValidator(new sfValidatorAnd(array(
-                        new sfValidatorCallback( array ('callback' => array ($this, 'checkNewPass'))))));
+        $this->validatorSchema->setPostValidator(
+                                    new sfValidatorAnd(
+                                        array(
+                                                new sfValidatorCallback(array("callback" => array($this, 'checkEmail'))),
+                                                new sfValidatorCallback( array ('callback' => array ($this, 'checkNewPass')))
+                                            )
+                                        )
+                                    );
         
         $this->widgetSchema->setNameFormat('registration[%s]');
         $this->validatorSchema->setOption('allow_extra_fields', true);
@@ -79,12 +82,12 @@ class RegistrationForm extends BaseplayerForm
     {
         if ($values['password'] == '' || $values['re_password'] == '')
         {
-            $error = new sfValidatorError($validator, 'You must fill both the "Password" and "Re password" fields.');
+            $error = new sfValidatorError($validator, 'Password and Re-password are required.');
             throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
         }
         if ($values['password'] != $values['re_password'])
         {
-            $error = new sfValidatorError($validator, 'The password which you entered doesn\'t match <br />with the password from the re-type field. <br />Please make sure you enter the same password <br />in both fields.');
+            $error = new sfValidatorError($validator, 'Password missmatch.');
             throw new sfValidatorErrorSchema($validator, array ('password'=>$error));
         }
         return $values;
@@ -94,11 +97,11 @@ class RegistrationForm extends BaseplayerForm
     {
         $nr_of_same_usernames = Doctrine::getTable("player")
                             ->createQuery()
-                            ->where(" email =  ? ", trim($values))
+                            ->where(" email =  ? ", trim($values["email"]))
                             ->count();
         if( $nr_of_same_usernames > 0 )
         {
-            $error = new sfValidatorError($validator, 'This is email address is already used.');
+            $error = new sfValidatorError($validator, 'Email is already used.');
             throw new sfValidatorErrorSchema($validator, array ('email'=>$error));
         }
 
