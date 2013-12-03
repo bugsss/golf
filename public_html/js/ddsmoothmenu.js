@@ -533,11 +533,14 @@ if(ddsmoothmenu.detectie9){
 				return val;
 			},
 			width: function(){
-				var obj = this.get(0);
-				if(this.length < 1 || arguments.length || obj === window || obj === document){
-					return jqwidth.apply(this, arguments);
-				}
-				return parseFloat(document.defaultView.getComputedStyle(obj, null).getPropertyValue('width'));
+                                if( "get" in this ){
+                                    var obj = this.get(0);
+                                    if(this.length < 1 || arguments.length || obj === window || obj === document){
+                                            return jqwidth.apply(this, arguments);
+                                    }
+                                    return parseFloat(document.defaultView.getComputedStyle(obj, null).getPropertyValue('width'));
+                                }
+                                else return 0;
 			},
 			innerWidth: function(){
 				if(this.length < 1){return null;}
